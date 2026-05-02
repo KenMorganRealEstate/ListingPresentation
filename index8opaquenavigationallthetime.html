@@ -1,0 +1,472 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ken Morgan | The Hybrid Marketing Blueprint</title>
+    
+    <!-- Google Fonts: Space Grotesk for the technical footer elements -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Smart Fallback Tailwind CSS: Tries local offline file first, falls back to CDN if online/missing -->
+    <script src="tailwindcss.js" onerror="this.onerror=null; this.src='https://cdn.tailwindcss.com';"></script>
+    <script>
+        // Safeguard to prevent ReferenceError: Waits until Tailwind is fully loaded to apply the configuration
+        const checkTailwind = setInterval(() => {
+            if (typeof tailwind !== 'undefined') {
+                tailwind.config = {
+                    theme: {
+                        extend: {
+                            fontFamily: {
+                                tech: ['Space Grotesk', 'sans-serif'],
+                            },
+                            colors: {
+                                navy: '#061024',
+                                chartreuse: '#D4FF00',
+                            }
+                        }
+                    }
+                };
+                clearInterval(checkTailwind);
+            }
+        }, 50);
+        
+        // Stop checking after 5 seconds to prevent infinite loops in worst-case scenarios
+        setTimeout(() => clearInterval(checkTailwind), 5000);
+    </script>
+
+    <style>
+        body {
+            background-color: #061024;
+            color: #F8FAFC;
+            overflow: hidden; /* Prevent scrolling, act like a slide deck */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Global Header for Logos */
+        #global-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            z-index: 50;
+            pointer-events: none; /* Let clicks pass through to slides */
+        }
+
+        .header-logo {
+            height: 60px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+            opacity: 0.95;
+            filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.5));
+            color: transparent;
+            font-size: 0;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.6s ease-in-out, visibility 0.6s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #061024;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            z-index: 10;
+        }
+
+        /* Ken Burns Animation Definition */
+        @keyframes kenBurns {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.08); /* Subtle 8% zoom */
+            }
+        }
+
+        /* Image Presentation Slide - using contain to ensure no baked-in text is cut off */
+        .slide-img {
+            width: 100vw;
+            height: 100vh;
+            object-fit: contain;
+            object-position: center;
+            z-index: 1;
+            transform-origin: center center;
+            will-change: transform; /* Optimizes the animation rendering */
+        }
+
+        /* Trigger the Ken Burns effect ONLY when the slide is active AND flagged to zoom */
+        .slide.active.is-zooming .slide-img {
+            animation: kenBurns 30s linear forwards; 
+        }
+
+        /* Cinematic Video Transition Overlay */
+        #transition-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: contain;
+            z-index: 40; /* Placed OVER the slides (10), but UNDER the logos/header (50) */
+            background-color: transparent;
+            pointer-events: none;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Navigation Controls - Solid pod covering the watermark fully opaque at all times */
+        #controls {
+            position: fixed;
+            bottom: 15px; /* Tighter to the corner to cover the watermark */
+            right: 15px;  /* Tighter to the corner to cover the watermark */
+            z-index: 100;
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            background-color: #061024; /* Solid navy background to completely obscure anything underneath */
+            border-radius: 16px;
+            border: 1px solid rgba(212, 255, 0, 0.15); /* Subtle chartreuse border */
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8); /* Strong shadow to lift it visually */
+            opacity: 1; /* Kept fully opaque to hide watermark */
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            background: #D4FF00;
+            color: #061024;
+            border-color: #D4FF00;
+        }
+
+        /* Global Footer for Contact Info */
+        .global-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem;
+            text-align: center;
+            z-index: 20;
+            pointer-events: none;
+        }
+        
+        /* Progress Bar */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background-color: #D4FF00;
+            z-index: 1000;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px #D4FF00;
+        }
+
+        .tech-font {
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="progress-bar" style="width: 0%;"></div>
+
+    <!-- Cinematic Video Transition Player -->
+    <video id="transition-video" muted playsinline></video>
+
+    <!-- GLOBAL HEADER: Logos Overlay (Hybrid Paths) -->
+    <!-- Tries local folder first, falls back to Github raw URL if missing -->
+    <div id="global-header">
+        <img src="images/KenMorganLogoBestOneTransparent.png" onerror="this.onerror=null; this.src='https://github.com/KenMorganRealEstate/Home/blob/main/KenMorganLogoBestOneTransparent.png?raw=true';" alt="Ken Morgan Logo" class="header-logo" style="height: 72px;">
+        <img src="images/CASORA PRIMARY LOGO_blue (1).png" onerror="this.onerror=null; this.src='https://github.com/KenMorganRealEstate/Home/blob/main/CASORA%20PRIMARY%20LOGO_blue.png?raw=true';" alt="Casora Logo" class="header-logo">
+    </div>
+
+    <!-- GLOBAL FOOTER: Contact Info Overlay -->
+    <div class="global-footer">
+        <div class="text-xs text-gray-500 font-semibold tracking-widest tech-font drop-shadow-md">KEN MORGAN | CASORA! REALTY INC. | (905) 630-1225 | KENMORGAN.CA</div>
+    </div>
+
+    <!-- 18 PRESENTATION SLIDES (Hybrid Paths) -->
+    <!-- Tries local folder first, falls back to Github raw URL if missing -->
+    <div class="slide active">
+        <img src="images/ListingPresentation1.jpeg" onerror="this.onerror=null; this.src='https://github.com/KenMorganRealEstate/Home/blob/main/ListingPresentation1.jpeg?raw=true';" class="slide-img" alt="Presentation Slide 1">
+    </div>
+    <div class="slide">
+        <img src="images/ListingPresentation2.jpeg" onerror="this.onerror=null; this.src='https://github.com/KenMorganRealEstate/Home/blob/main/ListingPresentation2.jpeg?raw=true';" class="slide-img" alt="Presentation Slide 2">
+    </div>
+    <div class="slide">
+        <img src="images/ListingPresentation3.jpeg" onerror="this.onerror=null; this.src='https://github.com/KenMorganRealEstate/Home/blob/main/ListingPresentation3.jpeg?raw=true';" class="slide-img" alt="Presentation Slide 3">
+    </div>
+    <div class="slide">
+        <img src="images/ListingPresentation4.jpeg" onerror="this.onerror=null; this.src='https://github.com/KenMorganRealEstate/Home/blob/main/ListingPresentation4.jpeg?raw=true';" class="slide-img" alt="Presentation Slide 4">
+    </div>
+    <div class="slide">
+        <img src="images/ListingPresentation5.jpeg" onerror="this.onerror=null; this.src='https://github.com/KenMorganRealEstate/Home/blob/main/ListingPresentation5.jpeg?raw=true';" class="slide-img" alt="Presentation Slide 5">
+    </div>
+    <div class="slide">
+        <img src="images/ListingPresentation6.jpeg" onerror="this.onerror=null; this.src='https://github.com/KenMorganRealEstate/Home/blob/main/ListingPresentation6.jpeg?raw=true';" class="slide-img" alt="Presentation Slide 6">
+    </div>
+    <div class="slide">
+        <img src="images/ListingPresentation7.jpeg" onerror="this.onerror=null; this.src='https://github.com/KenMorganRealEstate/Home/blob/main/ListingPresentation7.jpeg?raw=true';" class="slide-img" alt="Presentation Slide 7">
+    </div>
+    <div class="slide">
+        <img src="images/ListingPresentation8.jpeg" onerror="this.onerror=null; this.src='https://github.com/KenMorganRealEstate/Home/blob/main/ListingPresentation8.jpeg?raw=true';" class="slide-img" alt="Presentation Slide 8">
+    </div>
+    <div class="slide">
+        <img src="images/ListingPresentation9.jpeg" onerror="this.onerror=null; this.src='https://github.com/KenMorganRealEstate/Home/blob/main/ListingPresentation9.jpeg?raw=true';" class="slide-img" alt="Presentation Slide 9">
+    </div>
+    <div class="slide">
+        <img src="images/ListingPresentation10.jpeg" onerror="this.onerror=null; this.src='https://github.com/KenMorganRealEstate/Home/blob/main/ListingPresentation10.jpeg?raw=true';" class="slide-img" alt="Presentation Slide 10">
+    </div>
+    <div class="slide">
+        <img src="images/ListingPresentation11.jpeg" onerror="this.onerror=null; this.src='https://github.com/KenMorganRealEstate/Home/blob/main/ListingPresentation11.jpeg?raw=true';" class="slide-img" alt="Presentation Slide 11">
+    </div>
+    <div class="slide">
+        <img src="images/ListingPresentation12.jpeg" onerror="this.onerror=null; this.src='https://github.com/KenMorganRealEstate/Home/blob/main/ListingPresentation12.jpeg?raw=true';" class="slide-img" alt="Presentation Slide 12">
+    </div>
+    <div class="slide">
+        <img src="images/ListingPresentation13.jpeg" onerror="this.onerror=null; this.src='https://github.com/KenMorganRealEstate/Home/blob/main/ListingPresentation13.jpeg?raw=true';" class="slide-img" alt="Presentation Slide 13">
+    </div>
+    <div class="slide">
+        <img src="images/ListingPresentation14.jpeg" onerror="this.onerror=null; this.src='https://github.com/KenMorganRealEstate/Home/blob/main/ListingPresentation14.jpeg?raw=true';" class="slide-img" alt="Presentation Slide 14">
+    </div>
+    <div class="slide">
+        <img src="images/ListingPresentation15.jpeg" onerror="this.onerror=null; this.src='https://github.com/KenMorganRealEstate/Home/blob/main/ListingPresentation15.jpeg?raw=true';" class="slide-img" alt="Presentation Slide 15">
+    </div>
+    <div class="slide">
+        <img src="images/ListingPresentation16.jpeg" onerror="this.onerror=null; this.src='https://github.com/KenMorganRealEstate/Home/blob/main/ListingPresentation16.jpeg?raw=true';" class="slide-img" alt="Presentation Slide 16">
+    </div>
+    <div class="slide">
+        <img src="images/ListingPresentation17.jpeg" onerror="this.onerror=null; this.src='https://github.com/KenMorganRealEstate/Home/blob/main/ListingPresentation17.jpeg?raw=true';" class="slide-img" alt="Presentation Slide 17">
+    </div>
+    <div class="slide">
+        <img src="images/ListingPresentation18.jpeg" onerror="this.onerror=null; this.src='https://github.com/KenMorganRealEstate/Home/blob/main/ListingPresentation18.jpeg?raw=true';" class="slide-img" alt="Presentation Slide 18">
+    </div>
+
+    <!-- Interactive Controls Overlay -->
+    <div id="controls">
+        <button class="nav-btn" id="btn-fullscreen" title="Toggle Fullscreen">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+        </button>
+        <button class="nav-btn" id="btn-prev" title="Previous Slide (Left Arrow)">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+        </button>
+        <button class="nav-btn" id="btn-next" title="Next Slide (Right Arrow or Space)">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            const progressBar = document.getElementById('progress-bar');
+            const transitionVideo = document.getElementById('transition-video');
+            
+            let currentSlide = 0;
+            const totalSlides = slides.length;
+            let isTransitioning = false; // Locks the controls during the video morph
+
+            function updateSlide(preventZoom = false) {
+                // Phase 1: Capture the outgoing slide's state so it doesn't snap back
+                slides.forEach((slide, index) => {
+                    if (slide.classList.contains('active') && index !== currentSlide) {
+                        const img = slide.querySelector('.slide-img');
+                        if (img) {
+                            // Grab the exact scale at this millisecond
+                            const currentTransform = window.getComputedStyle(img).transform;
+                            // Freeze it by applying it as a hard inline style
+                            img.style.transform = currentTransform;
+                            // Kill the CSS animation so it doesn't instantly reset
+                            img.style.animation = 'none';
+                        }
+                    }
+                });
+
+                // Phase 2: Update the active classes
+                slides.forEach((slide, index) => {
+                    slide.classList.remove('active', 'is-zooming');
+                    
+                    // Reset the incoming slide so it can properly start its animation from the beginning
+                    if (index === currentSlide) {
+                        const img = slide.querySelector('.slide-img');
+                        if (img) {
+                            img.style.transform = '';
+                            img.style.animation = '';
+                        }
+                    }
+                });
+                
+                slides[currentSlide].classList.add('active');
+                
+                // If we aren't doing a cinematic video transition, start the zoom immediately
+                if (!preventZoom) {
+                    slides[currentSlide].classList.add('is-zooming');
+                }
+
+                // Phase 3: Update the progress bar
+                const progress = ((currentSlide) / (totalSlides - 1)) * 100;
+                progressBar.style.width = `${progress}%`;
+            }
+
+            function playVideoTransition(slideIndex) {
+                isTransitioning = true;
+                
+                // Dynamically build the file names based on the current slide
+                const fileName = `slide${slideIndex + 1}to${slideIndex + 2}dissolve.mp4`;
+                const localSrc = fileName; // Pulls from the root directory of your project folder
+                const remoteSrc = `https://github.com/KenMorganRealEstate/Home/blob/main/${fileName}?raw=true`; // GitHub Fallback
+
+                // Function to handle execution if the video successfully loads and plays
+                const executeTransition = () => {
+                    // Once playback begins successfully, instantly show the video over the current slide
+                    transitionVideo.style.transition = "none";
+                    transitionVideo.style.opacity = "1";
+                    transitionVideo.style.visibility = "visible";
+
+                    // While the video is completely hiding the screen, silently advance to Slide 2 in the background.
+                    setTimeout(() => {
+                        currentSlide++;
+                        updateSlide(true); 
+                    }, 50);
+                };
+
+                // Function to fallback if the local video fails (or doesn't exist yet)
+                const fallbackAndPlay = () => {
+                    transitionVideo.src = remoteSrc;
+                    transitionVideo.load();
+                    transitionVideo.play().then(executeTransition).catch(err => {
+                        // If BOTH local and GitHub videos fail/don't exist, skip smoothly to a regular transition
+                        console.log(`Cinematic transition ${fileName} skipped: Not found locally or online.`);
+                        isTransitioning = false;
+                        currentSlide++;
+                        updateSlide();
+                    });
+                };
+
+                // 1. Attempt to load and play the Local Video First
+                transitionVideo.src = localSrc;
+                transitionVideo.load();
+                transitionVideo.play().then(executeTransition).catch(err => {
+                    console.log(`Local video ${fileName} missing, falling back to GitHub...`);
+                    fallbackAndPlay();
+                });
+
+                // When the transition video finishes its morph
+                transitionVideo.onended = () => {
+                    // 1. Let the video sit frozen on its final frame for 800 milliseconds
+                    setTimeout(() => {
+                        
+                        // 2. Smoothly crossfade the frozen video out. 
+                        // Because the next slide is static underneath, there is no size mismatch.
+                        transitionVideo.style.transition = "opacity 0.6s ease-in-out, visibility 0.6s ease-in-out";
+                        transitionVideo.style.opacity = "0";
+                        transitionVideo.style.visibility = "hidden";
+                        
+                        // 3. Wait exactly for the fade to finish (600ms)
+                        setTimeout(() => {
+                            // NOW trigger the smooth Ken Burns zoom on the new slide
+                            slides[currentSlide].classList.add('is-zooming');
+                            
+                            // Unlock the controls
+                            isTransitioning = false;
+                        }, 600);
+                        
+                    }, 800); // Wait 800ms before starting the fade
+                };
+            }
+
+            function nextSlide() {
+                if (isTransitioning) return; // Ignore clicks if a video morph is currently happening
+
+                if (currentSlide < totalSlides - 1) {
+                    // Trigger the cinematic morph for every forward slide progression dynamically
+                    playVideoTransition(currentSlide);
+                }
+            }
+
+            function prevSlide() {
+                if (isTransitioning) return; // Ignore clicks if a video morph is currently happening
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    updateSlide();
+                }
+            }
+
+            function toggleFullScreen() {
+                if (!document.fullscreenElement) {
+                    document.documentElement.requestFullscreen().catch(err => {
+                        console.log(`Error attempting to enable fullscreen: ${err.message}`);
+                    });
+                } else {
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    }
+                }
+            }
+
+            document.getElementById('btn-next').addEventListener('click', nextSlide);
+            document.getElementById('btn-prev').addEventListener('click', prevSlide);
+            document.getElementById('btn-fullscreen').addEventListener('click', toggleFullScreen);
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' || e.key === 'Space' || e.key === 'Enter') {
+                    nextSlide();
+                } else if (e.key === 'ArrowLeft') {
+                    prevSlide();
+                }
+            });
+
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            document.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            document.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+
+            function handleSwipe() {
+                const swipeThreshold = 50; 
+                if (touchEndX < touchStartX - swipeThreshold) {
+                    nextSlide(); 
+                }
+                if (touchEndX > touchStartX + swipeThreshold) {
+                    prevSlide(); 
+                }
+            }
+
+            // Initial call to set up the first slide
+            updateSlide();
+        });
+    </script>
+</body>
+</html>
