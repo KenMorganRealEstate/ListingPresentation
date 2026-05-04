@@ -34,6 +34,7 @@
         .tag-optional { background-color: #f1f5f9; color: #475569; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; margin-right: 6px; vertical-align: middle; display: inline-block;}
         .tag-ask { background-color: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; margin-right: 6px; vertical-align: middle; display: inline-block;}
         .tag-script { background-color: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; margin-right: 6px; vertical-align: middle; display: inline-block;}
+        .tag-dd { background-color: #fef08a; color: #854d0e; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; margin-right: 6px; vertical-align: middle; display: inline-block;}
     </style>
 </head>
 <body>
@@ -44,12 +45,31 @@
 
         const formsData = [
             {
-                phase: "Phase 1: The Pre-Appointment Primer",
-                description: "Handling TRESA compliance digitally so you can focus on relationship-building at the table.",
+                phase: "Phase 1: Pre-Listing Research & Primer",
+                description: "Handling TRESA compliance and legal due diligence before you even step into the house.",
                 items: [
                     {
+                        id: "due_diligence_office",
+                        title: "1. Pre-Listing Due Diligence",
+                        badge: "Office Research",
+                        color: "bg-orange-100 text-orange-800",
+                        icon: "search",
+                        description: "Mandatory legal checks to perform BEFORE the listing appointment.",
+                        sections: [
+                            {
+                                title: "Title & Ownership Verification",
+                                steps: [
+                                    "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>GeoWarehouse:</strong> Pull the property report to verify the exact legal names on title. You cannot legally list a property unless all titled owners sign the agreement.",
+                                    "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>Encumbrances:</strong> Check the GeoWarehouse report for noticeable liens or second mortgages that might complicate the sale.",
+                                    "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>Estates/Probate:</strong> If the owner is deceased, ensure you ask the executor for a copy of the <em>Certificate of Appointment of Estate Trustee</em>. You cannot list without this legal authority.",
+                                    "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>Power of Attorney:</strong> If someone is signing on behalf of the seller, you must obtain and verify a copy of the POA document before proceeding."
+                                ]
+                            }
+                        ]
+                    },
+                    {
                         id: "pre_appointment_comms",
-                        title: "1. Advance Email & RECO Delivery",
+                        title: "2. Advance Email & RECO Delivery",
                         badge: "Procedure & Script",
                         color: "bg-indigo-100 text-indigo-800",
                         icon: "mail",
@@ -73,7 +93,7 @@
                 items: [
                     {
                         id: "table_intro",
-                        title: "2. Setting the Agenda & RECO Sign-off",
+                        title: "3. Setting the Agenda & RECO Sign-off",
                         badge: "Dialogue",
                         color: "bg-indigo-100 text-indigo-800",
                         icon: "message-circle",
@@ -97,7 +117,7 @@
                     },
                     {
                         id: "form271",
-                        title: "3. OREA Form 271 - Listing Agreement",
+                        title: "4. OREA Form 271 - Listing Agreement",
                         badge: "Paper Contract",
                         color: "bg-amber-100 text-amber-800",
                         icon: "file-signature",
@@ -129,7 +149,7 @@
                                 steps: [
                                     "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Authorized to bind Brokerage:</strong> YOU sign and date here.",
                                     "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Signature of Seller:</strong> All Sellers sign and date here.",
-                                    "<span class='tag-ask'>[ASK SELLER]</span> <strong>Spousal Consent:</strong> Ask: <em>\"Are you legally married, and is this your matrimonial home?\"</em> If yes, and the spouse is NOT on title, the non-titled spouse MUST sign this section.",
+                                    "<span class='tag-dd'>[DUE DILIGENCE]</span> <span class='tag-ask'>[ASK SELLER]</span> <strong>Spousal Consent:</strong> Ask: <em>\"Are you legally married, and is this your matrimonial home?\"</em> If yes, and the spouse is NOT on title, the non-titled spouse MUST sign this section under the Family Law Act.",
                                     "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Declaration of Insurance:</strong> Print your name and sign.",
                                     "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Schedule A:</strong> Ensure Casora's Schedule A (detailing your services) is attached. All parties initial the bottom."
                                 ]
@@ -138,7 +158,7 @@
                     },
                     {
                         id: "fintrac",
-                        title: "4. FINTRAC ID Records",
+                        title: "5. FINTRAC ID Records",
                         badge: "Paper Form",
                         color: "bg-amber-100 text-amber-800",
                         icon: "fingerprint",
@@ -157,6 +177,7 @@
                                     "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Name/Address/DOB:</strong> Copy exactly from ID.",
                                     "<span class='tag-ask'>[ASK SELLER]</span> <strong>Principal Business:</strong> Ask: <em>\"What is your current occupation?\"</em> (e.g., Retired, Teacher, self-employed).",
                                     "<span class='tag-mandatory'>[MANDATORY]</span> <strong>ID Details:</strong> Copy Document Number, Jurisdiction, and Expiry Date.",
+                                    "<span class='tag-dd'>[DUE DILIGENCE]</span> <span class='tag-ask'>[ASK SELLER]</span> <strong>Third Party:</strong> Ask: <em>\"Are you conducting this sale on behalf of someone else?\"</em> If yes, you must complete the Third Party Record section.",
                                     "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Section D (Purpose):</strong> Check 'Residential Property' and 'Sale'.",
                                     "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Section E (Business Relationship):</strong> Check 'Yes'."
                                 ]
@@ -174,7 +195,7 @@
                     },
                     {
                         id: "form244_lockbox",
-                        title: "5. Form 244 & Lockbox Direction",
+                        title: "6. Form 244 & Lockbox Direction",
                         badge: "Paper Contract",
                         color: "bg-amber-100 text-amber-800",
                         icon: "lock",
@@ -201,7 +222,7 @@
                                 steps: [
                                     "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Type:</strong> Check Electronic or Mechanical.",
                                     "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Code Frequency:</strong> Enter '72' hours (RECO standard) or your brokerage policy.",
-                                    "<span class='tag-ask'>[ASK SELLER]</span> <strong>Insurance:</strong> Advise them to notify their home insurer that a lockbox is being installed (liability requirement).",
+                                    "<span class='tag-dd'>[DUE DILIGENCE]</span> <span class='tag-ask'>[ASK SELLER]</span> <strong>Insurance:</strong> Advise them to notify their home insurer that a lockbox is being installed (liability requirement).",
                                     "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Signatures:</strong> Seller signs to authorize you putting the box on the door."
                                 ]
                             }
@@ -209,7 +230,7 @@
                     },
                     {
                         id: "form161",
-                        title: "6. OREA Form 161 (Disclosure of Interest)",
+                        title: "7. OREA Form 161 (Disclosure of Interest)",
                         badge: "Conditional Paper",
                         color: "bg-red-100 text-red-800",
                         icon: "alert-triangle",
@@ -218,7 +239,7 @@
                             {
                                 title: "When to use & How to fill",
                                 steps: [
-                                    "<span class='tag-ask'>[ASK SELLER]</span> Do you (the agent), your spouse, or Casora! Realty own this house? If NO, ignore this form completely.",
+                                    "<span class='tag-dd'>[DUE DILIGENCE]</span> <span class='tag-ask'>[ASK SELLER]</span> Do you (the agent), your spouse, or Casora! Realty own this house? If NO, ignore this form completely.",
                                     "<span class='tag-mandatory'>[MANDATORY]</span> If YES: Fill in your Name, Brokerage, and Property.",
                                     "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Disclosure:</strong> Check the box detailing exactly what your interest is (e.g., 'I own the property').",
                                     "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Signatures:</strong> You sign, your Broker of Record signs, and the Buyer must eventually sign it before making an offer."
@@ -234,7 +255,7 @@
                 items: [
                     {
                         id: "walkthrough",
-                        title: "7. The Physical Walkthrough",
+                        title: "8. The Physical Walkthrough",
                         badge: "Procedure & Script",
                         color: "bg-indigo-100 text-indigo-800",
                         icon: "ruler",
@@ -247,11 +268,12 @@
                                 ]
                             },
                             {
-                                title: "Data Gathering (Use Casora! Info Sheet)",
+                                title: "Data Gathering & Due Diligence (Use Casora! Info Sheet)",
                                 steps: [
                                     "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Measurements:</strong> Measure every room (Length x Width) and note the flooring/features.",
                                     "<span class='tag-ask'>[ASK SELLER]</span> <strong>Chattels:</strong> Ask: <em>\"Are there any appliances or fixtures you are taking with you?\"</em> (e.g., dining room chandelier, deep freezer).",
-                                    "<span class='tag-ask'>[ASK SELLER]</span> <strong>Mechanicals:</strong> Ask: <em>\"Roughly how old is the roof, furnace, and AC?\"</em>",
+                                    "<span class='tag-dd'>[DUE DILIGENCE]</span> <span class='tag-ask'>[ASK SELLER]</span> <strong>Rentals/Leases:</strong> Ask: <em>\"Is the hot water heater, furnace, or security system rented or financed?\"</em> (These MUST be disclosed in the MLS and APS).",
+                                    "<span class='tag-dd'>[DUE DILIGENCE]</span> <span class='tag-ask'>[ASK SELLER]</span> <strong>Defects/Permits:</strong> Ask: <em>\"Are there any hidden defects, leaks, past foundation issues, or unpermitted basement renovations?\"</em> (Latent defects rendering the property dangerous/unfit must be legally disclosed).",
                                     "<span class='tag-ask'>[ASK SELLER]</span> <strong>Showing Rules:</strong> Ask: <em>\"Are there specific times you do not want showings? (e.g., after 8 PM, baby nap times).\"</em>"
                                 ]
                             }
@@ -265,7 +287,7 @@
                 items: [
                     {
                         id: "mls290",
-                        title: "8. PropTx 290 / ITSO Data Form",
+                        title: "9. PropTx 290 / ITSO Data Form",
                         badge: "Digital Data Entry",
                         color: "bg-blue-100 text-blue-800",
                         icon: "monitor",
@@ -299,7 +321,7 @@
                     },
                     {
                         id: "brokerbay",
-                        title: "9. BrokerBay Appt & Offer Instructions",
+                        title: "10. BrokerBay Appt & Offer Instructions",
                         badge: "Digital Data Entry",
                         color: "bg-blue-100 text-blue-800",
                         icon: "calendar",
@@ -325,7 +347,7 @@
                     },
                     {
                         id: "esign_email",
-                        title: "10. E-Signature Delivery",
+                        title: "11. E-Signature Delivery",
                         badge: "Procedure & Script",
                         color: "bg-indigo-100 text-indigo-800",
                         icon: "send",
@@ -342,7 +364,7 @@
                     },
                     {
                         id: "trreb_credit",
-                        title: "11. TRREB Credit Card Form",
+                        title: "12. TRREB Credit Card Form",
                         badge: "Internal Form",
                         color: "bg-slate-200 text-slate-800",
                         icon: "credit-card",
@@ -365,7 +387,7 @@
                 items: [
                     {
                         id: "deposit_upload",
-                        title: "12. Casora! Deposit Instructions",
+                        title: "13. Casora! Deposit Instructions",
                         badge: "MLS Attachment",
                         color: "bg-purple-100 text-purple-800",
                         icon: "paperclip",
@@ -383,7 +405,7 @@
                     },
                     {
                         id: "deal_summary",
-                        title: "13. CASORA Deal Summary",
+                        title: "14. CASORA Deal Summary",
                         badge: "Internal Form",
                         color: "bg-purple-100 text-purple-800",
                         icon: "briefcase",
@@ -558,6 +580,8 @@
                                                                                     <div className="mt-1 mr-3 flex-shrink-0">
                                                                                         {step.includes('tag-script') || step.includes('tag-ask') ? (
                                                                                              <i data-lucide="message-square" className="w-4 h-4 text-amber-500"></i>
+                                                                                        ) : step.includes('tag-dd') ? (
+                                                                                             <i data-lucide="shield-check" className="w-4 h-4 text-orange-500"></i>
                                                                                         ) : step.includes('Subject:') ? (
                                                                                              <i data-lucide="mail" className="w-4 h-4 text-indigo-500"></i>
                                                                                         ) : (
