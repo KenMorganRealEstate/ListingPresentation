@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casora! Realty Inc. - Ultimate Listing Masterclass</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- React & ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    
+    <!-- Babel for JSX compilation -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f1f5f9; }
+        .accordion-content { transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out; overflow: hidden; }
+        .accordion-content.open { max-height: 8000px; opacity: 1; }
+        .accordion-content.closed { max-height: 0; opacity: 0; }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        .tag-mandatory { background-color: #fee2e2; color: #991b1b; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; margin-right: 6px; vertical-align: middle; display: inline-block;}
+        .tag-optional { background-color: #f1f5f9; color: #475569; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; margin-right: 6px; vertical-align: middle; display: inline-block;}
+        .tag-ask { background-color: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; margin-right: 6px; vertical-align: middle; display: inline-block;}
+        .tag-script { background-color: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; margin-right: 6px; vertical-align: middle; display: inline-block;}
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const formsData = [
+            {
+                phase: "Phase 1: The Pre-Appointment Primer",
+                description: "Handling TRESA compliance digitally so you can focus on relationship-building at the table.",
+                items: [
+                    {
+                        id: "pre_appointment_comms",
+                        title: "1. Advance Email & RECO Delivery",
+                        badge: "Procedure & Script",
+                        color: "bg-indigo-100 text-indigo-800",
+                        icon: "mail",
+                        description: "Send this 24-48 hours before your meeting.",
+                        sections: [
+                            {
+                                title: "Email Template",
+                                steps: [
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> You must provide the RECO Guide before providing services.",
+                                    "<div class='bg-white border p-4 rounded mt-2 text-sm text-slate-700 italic border-l-4 border-l-indigo-500'><strong>Subject:</strong> Looking forward to our meeting + Important Info<br><br>Hi [Client Name],<br><br>I am looking forward to our meeting tomorrow at [Time] to finalize the paperwork and get the process started for listing your home.<br><br>Because the province recently updated the rules for real estate representation, I am required by law to provide you with the attached RECO Information Guide before we officially begin our services. Please give it a quick read-through at your convenience. We will briefly touch on it tomorrow to ensure you are comfortable before we dive into the logistics.<br><br>See you tomorrow,<br>[Your Name]<br>Casora! Realty Inc.</div>",
+                                    "<span class='tag-optional'>[OPTIONAL]</span> Attach a brief pre-listing questionnaire if you want them to think about their mortgage balance or ideal closing date beforehand."
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                phase: "Phase 2: The Kitchen Table (Contracts)",
+                description: "Command the room. Bring these forms printed. Secure wet-ink signatures to lock in the listing.",
+                items: [
+                    {
+                        id: "table_intro",
+                        title: "2. Setting the Agenda & RECO Sign-off",
+                        badge: "Dialogue",
+                        color: "bg-indigo-100 text-indigo-800",
+                        icon: "message-circle",
+                        description: "How to open the meeting and secure the TRESA acknowledgment.",
+                        sections: [
+                            {
+                                title: "Opening Script",
+                                steps: [
+                                    "<span class='tag-script'>[SCRIPT]</span> <em>\"Thank you again for trusting Casora! Realty with the sale of your home. Since we’ve already agreed on our pricing strategy, my goal today is to handle the logistics. We'll get the legal paperwork signed, I'll grab some measurements, and we'll get the ball rolling.\"</em>",
+                                    "<span class='tag-script'>[SCRIPT]</span> <em>\"Did you have a chance to glance at the RECO guide I emailed over? It confirms that I am acting as your Designated Representative, meaning my fiduciary duty is to protect your best interests and keep your information strictly confidential. Do you have any questions before we sign off on it?\"</em>"
+                                ]
+                            },
+                            {
+                                title: "RECO Guide (Page 13 Only)",
+                                steps: [
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Signatures:</strong> Have all Sellers sign the printed Page 13 Acknowledgement.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Date:</strong> Ensure today's date is filled in."
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        id: "form271",
+                        title: "3. OREA Form 271 - Listing Agreement",
+                        badge: "Paper Contract",
+                        color: "bg-amber-100 text-amber-800",
+                        icon: "file-signature",
+                        description: "The core legal contract securing you as the Designated Representative.",
+                        sections: [
+                            {
+                                title: "Page 1: Header & Authority",
+                                steps: [
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Brokerage:</strong> Casora! Realty Inc., Brokerage",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Seller:</strong> Exact legal names of all titled owners. <span class='tag-ask'>[ASK SELLER]</span> <em>\"Are there any other names on the property title?\"</em>",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Designated Representative(s):</strong> Your exact name. (Crucial TRESA rule).",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Property:</strong> Full municipal address.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Commencing:</strong> Enter today's Date/Time (e.g., 12:01 a.m. on the [Day] of [Month], [Year]).",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Expiring:</strong> Enter Expiry Date/Time (e.g., 11:59 p.m. on the [Day] of [Month], [Year]).",
+                                    "<span class='tag-ask'>[ASK SELLER]</span> If listing exceeds 6 months, Seller MUST initial the designated box below the dates.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Price:</strong> Write the list price in numbers and words."
+                                ]
+                            },
+                            {
+                                title: "Page 1: Clause 2 (Commission)",
+                                steps: [
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Total Commission:</strong> Enter total % (e.g., 5%) OR flat fee.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Co-operating Commission:</strong> Enter the amount offered to buyer's brokerage (e.g., 2.5%).",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Holdover Period:</strong> Enter days (e.g., 60 or 90). Explain this protects you if a buyer you introduced buys it right after the listing expires."
+                                ]
+                            },
+                            {
+                                title: "Page 4: Signatures & Schedule A",
+                                steps: [
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Authorized to bind Brokerage:</strong> YOU sign and date here.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Signature of Seller:</strong> All Sellers sign and date here.",
+                                    "<span class='tag-ask'>[ASK SELLER]</span> <strong>Spousal Consent:</strong> Ask: <em>\"Are you legally married, and is this your matrimonial home?\"</em> If yes, and the spouse is NOT on title, the non-titled spouse MUST sign this section.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Declaration of Insurance:</strong> Print your name and sign.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Schedule A:</strong> Ensure Casora's Schedule A (detailing your services) is attached. All parties initial the bottom."
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        id: "fintrac",
+                        title: "4. FINTRAC ID Records",
+                        badge: "Paper Form",
+                        color: "bg-amber-100 text-amber-800",
+                        icon: "fingerprint",
+                        description: "Federal anti-money laundering verification. Must do one per seller entity.",
+                        sections: [
+                            {
+                                title: "Transition Script",
+                                steps: [
+                                    "<span class='tag-script'>[SCRIPT]</span> <em>\"Before we move to the showing instructions, the federal government requires me to verify your identity under the anti-money laundering laws. I just need to take a quick peek at your driver's license to jot down the ID number.\"</em>"
+                                ]
+                            },
+                            {
+                                title: "If Seller is an INDIVIDUAL (Most Common)",
+                                steps: [
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>A.1 Verification:</strong> Check Driver's License or Passport.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Name/Address/DOB:</strong> Copy exactly from ID.",
+                                    "<span class='tag-ask'>[ASK SELLER]</span> <strong>Principal Business:</strong> Ask: <em>\"What is your current occupation?\"</em> (e.g., Retired, Teacher, self-employed).",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>ID Details:</strong> Copy Document Number, Jurisdiction, and Expiry Date.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Section D (Purpose):</strong> Check 'Residential Property' and 'Sale'.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Section E (Business Relationship):</strong> Check 'Yes'."
+                                ]
+                            },
+                            {
+                                title: "If Seller is a CORPORATION (Investors/Estates)",
+                                steps: [
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>A.1 Corporation Info:</strong> Name, Corporate Address, Nature of Business.",
+                                    "<span class='tag-ask'>[ASK SELLER]</span> <strong>Directors:</strong> Ask for the names of all Directors.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Verification Record:</strong> You MUST obtain a copy of the Articles of Incorporation or a corporate search record. Note the document number.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Individual Authorization:</strong> You must also verify the ID of the human signing on behalf of the corporation (using an Individual FINTRAC form)."
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        id: "form244_lockbox",
+                        title: "5. Form 244 & Lockbox Direction",
+                        badge: "Paper Contract",
+                        color: "bg-amber-100 text-amber-800",
+                        icon: "lock",
+                        description: "Rules of engagement for offers and property access.",
+                        sections: [
+                            {
+                                title: "Strategy Discussion & Script",
+                                steps: [
+                                    "<span class='tag-script'>[SCRIPT]</span> <em>\"This next form is your Seller's Direction. This dictates exactly how we handle offers. Do we want to review them as they come in, or do we want to hold off on reviewing them until a specific date to try and generate multiple offers?\"</em>"
+                                ]
+                            },
+                            {
+                                title: "OREA Form 244 - Seller's Direction",
+                                steps: [
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Header:</strong> Seller names, Brokerage, Property Address.",
+                                    "<span class='tag-ask'>[ASK SELLER]</span> <strong>Holding Offers:</strong> If holding, check 'Offers will not be reviewed until...' and write Date/Time.",
+                                    "<span class='tag-ask'>[ASK SELLER]</span> <strong>Pre-emptive Offers:</strong> If holding, you MUST check YES or NO to 'Seller will consider pre-emptive offers' (Bully offers). Discuss the pros/cons with them.",
+                                    "<span class='tag-optional'>[OPTIONAL]</span> <strong>Offers Anytime:</strong> If not holding, check 'There will be no delayed offer presentation'.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Signatures:</strong> Both you and the Sellers must sign and date."
+                                ]
+                            },
+                            {
+                                title: "Lockbox Directions Form",
+                                steps: [
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Type:</strong> Check Electronic or Mechanical.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Code Frequency:</strong> Enter '72' hours (RECO standard) or your brokerage policy.",
+                                    "<span class='tag-ask'>[ASK SELLER]</span> <strong>Insurance:</strong> Advise them to notify their home insurer that a lockbox is being installed (liability requirement).",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Signatures:</strong> Seller signs to authorize you putting the box on the door."
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        id: "form161",
+                        title: "6. OREA Form 161 (Disclosure of Interest)",
+                        badge: "Conditional Paper",
+                        color: "bg-red-100 text-red-800",
+                        icon: "alert-triangle",
+                        description: "ONLY if you or a family/brokerage member own the property.",
+                        sections: [
+                            {
+                                title: "When to use & How to fill",
+                                steps: [
+                                    "<span class='tag-ask'>[ASK SELLER]</span> Do you (the agent), your spouse, or Casora! Realty own this house? If NO, ignore this form completely.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> If YES: Fill in your Name, Brokerage, and Property.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Disclosure:</strong> Check the box detailing exactly what your interest is (e.g., 'I own the property').",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Signatures:</strong> You sign, your Broker of Record signs, and the Buyer must eventually sign it before making an offer."
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                phase: "Phase 3: Walkthrough & Logistics",
+                description: "Put the contracts away. Grab your clipboard and laser measure to gather MLS data.",
+                items: [
+                    {
+                        id: "walkthrough",
+                        title: "7. The Physical Walkthrough",
+                        badge: "Procedure & Script",
+                        color: "bg-indigo-100 text-indigo-800",
+                        icon: "ruler",
+                        description: "Transitioning from the table to the data gathering phase.",
+                        sections: [
+                            {
+                                title: "Transition Script",
+                                steps: [
+                                    "<span class='tag-script'>[SCRIPT]</span> <em>\"Excellent, the heavy legal lifting is done. Now for the fun part. I'm going to walk through the house to grab exact room measurements for the MLS and note down all the features we want to highlight. While I do that, feel free to relax. We'll touch base before I leave to confirm showing preferences.\"</em>"
+                                ]
+                            },
+                            {
+                                title: "Data Gathering (Use Casora! Info Sheet)",
+                                steps: [
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Measurements:</strong> Measure every room (Length x Width) and note the flooring/features.",
+                                    "<span class='tag-ask'>[ASK SELLER]</span> <strong>Chattels:</strong> Ask: <em>\"Are there any appliances or fixtures you are taking with you?\"</em> (e.g., dining room chandelier, deep freezer).",
+                                    "<span class='tag-ask'>[ASK SELLER]</span> <strong>Mechanicals:</strong> Ask: <em>\"Roughly how old is the roof, furnace, and AC?\"</em>",
+                                    "<span class='tag-ask'>[ASK SELLER]</span> <strong>Showing Rules:</strong> Ask: <em>\"Are there specific times you do not want showings? (e.g., after 8 PM, baby nap times).\"</em>"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                phase: "Phase 4: Back-Office Polish (Digital)",
+                description: "Drafting the MLS data at your desk and sending for e-signature.",
+                items: [
+                    {
+                        id: "mls290",
+                        title: "8. PropTx 290 / ITSO Data Form",
+                        badge: "Digital Data Entry",
+                        color: "bg-blue-100 text-blue-800",
+                        icon: "monitor",
+                        description: "The massive input sheet for the MLS board.",
+                        sections: [
+                            {
+                                title: "Top Section (Legal/Tax)",
+                                steps: [
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Address & Legal:</strong> Copy PIN, ARN, and Legal Description perfectly from GeoWarehouse.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Taxes:</strong> Enter the exact tax amount and the Tax Year.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Lot Size:</strong> Enter Frontage and Depth. (Check Feet or Metres). Note if 'Irregular'."
+                                ]
+                            },
+                            {
+                                title: "Exterior & Mechanical",
+                                steps: [
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Heating/Cooling:</strong> Check appropriate boxes (Forced Air, Gas, Central Air).",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Basement:</strong> Check Finished, Unfinished, Separate Entrance, etc.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Water/Sewers:</strong> Municipal, Well, Septic."
+                                ]
+                            },
+                            {
+                                title: "Rooms & Remarks",
+                                steps: [
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Rooms:</strong> Input Level, Room Type, Dimensions, and up to 3 features per room.",
+                                    "<span class='tag-optional'>[OPTIONAL]</span> <strong>Client Remarks:</strong> Your beautifully written public marketing copy.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Brokerage Remarks:</strong> Private notes for agents. Add: <em>\"Please attach Sched B and refer to Casora! Deposit Instructions attached.\"</em>"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        id: "brokerbay",
+                        title: "9. BrokerBay Appt & Offer Instructions",
+                        badge: "Digital Data Entry",
+                        color: "bg-blue-100 text-blue-800",
+                        icon: "calendar",
+                        description: "Setup for the showing desk.",
+                        sections: [
+                            {
+                                title: "Showing Setup",
+                                steps: [
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Contacts:</strong> Enter Seller names/phones. Check notification preference (Text/Call).",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Confirmation:</strong> Select 'Contact Sellers & wait for confirmation' (unless vacant).",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Other Info:</strong> Add Alarm codes, Lockbox location, and 'Do not let cat out'."
+                                ]
+                            },
+                            {
+                                title: "Offer Setup",
+                                steps: [
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Submission:</strong> Enter your email for offers.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Holding Offers:</strong> Copy the exact Date/Time from Form 244.",
+                                    "<span class='tag-optional'>[OPTIONAL]</span> <strong>Irrevocable:</strong> State if you require a 24-hour minimum."
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        id: "esign_email",
+                        title: "10. E-Signature Delivery",
+                        badge: "Procedure & Script",
+                        color: "bg-indigo-100 text-indigo-800",
+                        icon: "send",
+                        description: "Send the MLS and BrokerBay forms to the client for final sign-off.",
+                        sections: [
+                            {
+                                title: "Email Template",
+                                steps: [
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> You must have their signature on the MLS data form before the board will accept the listing.",
+                                    "<div class='bg-white border p-4 rounded mt-2 text-sm text-slate-700 italic border-l-4 border-l-indigo-500'><strong>Subject:</strong> Action Required: Final Review & Signatures for MLS<br><br>Hi [Client Name],<br><br>It was great meeting with you today!<br><br>I have finished compiling all the room measurements, property tax details, and the marketing remarks for the MLS system. I have also finalized the BrokerBay showing instructions based on our conversation.<br><br>Please click the secure link below to review these final two documents. If everything looks accurate, simply click to e-sign. Once you complete this, I will have everything I need to push the listing live to the market!<br><br>Let me know if you see anything that needs tweaking.<br><br>Best,<br>[Your Name]<br>Casora! Realty Inc.</div>"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        id: "trreb_credit",
+                        title: "11. TRREB Credit Card Form",
+                        badge: "Internal Form",
+                        color: "bg-slate-200 text-slate-800",
+                        icon: "credit-card",
+                        description: "For interboarding to Toronto. Never send to seller.",
+                        sections: [
+                            {
+                                title: "Completion Steps",
+                                steps: [
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Member Info:</strong> Your Name, Contact Info, Property Address.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Payment:</strong> Enter Casora! corporate card details and sign."
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                phase: "Phase 5: Live on MLS & Deal Completion",
+                description: "Handling buyer agents and processing the firm deal.",
+                items: [
+                    {
+                        id: "deposit_upload",
+                        title: "12. Casora! Deposit Instructions",
+                        badge: "MLS Attachment",
+                        color: "bg-purple-100 text-purple-800",
+                        icon: "paperclip",
+                        description: "Ensures the buyer agent wires trust funds correctly.",
+                        sections: [
+                            {
+                                title: "Procedure",
+                                steps: [
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Action:</strong> Once the listing is live on MLS, upload this PDF to the 'Attachments' section.",
+                                    "<span class='tag-info'>[INFO]</span> <strong>Why:</strong> Tells buyer agents to purchase a bank draft payable to 'Casora Realty Inc.' and deposit it at a TD Bank.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> Ensure the Form 244 and Schedule B are also attached to the listing."
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        id: "deal_summary",
+                        title: "13. CASORA Deal Summary",
+                        badge: "Internal Form",
+                        color: "bg-purple-100 text-purple-800",
+                        icon: "briefcase",
+                        description: "Mandatory office form submitted when a deal goes FIRM.",
+                        sections: [
+                            {
+                                title: "When to use",
+                                steps: [
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> Fill this out ONLY after an Agreement of Purchase and Sale is signed, conditions are removed, and the deal is FIRM."
+                                ]
+                            },
+                            {
+                                title: "Top Section & Parties",
+                                steps: [
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Dates:</strong> Date of Offer, Closing Date.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Casora Role:</strong> Check Listing.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Parties:</strong> Full names, addresses, phones for Buyer and Seller.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Lawyers:</strong> Name, Firm, Address, Email for both lawyers."
+                                ]
+                            },
+                            {
+                                title: "Financials (Getting Paid)",
+                                steps: [
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Deposit Held By Casora:</strong> Enter the exact $ amount of the deposit receipt.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Sale Price:</strong> Final firm price.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Total Commission:</strong> Total % and Total $ amount.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Due to Casora:</strong> Break down by Salesperson 1 (%), Salesperson 2 (%), and $ amounts.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Due to Other Brokerage:</strong> Enter Co-op % and $ amount + HST."
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        const App = () => {
+            const [openAccordion, setOpenAccordion] = useState(null);
+            const [completedItems, setCompletedItems] = useState({});
+
+            const toggleAccordion = (id) => {
+                setOpenAccordion(openAccordion === id ? null : id);
+            };
+
+            const toggleCompletion = (id, e) => {
+                e.stopPropagation();
+                setCompletedItems(prev => ({
+                    ...prev,
+                    [id]: !prev[id]
+                }));
+            };
+
+            // Calculate overall progress
+            const totalItems = formsData.reduce((acc, phase) => acc + phase.items.length, 0);
+            const completedCount = Object.values(completedItems).filter(Boolean).length;
+            const progressPercentage = totalItems === 0 ? 0 : (completedCount / totalItems) * 100;
+
+            useEffect(() => {
+                lucide.createIcons();
+            });
+
+            return (
+                <div className="min-h-screen pb-20">
+                    {/* Header */}
+                    <header className="bg-slate-900 text-white py-12 px-6 shadow-2xl relative overflow-hidden">
+                        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-400 to-blue-500"></div>
+                        <div className="max-w-5xl mx-auto relative z-10">
+                            <div className="flex items-center space-x-4 mb-3">
+                                <div className="bg-emerald-500 p-2 rounded-lg">
+                                    <i data-lucide="building-2" className="w-8 h-8 text-white"></i>
+                                </div>
+                                <h1 className="text-4xl font-extrabold tracking-tight">Casora! Realty Inc.</h1>
+                            </div>
+                            <p className="text-emerald-400 text-xl font-bold tracking-wide uppercase">Ultimate Listing Masterclass & Form Guide</p>
+                            <p className="text-slate-400 mt-2 max-w-2xl text-sm leading-relaxed">The complete, step-by-step Standard Operating Procedure. Includes exact scripting, email templates, and line-by-line form requirements to command the listing process.</p>
+                        </div>
+                    </header>
+
+                    <main className="max-w-5xl mx-auto mt-8 px-4 sm:px-6">
+                        
+                        {/* Progress Tracker Widget */}
+                        <div className="bg-white rounded-2xl shadow-md p-6 mb-12 border border-slate-200 relative overflow-hidden">
+                            <div className="absolute top-0 right-0 p-8 opacity-5">
+                                <i data-lucide="target" className="w-32 h-32"></i>
+                            </div>
+                            <div className="relative z-10 flex justify-between items-end mb-4">
+                                <div>
+                                    <h2 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Workflow Completion</h2>
+                                    <p className="text-3xl font-black text-slate-800 tracking-tight">{completedCount} <span className="text-lg font-medium text-slate-400">/ {totalItems} Steps Executed</span></p>
+                                </div>
+                                <div className="text-emerald-600 font-black text-3xl">
+                                    {Math.round(progressPercentage)}%
+                                </div>
+                            </div>
+                            <div className="w-full bg-slate-100 rounded-full h-4 overflow-hidden shadow-inner relative z-10">
+                                <div className="bg-gradient-to-r from-emerald-400 to-emerald-600 h-4 rounded-full transition-all duration-700 ease-out" style={{ width: `${progressPercentage}%` }}></div>
+                            </div>
+                        </div>
+
+                        {/* Master Timeline Content */}
+                        <div className="space-y-16">
+                            {formsData.map((phaseData, phaseIdx) => (
+                                <div key={phaseIdx} className="relative">
+                                    
+                                    {/* Phase Header */}
+                                    <div className="mb-6">
+                                        <h3 className="text-3xl font-black text-slate-800 tracking-tight">
+                                            {phaseData.phase}
+                                        </h3>
+                                        <p className="text-slate-500 font-medium mt-1 text-lg">{phaseData.description}</p>
+                                    </div>
+                                    
+                                    {/* Items List */}
+                                    <div className="space-y-5">
+                                        {phaseData.items.map((item) => {
+                                            const isOpen = openAccordion === item.id;
+                                            const isCompleted = completedItems[item.id];
+
+                                            return (
+                                                <div key={item.id} className={`bg-white rounded-xl border-2 transition-all duration-300 ${isCompleted ? 'border-emerald-400 bg-emerald-50/10 shadow-sm' : 'border-slate-200 hover:border-slate-300 hover:shadow-md'}`}>
+                                                    
+                                                    {/* Item Header Bar */}
+                                                    <div 
+                                                        className="flex items-center justify-between p-5 cursor-pointer"
+                                                        onClick={() => toggleAccordion(item.id)}
+                                                    >
+                                                        <div className="flex items-start space-x-5">
+                                                            {/* Checkbox */}
+                                                            <button 
+                                                                onClick={(e) => toggleCompletion(item.id, e)}
+                                                                className={`flex-shrink-0 mt-1 w-8 h-8 rounded-lg border-2 flex items-center justify-center transition-all duration-200 ${isCompleted ? 'bg-emerald-500 border-emerald-500 text-white shadow-sm scale-110' : 'border-slate-300 bg-slate-50 text-transparent hover:border-emerald-400'}`}
+                                                            >
+                                                                <i data-lucide="check" className="w-5 h-5 stroke-[3]"></i>
+                                                            </button>
+                                                            
+                                                            <div>
+                                                                <div className="flex flex-wrap items-center gap-3 mb-1">
+                                                                    <div className={`p-1.5 rounded-md ${isCompleted ? 'bg-emerald-100 text-emerald-600' : 'bg-slate-100 text-slate-600'}`}>
+                                                                        <i data-lucide={item.icon} className="w-4 h-4"></i>
+                                                                    </div>
+                                                                    <h4 className={`text-xl font-bold tracking-tight transition-colors ${isCompleted ? 'text-slate-400 line-through' : 'text-slate-800'}`}>
+                                                                        {item.title}
+                                                                    </h4>
+                                                                    <span className={`px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider ${item.color}`}>
+                                                                        {item.badge}
+                                                                    </span>
+                                                                </div>
+                                                                <p className="text-slate-500 text-sm font-medium leading-relaxed">{item.description}</p>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div className={`text-slate-400 transition-transform duration-300 flex-shrink-0 ${isOpen ? 'rotate-180 text-indigo-500' : ''}`}>
+                                                            <i data-lucide="chevron-down" className="w-7 h-7"></i>
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Expanded Content (Tutorial/Script) */}
+                                                    <div className={`accordion-content ${isOpen ? 'open' : 'closed'}`}>
+                                                        <div className="p-6 sm:p-8 bg-slate-50/80 border-t-2 border-slate-100 rounded-b-xl">
+                                                            
+                                                            <div className="space-y-8">
+                                                                {item.sections.map((section, sIdx) => (
+                                                                    <div key={sIdx} className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                                                                        <h5 className="font-bold text-slate-800 mb-5 pb-3 border-b border-slate-100 flex items-center text-lg">
+                                                                            <i data-lucide="chevron-right-square" className="w-5 h-5 mr-3 text-indigo-500"></i>
+                                                                            {section.title}
+                                                                        </h5>
+                                                                        <ul className="space-y-4">
+                                                                            {section.steps.map((step, idx) => (
+                                                                                <li key={idx} className="flex items-start text-slate-700 text-[15px] leading-relaxed">
+                                                                                    {/* Determine bullet icon based on content */}
+                                                                                    <div className="mt-1 mr-3 flex-shrink-0">
+                                                                                        {step.includes('tag-script') || step.includes('tag-ask') ? (
+                                                                                             <i data-lucide="message-square" className="w-4 h-4 text-amber-500"></i>
+                                                                                        ) : step.includes('Subject:') ? (
+                                                                                             <i data-lucide="mail" className="w-4 h-4 text-indigo-500"></i>
+                                                                                        ) : (
+                                                                                             <div className="w-2 h-2 rounded-full bg-slate-300 mt-1.5"></div>
+                                                                                        )}
+                                                                                    </div>
+                                                                                    <span className="flex-1" dangerouslySetInnerHTML={{ __html: step }}></span>
+                                                                                </li>
+                                                                            ))}
+                                                                        </ul>
+                                                                    </div>
+                                                                ))}
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                        
+                    </main>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
