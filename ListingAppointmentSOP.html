@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Casora! Realty Inc. - Ultimate Listing Masterclass</title>
+    <title>Casora! Realty Inc. - Ultimate Agency Masterclass</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -43,44 +43,42 @@
     <script type="text/babel">
         const { useState, useEffect } = React;
 
-        const formsData = [
+        // --- SELLER TRACK DATA ---
+        const sellerData = [
             {
                 phase: "Phase 1: Pre-Listing Research & Primer",
                 description: "Handling TRESA compliance and legal due diligence before you even step into the house.",
                 items: [
                     {
-                        id: "due_diligence_office",
+                        id: "s_due_diligence",
                         title: "1. Pre-Listing Due Diligence",
                         badge: "Office Research",
                         color: "bg-orange-100 text-orange-800",
                         icon: "search",
-                        description: "Mandatory legal checks to perform BEFORE the listing appointment.",
+                        description: "Mandatory legal checks to perform BEFORE the appointment.",
                         sections: [
                             {
                                 title: "Title & Ownership Verification",
                                 steps: [
-                                    "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>GeoWarehouse:</strong> Pull the property report to verify the exact legal names on title. You cannot legally list a property unless all titled owners sign the agreement.",
-                                    "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>Encumbrances:</strong> Check the GeoWarehouse report for noticeable liens or second mortgages that might complicate the sale.",
-                                    "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>Estates/Probate:</strong> If the owner is deceased, ensure you ask the executor for a copy of the <em>Certificate of Appointment of Estate Trustee</em>. You cannot list without this legal authority.",
-                                    "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>Power of Attorney:</strong> If someone is signing on behalf of the seller, you must obtain and verify a copy of the POA document before proceeding."
+                                    "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>GeoWarehouse:</strong> Pull the property report to verify exact legal names on title. You cannot legally list unless all owners sign.",
+                                    "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>Estates/POA:</strong> If deceased or using a POA, you MUST obtain the Certificate of Appointment of Estate Trustee or the POA document."
                                 ]
                             }
                         ]
                     },
                     {
-                        id: "pre_appointment_comms",
+                        id: "s_pre_email",
                         title: "2. Advance Email & RECO Delivery",
-                        badge: "Procedure & Script",
+                        badge: "Digital Delivery",
                         color: "bg-indigo-100 text-indigo-800",
                         icon: "mail",
-                        description: "Send this 24-48 hours before your meeting.",
+                        description: "Send 24 hours before your meeting.",
                         sections: [
                             {
                                 title: "Email Template",
                                 steps: [
                                     "<span class='tag-mandatory'>[MANDATORY]</span> You must provide the RECO Guide before providing services.",
-                                    "<div class='bg-white border p-4 rounded mt-2 text-sm text-slate-700 italic border-l-4 border-l-indigo-500'><strong>Subject:</strong> Looking forward to our meeting + Important Info<br><br>Hi [Client Name],<br><br>I am looking forward to our meeting tomorrow at [Time] to finalize the paperwork and get the process started for listing your home.<br><br>Because the province recently updated the rules for real estate representation, I am required by law to provide you with the attached RECO Information Guide before we officially begin our services. Please give it a quick read-through at your convenience. We will briefly touch on it tomorrow to ensure you are comfortable before we dive into the logistics.<br><br>See you tomorrow,<br>[Your Name]<br>Casora! Realty Inc.</div>",
-                                    "<span class='tag-optional'>[OPTIONAL]</span> Attach a brief pre-listing questionnaire if you want them to think about their mortgage balance or ideal closing date beforehand."
+                                    "<div class='bg-white border p-4 rounded mt-2 text-sm text-slate-700 italic border-l-4 border-l-indigo-500'><strong>Subject:</strong> Looking forward to our meeting + Important Info<br><br>Hi [Client Name],<br><br>I am looking forward to our meeting tomorrow. Because the province recently updated the rules for real estate representation, I am required by law to provide you with the attached RECO Information Guide before we officially begin our services. Please give it a quick read-through. We will briefly touch on it tomorrow.<br><br>Best,<br>[Your Name]</div>"
                                 ]
                             }
                         ]
@@ -89,160 +87,59 @@
             },
             {
                 phase: "Phase 2: The Kitchen Table (Contracts)",
-                description: "Command the room. Bring these forms printed. Secure wet-ink signatures to lock in the listing.",
+                description: "Command the room. Bring these forms printed. Secure wet-ink signatures.",
                 items: [
                     {
-                        id: "table_intro",
-                        title: "3. Setting the Agenda & RECO Sign-off",
-                        badge: "Dialogue",
-                        color: "bg-indigo-100 text-indigo-800",
-                        icon: "message-circle",
-                        description: "How to open the meeting and secure the TRESA acknowledgment.",
-                        sections: [
-                            {
-                                title: "Opening Script",
-                                steps: [
-                                    "<span class='tag-script'>[SCRIPT]</span> <em>\"Thank you again for trusting Casora! Realty with the sale of your home. Since we’ve already agreed on our pricing strategy, my goal today is to handle the logistics. We'll get the legal paperwork signed, I'll grab some measurements, and we'll get the ball rolling.\"</em>",
-                                    "<span class='tag-script'>[SCRIPT]</span> <em>\"Did you have a chance to glance at the RECO guide I emailed over? It confirms that I am acting as your Designated Representative, meaning my fiduciary duty is to protect your best interests and keep your information strictly confidential. Do you have any questions before we sign off on it?\"</em>"
-                                ]
-                            },
-                            {
-                                title: "RECO Guide (Page 13 Only)",
-                                steps: [
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Signatures:</strong> Have all Sellers sign the printed Page 13 Acknowledgement.",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Date:</strong> Ensure today's date is filled in."
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        id: "form271",
-                        title: "4. OREA Form 271 - Listing Agreement",
+                        id: "s_form271",
+                        title: "3. OREA Form 271 - Listing Agreement",
                         badge: "Paper Contract",
                         color: "bg-amber-100 text-amber-800",
                         icon: "file-signature",
-                        description: "The core legal contract securing you as the Designated Representative.",
+                        description: "The core legal contract securing you as Designated Representative.",
                         sections: [
                             {
-                                title: "Page 1: Header & Authority",
+                                title: "Form Breakdown",
                                 steps: [
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Brokerage:</strong> Casora! Realty Inc., Brokerage",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Seller:</strong> Exact legal names of all titled owners. <span class='tag-ask'>[ASK SELLER]</span> <em>\"Are there any other names on the property title?\"</em>",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Designated Representative(s):</strong> Your exact name. (Crucial TRESA rule).",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Property:</strong> Full municipal address.",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Commencing:</strong> Enter today's Date/Time (e.g., 12:01 a.m. on the [Day] of [Month], [Year]).",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Expiring:</strong> Enter Expiry Date/Time (e.g., 11:59 p.m. on the [Day] of [Month], [Year]).",
-                                    "<span class='tag-ask'>[ASK SELLER]</span> If listing exceeds 6 months, Seller MUST initial the designated box below the dates.",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Price:</strong> Write the list price in numbers and words."
-                                ]
-                            },
-                            {
-                                title: "Page 1: Clause 2 (Commission)",
-                                steps: [
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Total Commission:</strong> Enter total % (e.g., 5%) OR flat fee.",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Co-operating Commission:</strong> Enter the amount offered to buyer's brokerage (e.g., 2.5%).",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Holdover Period:</strong> Enter days (e.g., 60 or 90). Explain this protects you if a buyer you introduced buys it right after the listing expires."
-                                ]
-                            },
-                            {
-                                title: "Page 4: Signatures & Schedule A",
-                                steps: [
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Authorized to bind Brokerage:</strong> YOU sign and date here.",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Signature of Seller:</strong> All Sellers sign and date here.",
-                                    "<span class='tag-dd'>[DUE DILIGENCE]</span> <span class='tag-ask'>[ASK SELLER]</span> <strong>Spousal Consent:</strong> Ask: <em>\"Are you legally married, and is this your matrimonial home?\"</em> If yes, and the spouse is NOT on title, the non-titled spouse MUST sign this section under the Family Law Act.",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Declaration of Insurance:</strong> Print your name and sign.",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Schedule A:</strong> Ensure Casora's Schedule A (detailing your services) is attached. All parties initial the bottom."
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Designated Rep:</strong> Your exact name. (Crucial TRESA rule).",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Dates:</strong> Commencing and Expiring times.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Commission:</strong> Total %, Co-op %, and Holdover days.",
+                                    "<span class='tag-dd'>[DUE DILIGENCE]</span> <span class='tag-ask'>[ASK SELLER]</span> <strong>Spousal Consent:</strong> Is it a matrimonial home and spouse isn't on title? They must sign Page 4.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Schedule A:</strong> Ensure Casora's Schedule A is attached and initialled."
                                 ]
                             }
                         ]
                     },
                     {
-                        id: "fintrac",
-                        title: "5. FINTRAC ID Records",
+                        id: "s_fintrac",
+                        title: "4. FINTRAC ID Records",
                         badge: "Paper Form",
                         color: "bg-amber-100 text-amber-800",
                         icon: "fingerprint",
-                        description: "Federal anti-money laundering verification. Must do one per seller entity.",
+                        description: "Federal anti-money laundering verification.",
                         sections: [
                             {
-                                title: "Transition Script",
+                                title: "Verification",
                                 steps: [
-                                    "<span class='tag-script'>[SCRIPT]</span> <em>\"Before we move to the showing instructions, the federal government requires me to verify your identity under the anti-money laundering laws. I just need to take a quick peek at your driver's license to jot down the ID number.\"</em>"
-                                ]
-                            },
-                            {
-                                title: "If Seller is an INDIVIDUAL (Most Common)",
-                                steps: [
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>A.1 Verification:</strong> Check Driver's License or Passport.",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Name/Address/DOB:</strong> Copy exactly from ID.",
-                                    "<span class='tag-ask'>[ASK SELLER]</span> <strong>Principal Business:</strong> Ask: <em>\"What is your current occupation?\"</em> (e.g., Retired, Teacher, self-employed).",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>ID Details:</strong> Copy Document Number, Jurisdiction, and Expiry Date.",
-                                    "<span class='tag-dd'>[DUE DILIGENCE]</span> <span class='tag-ask'>[ASK SELLER]</span> <strong>Third Party:</strong> Ask: <em>\"Are you conducting this sale on behalf of someone else?\"</em> If yes, you must complete the Third Party Record section.",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Section D (Purpose):</strong> Check 'Residential Property' and 'Sale'.",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Section E (Business Relationship):</strong> Check 'Yes'."
-                                ]
-                            },
-                            {
-                                title: "If Seller is a CORPORATION (Investors/Estates)",
-                                steps: [
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>A.1 Corporation Info:</strong> Name, Corporate Address, Nature of Business.",
-                                    "<span class='tag-ask'>[ASK SELLER]</span> <strong>Directors:</strong> Ask for the names of all Directors.",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Verification Record:</strong> You MUST obtain a copy of the Articles of Incorporation or a corporate search record. Note the document number.",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Individual Authorization:</strong> You must also verify the ID of the human signing on behalf of the corporation (using an Individual FINTRAC form)."
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> Check Driver's License or Passport. Copy ID Number and Expiry exactly.",
+                                    "<span class='tag-ask'>[ASK SELLER]</span> Ask for their Principal Business/Occupation.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> Section D (Purpose): Check 'Residential Property' and 'Sale'."
                                 ]
                             }
                         ]
                     },
                     {
-                        id: "form244_lockbox",
-                        title: "6. Form 244 & Lockbox Direction",
+                        id: "s_form244",
+                        title: "5. Form 244 & Lockbox Direction",
                         badge: "Paper Contract",
                         color: "bg-amber-100 text-amber-800",
                         icon: "lock",
                         description: "Rules of engagement for offers and property access.",
                         sections: [
                             {
-                                title: "Strategy Discussion & Script",
+                                title: "Form 244 & Lockbox",
                                 steps: [
-                                    "<span class='tag-script'>[SCRIPT]</span> <em>\"This next form is your Seller's Direction. This dictates exactly how we handle offers. Do we want to review them as they come in, or do we want to hold off on reviewing them until a specific date to try and generate multiple offers?\"</em>"
-                                ]
-                            },
-                            {
-                                title: "OREA Form 244 - Seller's Direction",
-                                steps: [
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Header:</strong> Seller names, Brokerage, Property Address.",
-                                    "<span class='tag-ask'>[ASK SELLER]</span> <strong>Holding Offers:</strong> If holding, check 'Offers will not be reviewed until...' and write Date/Time.",
-                                    "<span class='tag-ask'>[ASK SELLER]</span> <strong>Pre-emptive Offers:</strong> If holding, you MUST check YES or NO to 'Seller will consider pre-emptive offers' (Bully offers). Discuss the pros/cons with them.",
-                                    "<span class='tag-optional'>[OPTIONAL]</span> <strong>Offers Anytime:</strong> If not holding, check 'There will be no delayed offer presentation'.",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Signatures:</strong> Both you and the Sellers must sign and date."
-                                ]
-                            },
-                            {
-                                title: "Lockbox Directions Form",
-                                steps: [
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Type:</strong> Check Electronic or Mechanical.",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Code Frequency:</strong> Enter '72' hours (RECO standard) or your brokerage policy.",
-                                    "<span class='tag-dd'>[DUE DILIGENCE]</span> <span class='tag-ask'>[ASK SELLER]</span> <strong>Insurance:</strong> Advise them to notify their home insurer that a lockbox is being installed (liability requirement).",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Signatures:</strong> Seller signs to authorize you putting the box on the door."
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        id: "form161",
-                        title: "7. OREA Form 161 (Disclosure of Interest)",
-                        badge: "Conditional Paper",
-                        color: "bg-red-100 text-red-800",
-                        icon: "alert-triangle",
-                        description: "ONLY if you or a family/brokerage member own the property.",
-                        sections: [
-                            {
-                                title: "When to use & How to fill",
-                                steps: [
-                                    "<span class='tag-dd'>[DUE DILIGENCE]</span> <span class='tag-ask'>[ASK SELLER]</span> Do you (the agent), your spouse, or Casora! Realty own this house? If NO, ignore this form completely.",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> If YES: Fill in your Name, Brokerage, and Property.",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Disclosure:</strong> Check the box detailing exactly what your interest is (e.g., 'I own the property').",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Signatures:</strong> You sign, your Broker of Record signs, and the Buyer must eventually sign it before making an offer."
+                                    "<span class='tag-ask'>[ASK SELLER]</span> <strong>Holding Offers:</strong> If holding, enter Date/Time and check YES or NO for Pre-emptive offers.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Lockbox:</strong> Get signature authorizing the lockbox placement."
                                 ]
                             }
                         ]
@@ -250,131 +147,23 @@
                 ]
             },
             {
-                phase: "Phase 3: Walkthrough & Logistics",
-                description: "Put the contracts away. Grab your clipboard and laser measure to gather MLS data.",
-                items: [
-                    {
-                        id: "walkthrough",
-                        title: "8. The Physical Walkthrough",
-                        badge: "Procedure & Script",
-                        color: "bg-indigo-100 text-indigo-800",
-                        icon: "ruler",
-                        description: "Transitioning from the table to the data gathering phase.",
-                        sections: [
-                            {
-                                title: "Transition Script",
-                                steps: [
-                                    "<span class='tag-script'>[SCRIPT]</span> <em>\"Excellent, the heavy legal lifting is done. Now for the fun part. I'm going to walk through the house to grab exact room measurements for the MLS and note down all the features we want to highlight. While I do that, feel free to relax. We'll touch base before I leave to confirm showing preferences.\"</em>"
-                                ]
-                            },
-                            {
-                                title: "Data Gathering & Due Diligence (Use Casora! Info Sheet)",
-                                steps: [
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Measurements:</strong> Measure every room (Length x Width) and note the flooring/features.",
-                                    "<span class='tag-ask'>[ASK SELLER]</span> <strong>Chattels:</strong> Ask: <em>\"Are there any appliances or fixtures you are taking with you?\"</em> (e.g., dining room chandelier, deep freezer).",
-                                    "<span class='tag-dd'>[DUE DILIGENCE]</span> <span class='tag-ask'>[ASK SELLER]</span> <strong>Rentals/Leases:</strong> Ask: <em>\"Is the hot water heater, furnace, or security system rented or financed?\"</em> (These MUST be disclosed in the MLS and APS).",
-                                    "<span class='tag-dd'>[DUE DILIGENCE]</span> <span class='tag-ask'>[ASK SELLER]</span> <strong>Defects/Permits:</strong> Ask: <em>\"Are there any hidden defects, leaks, past foundation issues, or unpermitted basement renovations?\"</em> (Latent defects rendering the property dangerous/unfit must be legally disclosed).",
-                                    "<span class='tag-ask'>[ASK SELLER]</span> <strong>Showing Rules:</strong> Ask: <em>\"Are there specific times you do not want showings? (e.g., after 8 PM, baby nap times).\"</em>"
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                phase: "Phase 4: Back-Office Polish (Digital)",
+                phase: "Phase 3: Back-Office Polish & MLS",
                 description: "Drafting the MLS data at your desk and sending for e-signature.",
                 items: [
                     {
-                        id: "mls290",
-                        title: "9. PropTx 290 / ITSO Data Form",
-                        badge: "Digital Data Entry",
+                        id: "s_mls",
+                        title: "6. PropTx 290 & BrokerBay",
+                        badge: "Digital Entry",
                         color: "bg-blue-100 text-blue-800",
                         icon: "monitor",
-                        description: "The massive input sheet for the MLS board.",
+                        description: "MLS data and showing instructions.",
                         sections: [
                             {
-                                title: "Top Section (Legal/Tax)",
+                                title: "Setup",
                                 steps: [
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Address & Legal:</strong> Copy PIN, ARN, and Legal Description perfectly from GeoWarehouse.",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Taxes:</strong> Enter the exact tax amount and the Tax Year.",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Lot Size:</strong> Enter Frontage and Depth. (Check Feet or Metres). Note if 'Irregular'."
-                                ]
-                            },
-                            {
-                                title: "Exterior & Mechanical",
-                                steps: [
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Heating/Cooling:</strong> Check appropriate boxes (Forced Air, Gas, Central Air).",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Basement:</strong> Check Finished, Unfinished, Separate Entrance, etc.",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Water/Sewers:</strong> Municipal, Well, Septic."
-                                ]
-                            },
-                            {
-                                title: "Rooms & Remarks",
-                                steps: [
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Rooms:</strong> Input Level, Room Type, Dimensions, and up to 3 features per room.",
-                                    "<span class='tag-optional'>[OPTIONAL]</span> <strong>Client Remarks:</strong> Your beautifully written public marketing copy.",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Brokerage Remarks:</strong> Private notes for agents. Add: <em>\"Please attach Sched B and refer to Casora! Deposit Instructions attached.\"</em>"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        id: "brokerbay",
-                        title: "10. BrokerBay Appt & Offer Instructions",
-                        badge: "Digital Data Entry",
-                        color: "bg-blue-100 text-blue-800",
-                        icon: "calendar",
-                        description: "Setup for the showing desk.",
-                        sections: [
-                            {
-                                title: "Showing Setup",
-                                steps: [
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Contacts:</strong> Enter Seller names/phones. Check notification preference (Text/Call).",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Confirmation:</strong> Select 'Contact Sellers & wait for confirmation' (unless vacant).",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Other Info:</strong> Add Alarm codes, Lockbox location, and 'Do not let cat out'."
-                                ]
-                            },
-                            {
-                                title: "Offer Setup",
-                                steps: [
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Submission:</strong> Enter your email for offers.",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Holding Offers:</strong> Copy the exact Date/Time from Form 244.",
-                                    "<span class='tag-optional'>[OPTIONAL]</span> <strong>Irrevocable:</strong> State if you require a 24-hour minimum."
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        id: "esign_email",
-                        title: "11. E-Signature Delivery",
-                        badge: "Procedure & Script",
-                        color: "bg-indigo-100 text-indigo-800",
-                        icon: "send",
-                        description: "Send the MLS and BrokerBay forms to the client for final sign-off.",
-                        sections: [
-                            {
-                                title: "Email Template",
-                                steps: [
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> You must have their signature on the MLS data form before the board will accept the listing.",
-                                    "<div class='bg-white border p-4 rounded mt-2 text-sm text-slate-700 italic border-l-4 border-l-indigo-500'><strong>Subject:</strong> Action Required: Final Review & Signatures for MLS<br><br>Hi [Client Name],<br><br>It was great meeting with you today!<br><br>I have finished compiling all the room measurements, property tax details, and the marketing remarks for the MLS system. I have also finalized the BrokerBay showing instructions based on our conversation.<br><br>Please click the secure link below to review these final two documents. If everything looks accurate, simply click to e-sign. Once you complete this, I will have everything I need to push the listing live to the market!<br><br>Let me know if you see anything that needs tweaking.<br><br>Best,<br>[Your Name]<br>Casora! Realty Inc.</div>"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        id: "trreb_credit",
-                        title: "12. TRREB Credit Card Form",
-                        badge: "Internal Form",
-                        color: "bg-slate-200 text-slate-800",
-                        icon: "credit-card",
-                        description: "For interboarding to Toronto. Never send to seller.",
-                        sections: [
-                            {
-                                title: "Completion Steps",
-                                steps: [
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Member Info:</strong> Your Name, Contact Info, Property Address.",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Payment:</strong> Enter Casora! corporate card details and sign."
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> Fill room measurements, taxes, and legal description.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> Set up BrokerBay contacts and offer email.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> Email both to Seller via DocuSign/Authentisign for final approval before going live."
                                 ]
                             }
                         ]
@@ -382,58 +171,283 @@
                 ]
             },
             {
-                phase: "Phase 5: Live on MLS & Deal Completion",
-                description: "Handling buyer agents and processing the firm deal.",
+                phase: "Phase 4: Deal Completion",
+                description: "Processing the firm deal.",
                 items: [
                     {
-                        id: "deposit_upload",
-                        title: "13. Casora! Deposit Instructions",
-                        badge: "MLS Attachment",
+                        id: "s_dealsummary",
+                        title: "7. CASORA Deal Summary",
+                        badge: "Internal Form",
                         color: "bg-purple-100 text-purple-800",
-                        icon: "paperclip",
-                        description: "Ensures the buyer agent wires trust funds correctly.",
+                        icon: "briefcase",
+                        description: "Submitted when a deal goes FIRM.",
                         sections: [
                             {
-                                title: "Procedure",
+                                title: "Financials",
                                 steps: [
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Action:</strong> Once the listing is live on MLS, upload this PDF to the 'Attachments' section.",
-                                    "<span class='tag-info'>[INFO]</span> <strong>Why:</strong> Tells buyer agents to purchase a bank draft payable to 'Casora Realty Inc.' and deposit it at a TD Bank.",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> Ensure the Form 244 and Schedule B are also attached to the listing."
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> Enter the exact Deposit held by Casora.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> Break down commission due to Casora and the Co-op Brokerage."
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        // --- BUYER TRACK DATA ---
+        const buyerData = [
+            {
+                phase: "Phase 1: Buyer Consultation & Agency",
+                description: "Establishing the relationship, fulfilling TRESA requirements, and verifying ID before writing any offers.",
+                items: [
+                    {
+                        id: "b_reco",
+                        title: "1. RECO Guide & Agency Discussion",
+                        badge: "Dialogue & Sign-off",
+                        color: "bg-indigo-100 text-indigo-800",
+                        icon: "book-open",
+                        description: "Must be handled BEFORE showing houses or drafting offers.",
+                        sections: [
+                            {
+                                title: "The Conversation",
+                                steps: [
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Provide the Guide:</strong> Email the RECO Information Guide in advance.",
+                                    "<span class='tag-script'>[SCRIPT]</span> <em>\"Before we start looking at properties and discussing strategy, TRESA requires me to explain representation. I will be acting as your Designated Representative. This means my sole loyalty is to you, I will negotiate fiercely on your behalf, and everything you tell me about your budget is strictly confidential.\"</em>",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Sign-off:</strong> Have the buyer(s) sign Page 13 of the RECO guide."
                                 ]
                             }
                         ]
                     },
                     {
-                        id: "deal_summary",
-                        title: "14. CASORA Deal Summary",
-                        badge: "Internal Form",
-                        color: "bg-purple-100 text-purple-800",
-                        icon: "briefcase",
-                        description: "Mandatory office form submitted when a deal goes FIRM.",
+                        id: "b_form371",
+                        title: "2. Form 371 - Buyer Representation",
+                        badge: "Paper/Digital Contract",
+                        color: "bg-amber-100 text-amber-800",
+                        icon: "file-signature",
+                        description: "The core legal contract locking them in as your client.",
                         sections: [
                             {
-                                title: "When to use",
+                                title: "Header & Scope",
                                 steps: [
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> Fill this out ONLY after an Agreement of Purchase and Sale is signed, conditions are removed, and the deal is FIRM."
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Brokerage:</strong> Casora! Realty Inc., Brokerage",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Designated Representative:</strong> Your exact name.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Commencing/Expiring:</strong> Set the timeline (e.g., 3 to 6 months). <span class='tag-mandatory'>[MANDATORY]</span> If over 6 months, buyer MUST initial.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Property Type & Geographic Location:</strong> E.g., 'Single Family Residential' in 'Hamilton, Burlington, and surrounding area'."
                                 ]
                             },
                             {
-                                title: "Top Section & Parties",
+                                title: "Clause 2 (Commission)",
                                 steps: [
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Dates:</strong> Date of Offer, Closing Date.",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Casora Role:</strong> Check Listing.",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Parties:</strong> Full names, addresses, phones for Buyer and Seller.",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Lawyers:</strong> Name, Firm, Address, Email for both lawyers."
+                                    "<span class='tag-script'>[SCRIPT]</span> <em>\"This section states my fee is [e.g., 2.5%]. In almost every case, the Seller pays this out of the proceeds of the sale. However, if we buy a For Sale By Owner or a property offering less than 2.5%, you would be responsible for the difference, but we would negotiate that into our offer.\"</em>",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> Fill in the Total Commission % and the Holdover period (e.g., 60 days)."
                                 ]
                             },
                             {
-                                title: "Financials (Getting Paid)",
+                                title: "Signatures",
                                 steps: [
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Deposit Held By Casora:</strong> Enter the exact $ amount of the deposit receipt.",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Sale Price:</strong> Final firm price.",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Total Commission:</strong> Total % and Total $ amount.",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Due to Casora:</strong> Break down by Salesperson 1 (%), Salesperson 2 (%), and $ amounts.",
-                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Due to Other Brokerage:</strong> Enter Co-op % and $ amount + HST."
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> You sign to bind the brokerage. Buyer signs.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> Ensure Casora! Schedule A is attached and initialled."
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        id: "b_fintrac",
+                        title: "3. FINTRAC ID Verification",
+                        badge: "Compliance",
+                        color: "bg-amber-100 text-amber-800",
+                        icon: "fingerprint",
+                        description: "Anti-money laundering check. Best done before drafting the first offer.",
+                        sections: [
+                            {
+                                title: "Verification",
+                                steps: [
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> Verify physical ID (Driver's License or Passport). Note number and expiry.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> Section D: Check 'Residential Property' and 'Purchase'.",
+                                    "<span class='tag-dd'>[DUE DILIGENCE]</span> <span class='tag-ask'>[ASK BUYER]</span> Ask: <em>\"Are you buying this home for yourself, or on behalf of a third party (like a child or a company)?\"</em> If third party, fill the Third Party section."
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        id: "b_form160",
+                        title: "4. OREA Form 160 (Disclosure)",
+                        badge: "Conditional Form",
+                        color: "bg-red-100 text-red-800",
+                        icon: "alert-triangle",
+                        description: "ONLY if you or a family member/Casora! is the Buyer.",
+                        sections: [
+                            {
+                                title: "When & How to use",
+                                steps: [
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> If YOU are buying a property, you must declare you are a Realtor using this form.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> This must be presented to the Seller <strong>PRIOR TO</strong> presenting the actual offer."
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                phase: "Phase 2: Drafting the Offer",
+                description: "The heavy lifting. Writing the Agreement of Purchase and Sale.",
+                items: [
+                    {
+                        id: "b_due_diligence",
+                        title: "5. Pre-Offer Due Diligence",
+                        badge: "Research",
+                        color: "bg-orange-100 text-orange-800",
+                        icon: "search",
+                        description: "Checks before writing the APS.",
+                        sections: [
+                            {
+                                title: "Checklist",
+                                steps: [
+                                    "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>MLS Attachments:</strong> Download the listing brokerage's Schedule B (trust account info/clauses) and any Seller Disclosures.",
+                                    "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>GeoWarehouse/MPAC:</strong> Verify the exact legal description and lot size matches the MLS.",
+                                    "<span class='tag-dd'>[DUE DILIGENCE]</span> Call the listing agent to confirm if there are any other offers registered."
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        id: "b_form100",
+                        title: "6. Form 100 - Agreement of Purchase & Sale",
+                        badge: "Core Contract",
+                        color: "bg-blue-100 text-blue-800",
+                        icon: "file-text",
+                        description: "The primary offer document.",
+                        sections: [
+                            {
+                                title: "Page 1: Terms",
+                                steps: [
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Buyer/Seller:</strong> Exact legal names.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Property:</strong> Address, Frontage/Depth, and exact Legal Description.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Price & Deposit:</strong> Write price. Deposit is usually 'Upon Acceptance' (must be delivered within 24hrs of firm deal). Make deposit payable to the <em>Listing Brokerage Trust Account</em>.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Irrevocability:</strong> Date and Time the offer expires.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Completion Date:</strong> The closing day."
+                                ]
+                            },
+                            {
+                                title: "Pages 2 & 3: Clauses",
+                                steps: [
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Chattels Included:</strong> List exactly what stays (e.g., Fridge, Stove, Washer, Dryer, ELF's, Window Coverings). Do not assume!",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Rental Items:</strong> Note hot water heater, furnace, etc. Buyer assumes these contracts.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Title Search:</strong> Usually set 1-2 weeks before the Completion Date."
+                                ]
+                            },
+                            {
+                                title: "Schedule A & B",
+                                steps: [
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Schedule A:</strong> Insert your Buyer conditions (Financing, Home Inspection, Status Certificate if a condo).",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Schedule B:</strong> Attach the Listing Brokerage's Schedule B (found on MLS)."
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        id: "b_form127",
+                        title: "7. Form 127 - Buyer Acknowledgement",
+                        badge: "CYA Form",
+                        color: "bg-red-100 text-red-800",
+                        icon: "shield-alert",
+                        description: "Used if Buyer writes a 'Firm' offer or waives a condition.",
+                        sections: [
+                            {
+                                title: "Protecting Your License",
+                                steps: [
+                                    "<span class='tag-script'>[SCRIPT]</span> <em>\"Because we are in a multiple offer situation, you have chosen to submit an offer without a financing or inspection condition. I support your decision, but RECO requires you to sign this form acknowledging that I advised you of the risks of buying 'as is' without conditions.\"</em>",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> Check the boxes for whatever condition they are waiving/omitting (e.g., Home Inspection). Buyer signs."
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                phase: "Phase 3: Offer Presentation & Co-op",
+                description: "Submitting the offer and confirming how commissions are handled.",
+                items: [
+                    {
+                        id: "b_form320",
+                        title: "8. Form 320 - Confirmation of Co-operation",
+                        badge: "Mandatory Paperwork",
+                        color: "bg-emerald-100 text-emerald-800",
+                        icon: "handshake",
+                        description: "Details exactly who represents who and who gets paid.",
+                        sections: [
+                            {
+                                title: "Section 1 & 2: Representation",
+                                steps: [
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Section 1 (Listing Brokerage):</strong> Check Single Representation (they represent Seller) OR Multiple Representation (if Casora has the listing too).",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Section 2 (Co-Operating Brokerage):</strong> Check 'Represents the Interests of the Buyer'."
+                                ]
+                            },
+                            {
+                                title: "Section 3 & Signatures",
+                                steps: [
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Section 3 (Commission):</strong> Check the box that says Listing Brokerage will pay Co-Op brokerage, and enter the MLS co-op commission amount (e.g., 2.5%).",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Signatures:</strong> YOU sign at the bottom for Casora!. The Buyer signs the Acknowledgement."
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                phase: "Phase 4: Firm Deal & Casora Admin",
+                description: "Conditions are fulfilled, deposit is delivered, and paperwork is submitted to the office.",
+                items: [
+                    {
+                        id: "b_waiver_fulfillment",
+                        title: "9. Fulfillment / Waiver of Conditions",
+                        badge: "Deal Firming",
+                        color: "bg-blue-100 text-blue-800",
+                        icon: "check-circle",
+                        description: "Removing the conditions from the offer.",
+                        sections: [
+                            {
+                                title: "Forms 124 / 123",
+                                steps: [
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> Once financing/inspection is approved, use <strong>Form 124 (Notice of Fulfillment)</strong> to satisfy the condition.",
+                                    "<span class='tag-optional'>[OPTIONAL]</span> Use <strong>Form 123 (Waiver)</strong> if the buyer decides to drop the condition without officially fulfilling it."
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        id: "b_deposit",
+                        title: "10. Deposit Delivery",
+                        badge: "Banking",
+                        color: "bg-purple-100 text-purple-800",
+                        icon: "banknote",
+                        description: "Getting the trust funds to the Listing Brokerage.",
+                        sections: [
+                            {
+                                title: "Instructions to Buyer",
+                                steps: [
+                                    "<span class='tag-dd'>[DUE DILIGENCE]</span> Pull the Deposit Instructions from the MLS listing attachments.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> Instruct Buyer to get a Bank Draft payable to the LISTING BROKERAGE IN TRUST.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> Must be delivered within 24 hours of offer acceptance (or as stipulated in the APS)."
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        id: "b_dealsummary",
+                        title: "11. CASORA Deal Summary",
+                        badge: "Internal Admin",
+                        color: "bg-purple-100 text-purple-800",
+                        icon: "briefcase",
+                        description: "Getting paid by Casora! office.",
+                        sections: [
+                            {
+                                title: "Office Submission",
+                                steps: [
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> Fill out Deal Summary. Check 'Selling' under Casora Role.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> Note: Deposit is held by the <em>Other Brokerage</em>.",
+                                    "<span class='tag-mandatory'>[MANDATORY]</span> Submit this to the office with the Firm APS, Form 320, FINTRAC, Form 371, and RECO Acknowledgement."
                                 ]
                             }
                         ]
@@ -443,8 +457,11 @@
         ];
 
         const App = () => {
+            const [activeTrack, setActiveTrack] = useState('seller'); // 'seller' or 'buyer'
             const [openAccordion, setOpenAccordion] = useState(null);
             const [completedItems, setCompletedItems] = useState({});
+
+            const currentData = activeTrack === 'seller' ? sellerData : buyerData;
 
             const toggleAccordion = (id) => {
                 setOpenAccordion(openAccordion === id ? null : id);
@@ -458,9 +475,12 @@
                 }));
             };
 
-            // Calculate overall progress
-            const totalItems = formsData.reduce((acc, phase) => acc + phase.items.length, 0);
-            const completedCount = Object.values(completedItems).filter(Boolean).length;
+            // Calculate overall progress for active track only
+            const totalItems = currentData.reduce((acc, phase) => acc + phase.items.length, 0);
+            
+            // Count only completed items that belong to the current track's IDs
+            const currentTrackIds = currentData.flatMap(phase => phase.items.map(item => item.id));
+            const completedCount = currentTrackIds.filter(id => completedItems[id]).length;
             const progressPercentage = totalItems === 0 ? 0 : (completedCount / totalItems) * 100;
 
             useEffect(() => {
@@ -470,17 +490,36 @@
             return (
                 <div className="min-h-screen pb-20">
                     {/* Header */}
-                    <header className="bg-slate-900 text-white py-12 px-6 shadow-2xl relative overflow-hidden">
-                        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-400 to-blue-500"></div>
-                        <div className="max-w-5xl mx-auto relative z-10">
-                            <div className="flex items-center space-x-4 mb-3">
-                                <div className="bg-emerald-500 p-2 rounded-lg">
-                                    <i data-lucide="building-2" className="w-8 h-8 text-white"></i>
+                    <header className={`text-white py-12 px-6 shadow-2xl relative overflow-hidden transition-colors duration-500 ${activeTrack === 'seller' ? 'bg-slate-900' : 'bg-slate-800'}`}>
+                        <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${activeTrack === 'seller' ? 'from-emerald-400 to-blue-500' : 'from-blue-400 to-indigo-500'}`}></div>
+                        <div className="max-w-5xl mx-auto relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center">
+                            <div>
+                                <div className="flex items-center space-x-4 mb-3">
+                                    <div className={`${activeTrack === 'seller' ? 'bg-emerald-500' : 'bg-blue-500'} p-2 rounded-lg transition-colors duration-500`}>
+                                        <i data-lucide="building-2" className="w-8 h-8 text-white"></i>
+                                    </div>
+                                    <h1 className="text-4xl font-extrabold tracking-tight">Casora! Realty Inc.</h1>
                                 </div>
-                                <h1 className="text-4xl font-extrabold tracking-tight">Casora! Realty Inc.</h1>
+                                <p className={`${activeTrack === 'seller' ? 'text-emerald-400' : 'text-blue-400'} text-xl font-bold tracking-wide uppercase transition-colors duration-500`}>Ultimate Agency Masterclass</p>
                             </div>
-                            <p className="text-emerald-400 text-xl font-bold tracking-wide uppercase">Ultimate Listing Masterclass & Form Guide</p>
-                            <p className="text-slate-400 mt-2 max-w-2xl text-sm leading-relaxed">The complete, step-by-step Standard Operating Procedure. Includes exact scripting, email templates, and line-by-line form requirements to command the listing process.</p>
+
+                            {/* Track Switcher */}
+                            <div className="mt-6 md:mt-0 bg-white/10 p-1.5 rounded-xl flex border border-white/20">
+                                <button 
+                                    onClick={() => {setActiveTrack('seller'); setOpenAccordion(null);}}
+                                    className={`px-6 py-2.5 rounded-lg font-bold text-sm transition-all flex items-center ${activeTrack === 'seller' ? 'bg-white text-slate-900 shadow-md' : 'text-white/70 hover:text-white'}`}
+                                >
+                                    <i data-lucide="home" className="w-4 h-4 mr-2"></i>
+                                    List Property (Seller)
+                                </button>
+                                <button 
+                                    onClick={() => {setActiveTrack('buyer'); setOpenAccordion(null);}}
+                                    className={`px-6 py-2.5 rounded-lg font-bold text-sm transition-all flex items-center ${activeTrack === 'buyer' ? 'bg-white text-slate-900 shadow-md' : 'text-white/70 hover:text-white'}`}
+                                >
+                                    <i data-lucide="key" className="w-4 h-4 mr-2"></i>
+                                    Write Offer (Buyer)
+                                </button>
+                            </div>
                         </div>
                     </header>
 
@@ -488,26 +527,26 @@
                         
                         {/* Progress Tracker Widget */}
                         <div className="bg-white rounded-2xl shadow-md p-6 mb-12 border border-slate-200 relative overflow-hidden">
-                            <div className="absolute top-0 right-0 p-8 opacity-5">
-                                <i data-lucide="target" className="w-32 h-32"></i>
+                            <div className={`absolute top-0 right-0 p-8 opacity-5 transition-colors duration-500 ${activeTrack === 'seller' ? 'text-emerald-900' : 'text-blue-900'}`}>
+                                <i data-lucide={activeTrack === 'seller' ? 'target' : 'compass'} className="w-32 h-32"></i>
                             </div>
                             <div className="relative z-10 flex justify-between items-end mb-4">
                                 <div>
-                                    <h2 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Workflow Completion</h2>
+                                    <h2 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">{activeTrack === 'seller' ? 'Listing' : 'Purchase'} Workflow</h2>
                                     <p className="text-3xl font-black text-slate-800 tracking-tight">{completedCount} <span className="text-lg font-medium text-slate-400">/ {totalItems} Steps Executed</span></p>
                                 </div>
-                                <div className="text-emerald-600 font-black text-3xl">
+                                <div className={`font-black text-3xl transition-colors duration-500 ${activeTrack === 'seller' ? 'text-emerald-600' : 'text-blue-600'}`}>
                                     {Math.round(progressPercentage)}%
                                 </div>
                             </div>
                             <div className="w-full bg-slate-100 rounded-full h-4 overflow-hidden shadow-inner relative z-10">
-                                <div className="bg-gradient-to-r from-emerald-400 to-emerald-600 h-4 rounded-full transition-all duration-700 ease-out" style={{ width: `${progressPercentage}%` }}></div>
+                                <div className={`h-4 rounded-full transition-all duration-700 ease-out bg-gradient-to-r ${activeTrack === 'seller' ? 'from-emerald-400 to-emerald-600' : 'from-blue-400 to-indigo-500'}`} style={{ width: `${progressPercentage}%` }}></div>
                             </div>
                         </div>
 
                         {/* Master Timeline Content */}
                         <div className="space-y-16">
-                            {formsData.map((phaseData, phaseIdx) => (
+                            {currentData.map((phaseData, phaseIdx) => (
                                 <div key={phaseIdx} className="relative">
                                     
                                     {/* Phase Header */}
@@ -524,8 +563,16 @@
                                             const isOpen = openAccordion === item.id;
                                             const isCompleted = completedItems[item.id];
 
+                                            // Styling logic based on track and completion
+                                            const themeColor = activeTrack === 'seller' ? 'emerald' : 'blue';
+                                            const borderCompleted = activeTrack === 'seller' ? 'border-emerald-400' : 'border-blue-400';
+                                            const bgCompleted = activeTrack === 'seller' ? 'bg-emerald-50/20' : 'bg-blue-50/20';
+                                            const checkBg = activeTrack === 'seller' ? 'bg-emerald-500 border-emerald-500' : 'bg-blue-500 border-blue-500';
+                                            const checkHover = activeTrack === 'seller' ? 'hover:border-emerald-400' : 'hover:border-blue-400';
+                                            const iconBg = isCompleted ? (activeTrack === 'seller' ? 'bg-emerald-100 text-emerald-600' : 'bg-blue-100 text-blue-600') : 'bg-slate-100 text-slate-600';
+
                                             return (
-                                                <div key={item.id} className={`bg-white rounded-xl border-2 transition-all duration-300 ${isCompleted ? 'border-emerald-400 bg-emerald-50/10 shadow-sm' : 'border-slate-200 hover:border-slate-300 hover:shadow-md'}`}>
+                                                <div key={item.id} className={`bg-white rounded-xl border-2 transition-all duration-300 ${isCompleted ? `${borderCompleted} ${bgCompleted} shadow-sm` : 'border-slate-200 hover:border-slate-300 hover:shadow-md'}`}>
                                                     
                                                     {/* Item Header Bar */}
                                                     <div 
@@ -536,14 +583,14 @@
                                                             {/* Checkbox */}
                                                             <button 
                                                                 onClick={(e) => toggleCompletion(item.id, e)}
-                                                                className={`flex-shrink-0 mt-1 w-8 h-8 rounded-lg border-2 flex items-center justify-center transition-all duration-200 ${isCompleted ? 'bg-emerald-500 border-emerald-500 text-white shadow-sm scale-110' : 'border-slate-300 bg-slate-50 text-transparent hover:border-emerald-400'}`}
+                                                                className={`flex-shrink-0 mt-1 w-8 h-8 rounded-lg border-2 flex items-center justify-center transition-all duration-200 ${isCompleted ? `${checkBg} text-white shadow-sm scale-110` : `border-slate-300 bg-slate-50 text-transparent ${checkHover}`}`}
                                                             >
                                                                 <i data-lucide="check" className="w-5 h-5 stroke-[3]"></i>
                                                             </button>
                                                             
                                                             <div>
                                                                 <div className="flex flex-wrap items-center gap-3 mb-1">
-                                                                    <div className={`p-1.5 rounded-md ${isCompleted ? 'bg-emerald-100 text-emerald-600' : 'bg-slate-100 text-slate-600'}`}>
+                                                                    <div className={`p-1.5 rounded-md transition-colors duration-300 ${iconBg}`}>
                                                                         <i data-lucide={item.icon} className="w-4 h-4"></i>
                                                                     </div>
                                                                     <h4 className={`text-xl font-bold tracking-tight transition-colors ${isCompleted ? 'text-slate-400 line-through' : 'text-slate-800'}`}>
