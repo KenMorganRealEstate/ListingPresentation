@@ -3,38 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Casora! Realty Inc. - Agency Command Center</title>
-    
+    <title>Casora! Realty Inc. — Agency Command Center</title>
+
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+
     <!-- React & ReactDOM -->
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-    
-    <!-- Babel for JSX compilation -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin>
+    </script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin>
+    </script>
+
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js">
+    </script>
 
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest">
+    </script>
 
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f1f5f9; }
-        .accordion-content { transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out; overflow: hidden; }
-        .accordion-content.open { max-height: 8000px; opacity: 1; }
-        .accordion-content.closed { max-height: 0; opacity: 0; }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-
-        .tag-mandatory { background-color: #fee2e2; color: #991b1b; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; margin-right: 6px; vertical-align: middle; display: inline-block;}
-        .tag-optional { background-color: #f1f5f9; color: #475569; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; margin-right: 6px; vertical-align: middle; display: inline-block;}
-        .tag-ask { background-color: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; margin-right: 6px; vertical-align: middle; display: inline-block;}
-        .tag-script { background-color: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; margin-right: 6px; vertical-align: middle; display: inline-block;}
-        .tag-dd { background-color: #fef08a; color: #854d0e; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; margin-right: 6px; vertical-align: middle; display: inline-block;}
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f1f5f9;
+        }
+        .accordion-content {
+            transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
+            overflow: hidden;
+        }
+        .accordion-content.open {
+            max-height: 10000px;
+            opacity: 1;
+        }
+        .accordion-content.closed {
+            max-height: 0;
+            opacity: 0;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .tag-mandatory {
+            background-color: #fee2e2;
+            color: #991b1b;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            margin-right: 6px;
+            vertical-align: middle;
+            display: inline-block;
+        }
+        .tag-optional {
+            background-color: #f1f5f9;
+            color: #475569;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            margin-right: 6px;
+            vertical-align: middle;
+            display: inline-block;
+        }
+        .tag-ask {
+            background-color: #fef3c7;
+            color: #92400e;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            margin-right: 6px;
+            vertical-align: middle;
+            display: inline-block;
+        }
+        .tag-script {
+            background-color: #dbeafe;
+            color: #1e40af;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            margin-right: 6px;
+            vertical-align: middle;
+            display: inline-block;
+        }
+        .tag-dd {
+            background-color: #fef08a;
+            color: #854d0e;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            margin-right: 6px;
+            vertical-align: middle;
+            display: inline-block;
+        }
+        .tag-warning {
+            background-color: #fce7f3;
+            color: #9d174d;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            margin-right: 6px;
+            vertical-align: middle;
+            display: inline-block;
+        }
     </style>
 </head>
 <body>
@@ -43,373 +128,1168 @@
     <script type="text/babel">
         const { useState, useEffect } = React;
 
-        // ==========================================
-        // 1. LISTING TRACKS (SELLER / LANDLORD)
-        // ==========================================
+        // ============================================================
+        // TRACK 1: LIST FREEHOLD (SELLER)
+        // ============================================================
+        const listFreeholdData = [{
+            phase: "Phase 1: Pre-Listing Research & Primer",
+            description: "Handling TRESA compliance and legal due diligence before you even step into the house.",
+            items: [{
+                id: "lf_due_diligence",
+                title: "1. Pre-Listing Due Diligence",
+                badge: "Office Research",
+                color: "bg-orange-100 text-orange-800",
+                icon: "search",
+                description: "Mandatory legal checks to perform BEFORE the appointment.",
+                sections: [{
+                    title: "Title & Ownership Verification",
+                    steps: [
+                        "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>GeoWarehouse:</strong> Pull the property report to verify exact legal names on title. You cannot legally list unless all owners sign.",
+                        "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>Estates/POA:</strong> If deceased or using a POA, you MUST obtain the Certificate of Appointment of Estate Trustee or the POA document.",
+                        "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>Mortgage Check:</strong> Verify outstanding mortgage vs. estimated sale price. Does the seller have enough equity?",
+                        "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>Tax Arrears:</strong> Check if property taxes are up-to-date via the municipal portal."
+                    ]
+                }]
+            }, {
+                id: "lf_pre_email",
+                title: "2. Advance Email & RECO Delivery",
+                badge: "Procedure & Script",
+                color: "bg-indigo-100 text-indigo-800",
+                icon: "mail",
+                description: "Send 24-48 hours before your meeting.",
+                sections: [{
+                    title: "Email Template",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> You must provide the RECO Guide before providing services.",
+                        "<div class='bg-white border p-4 rounded mt-2 text-sm text-slate-700 italic border-l-4 border-l-indigo-500'><strong>Subject:</strong> Looking forward to our meeting + Important Info<br><br>Hi [Client Name],<br><br>I am looking forward to our meeting tomorrow. Because the province recently updated the rules for real estate representation, I am required by law to provide you with the attached RECO Information Guide before we officially begin our services. Please give it a quick read-through. We will briefly touch on it tomorrow.<br><br>Best,<br>[Your Name]</div>"
+                    ]
+                }]
+            }]
+        }, {
+            phase: "Phase 2: The Kitchen Table (Contracts)",
+            description: "Command the room. Bring these forms printed. Secure wet-ink signatures.",
+            items: [{
+                id: "lf_reco",
+                title: "3. Setting the Agenda & RECO Sign-off",
+                badge: "Dialogue",
+                color: "bg-indigo-100 text-indigo-800",
+                icon: "message-circle",
+                description: "Opening the meeting and TRESA acknowledgment.",
+                sections: [{
+                    title: "Script & Sign-off",
+                    steps: [
+                        "<span class='tag-script'>[SCRIPT]</span> <em>\"Did you have a chance to glance at the RECO guide I emailed over? It confirms that I am acting as your Designated Representative. My sole loyalty is to you, the Seller.\"</em>",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Have all Sellers sign and date the printed Page 13 Acknowledgement."
+                    ]
+                }]
+            }, {
+                id: "lf_form271",
+                title: "4. OREA Form 271 — Listing Agreement",
+                badge: "Paper Contract",
+                color: "bg-amber-100 text-amber-800",
+                icon: "file-signature",
+                description: "The core legal contract securing you as Designated Representative.",
+                sections: [{
+                    title: "Form Breakdown",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Designated Rep:</strong> Your exact name. (Crucial TRESA rule).",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Dates:</strong> Commencing and Expiring times.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Commission:</strong> Total %, Co-op %, and Holdover days.",
+                        "<span class='tag-dd'>[DUE DILIGENCE]</span> <span class='tag-ask'>[ASK SELLER]</span> <strong>Spousal Consent:</strong> Is it a matrimonial home and spouse isn't on title? They must sign Page 4.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Schedule A:</strong> Ensure Casora's Schedule A is attached and initialled."
+                    ]
+                }]
+            }, {
+                id: "lf_fintrac",
+                title: "5. FINTRAC ID Records",
+                badge: "Paper Form",
+                color: "bg-amber-100 text-amber-800",
+                icon: "fingerprint",
+                description: "Federal anti-money laundering verification.",
+                sections: [{
+                    title: "Verification",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Check Driver's License or Passport. Copy ID Number and Expiry exactly.",
+                        "<span class='tag-ask'>[ASK SELLER]</span> Ask for their Principal Business/Occupation.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Section D (Purpose): Check 'Residential Property' and 'Sale'."
+                    ]
+                }]
+            }, {
+                id: "lf_form244",
+                title: "6. Form 244 & Lockbox Direction",
+                badge: "Paper Contract",
+                color: "bg-amber-100 text-amber-800",
+                icon: "lock",
+                description: "Rules of engagement for offers and property access.",
+                sections: [{
+                    title: "Form 244 & Lockbox",
+                    steps: [
+                        "<span class='tag-ask'>[ASK SELLER]</span> <strong>Holding Offers:</strong> If holding, enter Date/Time and check YES or NO for Pre-emptive offers.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Lockbox:</strong> Get signature authorizing the lockbox placement."
+                    ]
+                }]
+            }, {
+                id: "lf_form161",
+                title: "7. OREA Form 161 (Disclosure of Interest)",
+                badge: "Conditional Form",
+                color: "bg-red-100 text-red-800",
+                icon: "alert-triangle",
+                description: "ONLY if you or a family member/Casora! own the property.",
+                sections: [{
+                    title: "When & How to use",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> If YOU or the brokerage own the property, you must declare it using this form."
+                    ]
+                }]
+            }]
+        }, {
+            phase: "Phase 3: Back-Office Polish & MLS",
+            description: "Drafting the MLS data at your desk and sending for e-signature.",
+            items: [{
+                id: "lf_mls",
+                title: "8. PropTx 290 & BrokerBay",
+                badge: "Digital Entry",
+                color: "bg-blue-100 text-blue-800",
+                icon: "monitor",
+                description: "MLS data and showing instructions for FREEHOLD listings.",
+                sections: [{
+                    title: "Setup",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Use PropTx 290 (Freehold Sale).",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Fill room measurements, taxes, and legal description.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Set up BrokerBay contacts and offer email.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Email both to Seller via DocuSign/Authentisign for final approval before going live."
+                    ]
+                }]
+            }]
+        }, {
+            phase: "Phase 4: Deal Completion",
+            description: "Processing the firm deal.",
+            items: [{
+                id: "lf_dealsummary",
+                title: "9. CASORA Deal Summary",
+                badge: "Internal Form",
+                color: "bg-purple-100 text-purple-800",
+                icon: "briefcase",
+                description: "Submitted when a deal goes FIRM.",
+                sections: [{
+                    title: "Financials",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Enter the exact Deposit held by Casora.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Break down commission due to Casora and the Co-op Brokerage.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Submit with Firm APS, Form 271, FINTRAC, RECO Ack, Form 244, and any waivers."
+                    ]
+                }]
+            }]
+        }];
 
-        const listFreeholdData = [
-            {
-                phase: "Phase 1: Pre-Listing Research",
-                description: "Handling TRESA compliance and legal due diligence.",
-                items: [
-                    {
-                        id: "lf_dd", title: "1. Pre-Listing Due Diligence", badge: "Office Research", color: "bg-orange-100 text-orange-800", icon: "search",
-                        sections: [{ title: "Title Verification", steps: ["<span class='tag-dd'>[DUE DILIGENCE]</span> Pull GeoWarehouse to verify exact legal names on title.", "<span class='tag-dd'>[DUE DILIGENCE]</span> Estates/POA: MUST obtain Certificate of Appointment of Estate Trustee or POA document."] }]
-                    },
-                    {
-                        id: "lf_email", title: "2. Advance Email & RECO Delivery", badge: "Script", color: "bg-indigo-100 text-indigo-800", icon: "mail",
-                        sections: [{ title: "Email Template", steps: ["<span class='tag-mandatory'>[MANDATORY]</span> Email RECO Guide 24hrs before meeting.", "<div class='bg-white border p-3 rounded mt-2 text-sm italic'>Subject: Looking forward to our meeting... I am required by law to provide you with the attached RECO Information Guide...</div>"] }]
-                    }
-                ]
-            },
-            {
-                phase: "Phase 2: The Kitchen Table",
-                description: "Secure wet-ink signatures to lock in the listing.",
-                items: [
-                    {
-                        id: "lf_form271", title: "3. OREA Form 271 - Seller Representation", badge: "Contract", color: "bg-amber-100 text-amber-800", icon: "file-signature",
-                        sections: [{ title: "Key Fields", steps: ["<span class='tag-mandatory'>[MANDATORY]</span> Designated Rep: Your exact name.", "<span class='tag-dd'>[DUE DILIGENCE]</span> <span class='tag-ask'>[ASK SELLER]</span> Spousal Consent: Matrimonial home? Non-titled spouse must sign Page 4."] }]
-                    },
-                    {
-                        id: "lf_fintrac", title: "4. FINTRAC ID Records", badge: "Compliance", color: "bg-amber-100 text-amber-800", icon: "fingerprint",
-                        sections: [{ title: "Verification", steps: ["<span class='tag-mandatory'>[MANDATORY]</span> Verify physical ID. Check 'Residential Property' and 'Sale'."] }]
-                    },
-                    {
-                        id: "lf_form244", title: "5. Form 244 & Lockbox Direction", badge: "Contract", color: "bg-amber-100 text-amber-800", icon: "lock",
-                        sections: [{ title: "Offer Strategy", steps: ["<span class='tag-mandatory'>[MANDATORY]</span> Form 244 is required if holding offers.", "<span class='tag-mandatory'>[MANDATORY]</span> Get Lockbox Authorization signed."] }]
-                    },
-                    {
-                        id: "lf_form161", title: "6. Form 161 (Disclosure of Interest)", badge: "Conditional", color: "bg-red-100 text-red-800", icon: "alert-triangle",
-                        sections: [{ title: "Usage", steps: ["<span class='tag-mandatory'>[MANDATORY]</span> Must use if YOU/Brokerage own the property."] }]
-                    }
-                ]
-            },
-            {
-                phase: "Phase 3: Back-Office & MLS",
-                description: "Drafting the MLS data and Casora paperwork.",
-                items: [
-                    {
-                        id: "lf_mls", title: "7. PropTx 290 & BrokerBay", badge: "Digital", color: "bg-blue-100 text-blue-800", icon: "monitor",
-                        sections: [{ title: "Setup", steps: ["<span class='tag-mandatory'>[MANDATORY]</span> Use PropTx 290 (Freehold Sale). Send to seller via DocuSign."] }]
-                    },
-                    {
-                        id: "lf_dealsummary", title: "8. CASORA Deal Summary", badge: "Admin", color: "bg-purple-100 text-purple-800", icon: "briefcase",
-                        sections: [{ title: "Firm Deal", steps: ["<span class='tag-mandatory'>[MANDATORY]</span> Submit when deal is FIRM to get paid."] }]
-                    }
-                ]
-            }
-        ];
+        // ============================================================
+        // TRACK 2: LIST CONDO (SELLER — CONDO)
+        // ============================================================
+        const listCondoData = [{
+            phase: "Phase 1: Pre-Listing Condo Research",
+            description: "Condos require specific data before the kitchen table meeting.",
+            items: [{
+                id: "lc_due_diligence",
+                title: "1. Condo Due Diligence",
+                badge: "Office Research",
+                color: "bg-orange-100 text-orange-800",
+                icon: "search",
+                description: "Mandatory checks specific to condominium properties.",
+                sections: [{
+                    title: "Condo Verifications",
+                    steps: [
+                        "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>GeoWarehouse:</strong> Find Condominium Plan No., Legal Name of Condo Corp (e.g., Wentworth Standard Condominium Corporation No. 123), Unit Number, Level No., and Building No.",
+                        "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>Parking/Locker:</strong> Verify if Parking and Locker are owned (Deeded) or Exclusive Use. This drastically changes how you fill out Form 271 and MLS!",
+                        "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>Status Certificate:</strong> Does the Seller have a current Status Certificate? If not, advise them to order one ($100-$150).",
+                        "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>Maintenance Fee:</strong> Verify the exact monthly maintenance fee and what it includes (Heat, Water, Building Insurance, etc.)."
+                    ]
+                }]
+            }, {
+                id: "lc_pre_email",
+                title: "2. Advance Email & RECO Delivery",
+                badge: "Procedure & Script",
+                color: "bg-indigo-100 text-indigo-800",
+                icon: "mail",
+                description: "Send 24-48 hours before your meeting.",
+                sections: [{
+                    title: "Email Template",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> You must provide the RECO Guide before providing services.",
+                        "<div class='bg-white border p-4 rounded mt-2 text-sm text-slate-700 italic border-l-4 border-l-emerald-500'><strong>Subject:</strong> Looking forward to our condo listing meeting + Important Info<br><br>Hi [Client Name],<br><br>I am looking forward to our meeting. Because the province updated the rules for real estate representation, I am required by law to provide you with the attached RECO Information Guide before we officially begin. Please give it a quick read-through.<br><br>Also, if you have a current Status Certificate, please have it ready for our meeting.<br><br>Best,<br>[Your Name]</div>"
+                    ]
+                }]
+            }]
+        }, {
+            phase: "Phase 2: The Kitchen Table (Condo Contracts)",
+            description: "Secure wet-ink signatures. Condos have additional considerations.",
+            items: [{
+                id: "lc_reco",
+                title: "3. RECO Sign-off & Agenda",
+                badge: "Dialogue",
+                color: "bg-indigo-100 text-indigo-800",
+                icon: "message-circle",
+                description: "TRESA acknowledgment and condo-specific agenda.",
+                sections: [{
+                    title: "Script & Sign-off",
+                    steps: [
+                        "<span class='tag-script'>[SCRIPT]</span> <em>\"Did you have a chance to glance at the RECO guide? It confirms that I am acting as your Designated Representative. For your condo specifically, we'll need to discuss the Status Certificate, maintenance fees, and condo corporation rules.\"</em>",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Have all Sellers sign and date the printed Page 13 Acknowledgement."
+                    ]
+                }]
+            }, {
+                id: "lc_form271",
+                title: "4. OREA Form 271 — Listing Agreement (Condo)",
+                badge: "Paper Contract",
+                color: "bg-amber-100 text-amber-800",
+                icon: "file-signature",
+                description: "The core legal contract — condo specifics matter.",
+                sections: [{
+                    title: "Condo-Specific Form Breakdown",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Designated Rep:</strong> Your exact name. (Crucial TRESA rule).",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Legal Description:</strong> Must include Condominium Plan No. and Unit No. exactly as per Registry.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Dates:</strong> Commencing and Expiring times.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Commission:</strong> Total %, Co-op %, and Holdover days.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Schedule A:</strong> Attach Casora's Schedule A. Consider adding a clause about Status Certificate availability.",
+                        "<span class='tag-dd'>[DUE DILIGENCE]</span> <span class='tag-ask'>[ASK SELLER]</span> <strong>Spousal Consent:</strong> Is it a matrimonial home? Non-titled spouse must sign Page 4."
+                    ]
+                }]
+            }, {
+                id: "lc_fintrac",
+                title: "5. FINTRAC ID Records",
+                badge: "Paper Form",
+                color: "bg-amber-100 text-amber-800",
+                icon: "fingerprint",
+                description: "Federal anti-money laundering verification.",
+                sections: [{
+                    title: "Verification",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Check Driver's License or Passport. Copy ID Number and Expiry exactly.",
+                        "<span class='tag-ask'>[ASK SELLER]</span> Ask for their Principal Business/Occupation.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Section D (Purpose): Check 'Residential Property' and 'Sale'."
+                    ]
+                }]
+            }, {
+                id: "lc_form244",
+                title: "6. Form 244 & Lockbox Direction",
+                badge: "Paper Contract",
+                color: "bg-amber-100 text-amber-800",
+                icon: "lock",
+                description: "Offer strategy and access — condos may have concierge or fob restrictions.",
+                sections: [{
+                    title: "Form 244 & Lockbox",
+                    steps: [
+                        "<span class='tag-ask'>[ASK SELLER]</span> <strong>Holding Offers:</strong> If holding, enter Date/Time and check YES or NO for Pre-emptive offers.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Lockbox:</strong> Get signature authorizing the lockbox. Note any condo building restrictions on lockbox placement.",
+                        "<span class='tag-optional'>[OPTIONAL]</span> Check if the condo has a concierge — you may need to coordinate showing instructions differently."
+                    ]
+                }]
+            }, {
+                id: "lc_form161",
+                title: "7. OREA Form 161 (Disclosure of Interest)",
+                badge: "Conditional Form",
+                color: "bg-red-100 text-red-800",
+                icon: "alert-triangle",
+                description: "ONLY if you or Casora! have an interest in the property.",
+                sections: [{
+                    title: "When & How to use",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> If YOU or the brokerage own the condo, you must declare it using this form."
+                    ]
+                }]
+            }]
+        }, {
+            phase: "Phase 3: Condo MLS Data Entry",
+            description: "Using the specific condo listing form.",
+            items: [{
+                id: "lc_mls",
+                title: "8. PropTx 291 & BrokerBay (Condo)",
+                badge: "Digital Entry",
+                color: "bg-blue-100 text-blue-800",
+                icon: "building",
+                description: "Condo-specific MLS data and showing instructions.",
+                sections: [{
+                    title: "Condo MLS Setup",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Use PropTx 291 (Condo Sale) — NOT Form 290.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Must list: Condo Corp Name, Condo Plan No., Maintenance Fee amount, and what is included (Heat, Water, Building Insurance, etc.).",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Specify Parking Type: 'Owned' vs 'Exclusive Use', with Level and Number.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Specify Locker Type: 'Owned' vs 'Exclusive Use', with Level and Number.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Set up BrokerBay contacts and offer email. Send to Seller via DocuSign for approval."
+                    ]
+                }]
+            }]
+        }, {
+            phase: "Phase 4: Condo Deal Completion",
+            description: "Processing the firm deal — Status Certificate is key.",
+            items: [{
+                id: "lc_dealsummary",
+                title: "9. CASORA Deal Summary (Condo)",
+                badge: "Internal Form",
+                color: "bg-purple-100 text-purple-800",
+                icon: "briefcase",
+                description: "Submitted when the condo deal goes FIRM (after Status Certificate waiver).",
+                sections: [{
+                    title: "Financials & Submission",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Enter the exact Deposit held by Casora.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Break down commission due to Casora and the Co-op Brokerage.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Ensure the Status Certificate condition has been waived (Form 124) before marking as firm.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Submit with Firm APS, Form 271, FINTRAC, RECO Ack, Form 244, Form 124, and any other waivers."
+                    ]
+                }]
+            }]
+        }];
 
-        const listCondoData = [
-            {
-                phase: "Phase 1: Pre-Listing Condo Research",
-                description: "Condos require specific data upfront.",
-                items: [
-                    {
-                        id: "lc_dd", title: "1. Condo Due Diligence", badge: "Office Research", color: "bg-orange-100 text-orange-800", icon: "search",
-                        sections: [{ title: "Verifications", steps: ["<span class='tag-dd'>[DUE DILIGENCE]</span> GeoWarehouse: Find Condominium Plan No. and Corp Name.", "<span class='tag-dd'>[DUE DILIGENCE]</span> Parking/Locker: Verify if owned or exclusive use."] }]
-                    },
-                    {
-                        id: "lc_email", title: "2. RECO Guide Delivery", badge: "Compliance", color: "bg-indigo-100 text-indigo-800", icon: "mail",
-                        sections: [{ title: "Delivery", steps: ["<span class='tag-mandatory'>[MANDATORY]</span> Email RECO Guide 24hrs before meeting."] }]
-                    }
-                ]
-            },
-            {
-                phase: "Phase 2: Condo Contracts",
-                description: "Securing the listing.",
-                items: [
-                    {
-                        id: "lc_form271", title: "3. OREA Form 271", badge: "Contract", color: "bg-amber-100 text-amber-800", icon: "file-signature",
-                        sections: [{ title: "Key Fields", steps: ["<span class='tag-mandatory'>[MANDATORY]</span> Designated Rep: Your exact name."] }]
-                    },
-                    {
-                        id: "lc_fintrac", title: "4. FINTRAC ID", badge: "Compliance", color: "bg-amber-100 text-amber-800", icon: "fingerprint",
-                        sections: [{ title: "Verification", steps: ["<span class='tag-mandatory'>[MANDATORY]</span> Verify physical ID."] }]
-                    }
-                ]
-            },
-            {
-                phase: "Phase 3: Condo MLS Data",
-                description: "Using the specific Condo forms.",
-                items: [
-                    {
-                        id: "lc_mls", title: "5. PropTx 291 & BrokerBay", badge: "Digital", color: "bg-blue-100 text-blue-800", icon: "building",
-                        sections: [{ title: "Condo Setup", steps: ["<span class='tag-mandatory'>[MANDATORY]</span> Use PropTx 291 (Condo Sale).", "<span class='tag-mandatory'>[MANDATORY]</span> Must list Condo Corp Name, Maintenance Fee amount, and what is included."] }]
-                    },
-                    {
-                        id: "lc_dealsummary", title: "6. CASORA Deal Summary", badge: "Admin", color: "bg-purple-100 text-purple-800", icon: "briefcase",
-                        sections: [{ title: "Firm Deal", steps: ["<span class='tag-mandatory'>[MANDATORY]</span> Submit when deal is FIRM (after Status Cert waiver)."] }]
-                    }
-                ]
-            }
-        ];
+        // ============================================================
+        // TRACK 3: LIST LEASE (LANDLORD REPRESENTATION)
+        // ============================================================
+        const listLeaseData = [{
+            phase: "Phase 1: Landlord Agency Setup",
+            description: "Representing a Landlord — TRESA applies to leases too.",
+            items: [{
+                id: "ll_due_diligence",
+                title: "1. Landlord Due Diligence",
+                badge: "Office Research",
+                color: "bg-orange-100 text-orange-800",
+                icon: "search",
+                description: "Verify the Landlord's legal standing before listing.",
+                sections: [{
+                    title: "Verification",
+                    steps: [
+                        "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>GeoWarehouse:</strong> Verify Landlord's name matches title exactly.",
+                        "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>Rental Legality:</strong> Confirm the property is zoned for rental and there are no condo bylaw restrictions on leasing.",
+                        "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>Existing Lease:</strong> If currently tenanted, review the existing lease and confirm termination notice requirements (N11/N12)."
+                    ]
+                }]
+            }, {
+                id: "ll_reco_email",
+                title: "2. RECO Guide Delivery",
+                badge: "Compliance",
+                color: "bg-indigo-100 text-indigo-800",
+                icon: "mail",
+                description: "TRESA compliance before providing services.",
+                sections: [{
+                    title: "Delivery",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Email RECO Guide to Landlord 24-48 hours before meeting.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> At meeting: Have Landlord sign Page 13 Acknowledgement.",
+                        "<span class='tag-script'>[SCRIPT]</span> <em>\"TRESA requires me to explain that as your Designated Representative, my sole loyalty is to you, the Landlord.\"</em>"
+                    ]
+                }]
+            }]
+        }, {
+            phase: "Phase 2: Landlord Contracts",
+            description: "Securing the Landlord representation agreement.",
+            items: [{
+                id: "ll_form272",
+                title: "3. OREA Form 272 — Landlord Representation",
+                badge: "Core Contract",
+                color: "bg-amber-100 text-amber-800",
+                icon: "file-signature",
+                description: "Authority to offer for LEASE — this is the listing agreement for rentals.",
+                sections: [{
+                    title: "Key Fields",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Designated Representative:</strong> Your exact name.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Commission:</strong> Usually stated as 'One month's rent' or 'One half of one month's rent' depending on agreement. Clarify who pays (typically Landlord).",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Term:</strong> Commencing and Expiring dates of the listing.",
+                        "<span class='tag-ask'>[ASK LANDLORD]</span> <strong>Rent Amount:</strong> Confirm the asking rent. Discuss market comparables."
+                    ]
+                }]
+            }, {
+                id: "ll_fintrac",
+                title: "4. FINTRAC ID Verification",
+                badge: "Compliance",
+                color: "bg-amber-100 text-amber-800",
+                icon: "fingerprint",
+                description: "Anti-money laundering — applies to lease transactions too.",
+                sections: [{
+                    title: "Verification",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Verify Landlord's physical ID (Driver's License or Passport).",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Section D: Check 'Residential Property' and Purpose: 'Lease/Rent'."
+                    ]
+                }]
+            }]
+        }, {
+            phase: "Phase 3: Lease MLS & Marketing",
+            description: "Listing the rental property.",
+            items: [{
+                id: "ll_mls",
+                title: "5. PropTx 296 & BrokerBay (Lease)",
+                badge: "Digital Entry",
+                color: "bg-blue-100 text-blue-800",
+                icon: "monitor",
+                description: "MLS data for rental listings.",
+                sections: [{
+                    title: "Lease MLS Setup",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Use PropTx 296 (Freehold Lease) or appropriate condo lease form.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> State monthly rent amount clearly.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Note in remarks what documents are required (Credit report, Employment letter, Pay stubs, References).",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Specify who pays utilities (Gas, Hydro, Water, Hot Water Tank rental).",
+                        "<span class='tag-optional'>[OPTIONAL]</span> Include any rental restrictions (No smokers, No pets, etc.)."
+                    ]
+                }]
+            }]
+        }, {
+            phase: "Phase 4: Lease Deal Completion",
+            description: "Accepting a tenant and finalizing.",
+            items: [{
+                id: "ll_dealsummary",
+                title: "6. Ontario Standard Lease & Deal Summary",
+                badge: "Provincial Law",
+                color: "bg-emerald-100 text-emerald-800",
+                icon: "gavel",
+                description: "Mandatory provincial lease + getting paid.",
+                sections: [{
+                    title: "Execution & Submission",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Landlord MUST execute the Ontario Residential Tenancy Agreement (Standard Lease) with the Tenant. All sections are mandatory.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Ensure Landlord Name, Tenant Name, Unit Address, and Rent match Form 400/Offer perfectly.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Submit CASORA Deal Summary — Type: Check <strong>LEASE</strong>. Casora Role: Check <strong>LISTING</strong>.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Submit with: Signed OSL, Form 272, FINTRAC, RECO Ack, Form 320 (if co-op), and any additional schedules."
+                    ]
+                }]
+            }]
+        }];
 
-        const listLeaseData = [
-            {
-                phase: "Phase 1: Landlord Agency",
-                description: "Representing a Landlord.",
-                items: [
-                    {
-                        id: "ll_email", title: "1. RECO Guide Delivery", badge: "Compliance", color: "bg-indigo-100 text-indigo-800", icon: "mail",
-                        sections: [{ title: "Delivery", steps: ["<span class='tag-mandatory'>[MANDATORY]</span> TRESA applies to leases. Email RECO guide."] }]
-                    },
-                    {
-                        id: "ll_form272", title: "2. OREA Form 272 - Landlord Rep", badge: "Contract", color: "bg-amber-100 text-amber-800", icon: "file-signature",
-                        sections: [{ title: "Lease Listing", steps: ["<span class='tag-mandatory'>[MANDATORY]</span> This is Authority to Offer for LEASE.", "<span class='tag-mandatory'>[MANDATORY]</span> Commission usually stated as 'One month's rent'."] }]
-                    }
-                ]
-            },
-            {
-                phase: "Phase 2: Lease MLS Data",
-                description: "Inputting the rental listing.",
-                items: [
-                    {
-                        id: "ll_mls", title: "3. PropTx 296 & BrokerBay", badge: "Digital", color: "bg-blue-100 text-blue-800", icon: "monitor",
-                        sections: [{ title: "Setup", steps: ["<span class='tag-mandatory'>[MANDATORY]</span> Use PropTx 296 (Freehold Lease).", "<span class='tag-mandatory'>[MANDATORY]</span> Note in remarks what documents are required (Credit check, employment letter)."] }]
-                    }
-                ]
-            },
-            {
-                phase: "Phase 3: Deal Completion (Lease)",
-                description: "Accepting a tenant.",
-                items: [
-                    {
-                        id: "ll_dealsummary", title: "4. CASORA Deal Summary & OSL", badge: "Admin", color: "bg-purple-100 text-purple-800", icon: "briefcase",
-                        sections: [{ title: "Firm Deal", steps: ["<span class='tag-mandatory'>[MANDATORY]</span> Landlord MUST execute the Ontario Standard Lease with Tenant.", "<span class='tag-mandatory'>[MANDATORY]</span> Submit Deal Summary marked as 'Lease'."] }]
-                    }
-                ]
-            }
-        ];
+        // ============================================================
+        // TRACK 4: BUY FREEHOLD
+        // ============================================================
+        const buyFreeholdData = [{
+            phase: "Phase 1: Freehold Buyer Agency",
+            description: "Establishing the relationship and verifying ID before writing any offers.",
+            items: [{
+                id: "bf_reco",
+                title: "1. RECO Guide & Agency",
+                badge: "Dialogue",
+                color: "bg-indigo-100 text-indigo-800",
+                icon: "book-open",
+                description: "Handled BEFORE showing houses or drafting offers.",
+                sections: [{
+                    title: "The Conversation",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Email the RECO Information Guide in advance.",
+                        "<span class='tag-script'>[SCRIPT]</span> <em>\"TRESA requires me to explain representation. I will be acting as your Designated Representative. This means my sole loyalty is to you.\"</em>",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Have the buyer(s) sign Page 13 of the RECO guide."
+                    ]
+                }]
+            }, {
+                id: "bf_form371",
+                title: "2. Form 371 — Buyer Representation",
+                badge: "Core Contract",
+                color: "bg-amber-100 text-amber-800",
+                icon: "file-signature",
+                description: "The legal contract locking them in as your client.",
+                sections: [{
+                    title: "Header & Scope",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Designated Representative:</strong> Your exact name.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Property Type:</strong> 'Single Family Residential / Freehold'.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Fill Commission % and Holdover. Buyer signs, you sign."
+                    ]
+                }]
+            }, {
+                id: "bf_fintrac",
+                title: "3. FINTRAC ID Verification",
+                badge: "Compliance",
+                color: "bg-amber-100 text-amber-800",
+                icon: "fingerprint",
+                description: "Anti-money laundering check.",
+                sections: [{
+                    title: "Verification",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Verify physical ID (Driver's License or Passport).",
+                        "<span class='tag-dd'>[DUE DILIGENCE]</span> <span class='tag-ask'>[ASK BUYER]</span> <em>\"Are you buying this home for yourself, or a third party?\"</em>"
+                    ]
+                }]
+            }]
+        }, {
+            phase: "Phase 2: Drafting the Freehold Offer",
+            description: "Writing the Agreement of Purchase and Sale for a Freehold Property.",
+            items: [{
+                id: "bf_due_diligence",
+                title: "4. Pre-Offer Due Diligence",
+                badge: "Research",
+                color: "bg-orange-100 text-orange-800",
+                icon: "search",
+                description: "Crucial checks before writing the APS.",
+                sections: [{
+                    title: "Checklist",
+                    steps: [
+                        "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>MLS Attachments:</strong> Download Schedule B and Seller Disclosures.",
+                        "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>GeoWarehouse:</strong> Verify exact legal description and lot size. Does it match MLS?",
+                        "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>Comparables:</strong> Pull recent sold comparables to justify offer price."
+                    ]
+                }]
+            }, {
+                id: "bf_form100",
+                title: "5. Form 100 — Agreement of Purchase & Sale",
+                badge: "Freehold APS",
+                color: "bg-blue-100 text-blue-800",
+                icon: "file-text",
+                description: "The primary offer document for FREEHOLD properties.",
+                sections: [{
+                    title: "Key Freehold Fields",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Deposit:</strong> Payable to 'Listing Brokerage Trust Account'. State exact amount.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Property:</strong> Address, Frontage/Depth, and exact Legal Description.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Chattels & Rentals:</strong> Explicitly list what stays (appliances) and what is assumed (Hot water heater).",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Schedule A:</strong> Insert Home Inspection and Financing conditions."
+                    ]
+                }]
+            }, {
+                id: "bf_form127",
+                title: "6. Form 127 — Buyer Acknowledgement",
+                badge: "CYA Form",
+                color: "bg-red-100 text-red-800",
+                icon: "shield-alert",
+                description: "MANDATORY if the Buyer writes a 'Firm' offer.",
+                sections: [{
+                    title: "Protecting Your License",
+                    steps: [
+                        "<span class='tag-script'>[SCRIPT]</span> <em>\"RECO requires you to sign this form acknowledging that I advised you of the risks of buying 'as is' without conditions.\"</em>",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Check the boxes for waived conditions (e.g., Home Inspection). Buyer signs."
+                    ]
+                }]
+            }, {
+                id: "bf_form160",
+                title: "7. OREA Form 160 (Disclosure of Interest)",
+                badge: "Conditional",
+                color: "bg-red-100 text-red-800",
+                icon: "alert-triangle",
+                description: "ONLY if you, a family member, or Casora! is the Buyer.",
+                sections: [{
+                    title: "Usage",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Must be presented to Seller PRIOR to the offer if you have an interest."
+                    ]
+                }]
+            }]
+        }, {
+            phase: "Phase 3: Co-op & Deal Completion",
+            description: "Handling commissions and back-office deal firming.",
+            items: [{
+                id: "bf_form320",
+                title: "8. Form 320 — Confirmation of Co-operation",
+                badge: "Mandatory Paperwork",
+                color: "bg-emerald-100 text-emerald-800",
+                icon: "handshake",
+                description: "Details exactly who represents who and who gets paid.",
+                sections: [{
+                    title: "Representation & Commission",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Section 2: Check 'Represents the Interests of the Buyer'.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Section 3: Check Listing Brokerage pays Co-Op, enter commission %."
+                    ]
+                }]
+            }, {
+                id: "bf_waiver",
+                title: "9. Forms 124 / 123 (Fulfillment/Waiver)",
+                badge: "Deal Firming",
+                color: "bg-blue-100 text-blue-800",
+                icon: "check-circle",
+                description: "Removing conditions.",
+                sections: [{
+                    title: "Firming Up",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Use Form 124 (Notice of Fulfillment) when financing/inspection is approved.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Use Form 123 (Waiver) if Buyer wants to waive a condition without fulfilling it."
+                    ]
+                }]
+            }, {
+                id: "bf_dealsummary",
+                title: "10. CASORA Deal Summary",
+                badge: "Internal Admin",
+                color: "bg-purple-100 text-purple-800",
+                icon: "briefcase",
+                description: "Getting paid by the Casora! office.",
+                sections: [{
+                    title: "Office Submission",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Check <strong>'SELLING'</strong> under Casora Role.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Note that Deposit is held by the <em>Other Brokerage</em>.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Submit with Firm APS, Form 320, FINTRAC, Form 371, Form 124, and RECO Ack."
+                    ]
+                }]
+            }]
+        }];
 
-        // ==========================================
-        // 2. BUYER TRACKS
-        // ==========================================
+        // ============================================================
+        // TRACK 5: BUY CONDO
+        // ============================================================
+        const buyCondoData = [{
+            phase: "Phase 1: Condo Buyer Agency",
+            description: "Establishing relationship and discussing condo-specific details.",
+            items: [{
+                id: "bc_reco",
+                title: "1. RECO Guide & Agency",
+                badge: "Dialogue",
+                color: "bg-indigo-100 text-indigo-800",
+                icon: "book-open",
+                description: "Mandatory TRESA compliance.",
+                sections: [{
+                    title: "The Conversation",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Email the RECO Information Guide and have them sign Page 13.",
+                        "<span class='tag-script'>[SCRIPT]</span> <em>\"For condos, the Status Certificate is the most important document — it reveals the health of the condo corporation, any special assessments, and the reserve fund.\"</em>"
+                    ]
+                }]
+            }, {
+                id: "bc_form371",
+                title: "2. Form 371 — Buyer Representation",
+                badge: "Core Contract",
+                color: "bg-amber-100 text-amber-800",
+                icon: "file-signature",
+                description: "The legal contract locking them in as your client.",
+                sections: [{
+                    title: "Header & Scope",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Designated Representative:</strong> Your exact name.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Property Type:</strong> 'Residential Condominium'.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Fill Commission % and Holdover. Buyer signs, you sign."
+                    ]
+                }]
+            }, {
+                id: "bc_fintrac",
+                title: "3. FINTRAC ID Verification",
+                badge: "Compliance",
+                color: "bg-amber-100 text-amber-800",
+                icon: "fingerprint",
+                description: "Anti-money laundering check.",
+                sections: [{
+                    title: "Verification",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Verify physical ID. Check 'Residential Property' and 'Purchase'."
+                    ]
+                }]
+            }]
+        }, {
+            phase: "Phase 2: Drafting the Condo Offer",
+            description: "Using Form 101 and handling Condominium Corporation rules.",
+            items: [{
+                id: "bc_due_diligence",
+                title: "4. Condo Due Diligence",
+                badge: "Research",
+                color: "bg-orange-100 text-orange-800",
+                icon: "search",
+                description: "Checks before writing the APS.",
+                sections: [{
+                    title: "Status & Rules",
+                    steps: [
+                        "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>MLS Attachments:</strong> Check if a Status Certificate is already available online.",
+                        "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>Parking/Locker:</strong> Verify on GeoWarehouse if Parking and Locker are owned (Deeded) or Exclusive Use. This drastically changes how you fill out Form 101!",
+                        "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>Condo Rules:</strong> Check the condo corporation's rules on pets, rentals, and renovations."
+                    ]
+                }]
+            }, {
+                id: "bc_form101",
+                title: "5. Form 101 — APS (Condominium Resale)",
+                badge: "Condo APS",
+                color: "bg-blue-100 text-blue-800",
+                icon: "building",
+                description: "The specific offer document for CONDOS.",
+                sections: [{
+                    title: "Page 1: Condo Specifics",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Deposit:</strong> Payable to 'Listing Brokerage Trust Account'.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Condo Details:</strong> Enter 'Condominium Plan No.' and 'Legal Name of Condo Corp' (e.g., Wentworth Standard Condominium Corporation No. 123).",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Unit Details:</strong> Enter Unit Number, Level No., and Building No. exactly as per GeoWarehouse/Registry.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Parking/Locker:</strong> Specify if it is 'ownership' or 'exclusive use' and enter the Level and Number.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Common Expenses:</strong> Enter the monthly maintenance fee amount and state what it includes (e.g., Heat, Water, Building Insurance)."
+                    ]
+                }, {
+                    title: "Schedule A (Status Certificate)",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Status Condition:</strong> You MUST include a condition in Schedule A allowing the Buyer's lawyer to review the Status Certificate (usually a 2-3 day condition).",
+                        "<span class='tag-warning'>[CRITICAL]</span> Buying a condo without a Status Certificate review is extremely risky due to potential special assessments. Always advise the Buyer to include this condition."
+                    ]
+                }]
+            }, {
+                id: "bc_form127",
+                title: "6. Form 127 — Buyer Acknowledgement",
+                badge: "CYA Form",
+                color: "bg-red-100 text-red-800",
+                icon: "shield-alert",
+                description: "MANDATORY if waiving Status/Inspection.",
+                sections: [{
+                    title: "Protecting Your License",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> If the buyer writes a firm offer without a lawyer reviewing the Status Certificate, they MUST sign this form. Buying a condo blindly is extremely risky due to potential special assessments.",
+                        "<span class='tag-script'>[SCRIPT]</span> <em>\"I strongly advise you to include a Status Certificate review condition. Without it, you could be walking into a massive special assessment.\"</em>"
+                    ]
+                }]
+            }, {
+                id: "bc_form160",
+                title: "7. OREA Form 160 (Disclosure of Interest)",
+                badge: "Conditional",
+                color: "bg-red-100 text-red-800",
+                icon: "alert-triangle",
+                description: "ONLY if you or Casora! is the Buyer.",
+                sections: [{
+                    title: "Usage",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Must be presented to Seller PRIOR to the offer if you have an interest."
+                    ]
+                }]
+            }]
+        }, {
+            phase: "Phase 3: Co-op & Deal Completion",
+            description: "Handling commissions and back-office deal firming.",
+            items: [{
+                id: "bc_form320",
+                title: "8. Form 320 — Confirmation of Co-operation",
+                badge: "Mandatory Paperwork",
+                color: "bg-emerald-100 text-emerald-800",
+                icon: "handshake",
+                description: "Commission details.",
+                sections: [{
+                    title: "Representation & Commission",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Section 2: Check 'Represents the Interests of the Buyer'. Section 3: Fill Co-op %."
+                    ]
+                }]
+            }, {
+                id: "bc_waiver",
+                title: "9. Forms 124 (Fulfillment) — Status Certificate",
+                badge: "Deal Firming",
+                color: "bg-blue-100 text-blue-800",
+                icon: "check-circle",
+                description: "Fulfilling the Status Certificate condition.",
+                sections: [{
+                    title: "Firming Up",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Once the lawyer approves the Status Certificate, use Form 124 to satisfy the condition.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Do NOT let the Status Certificate condition expire without the lawyer's approval."
+                    ]
+                }]
+            }, {
+                id: "bc_dealsummary",
+                title: "10. CASORA Deal Summary",
+                badge: "Internal Admin",
+                color: "bg-purple-100 text-purple-800",
+                icon: "briefcase",
+                description: "Getting paid.",
+                sections: [{
+                    title: "Office Submission",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Check <strong>'SELLING'</strong> under Casora Role. Submit with Firm APS, Form 320, FINTRAC, Form 371, Form 124."
+                    ]
+                }]
+            }]
+        }];
 
-        const buyFreeholdData = [
-            {
-                phase: "Phase 1: Freehold Buyer Agency",
-                description: "Establishing the relationship.",
-                items: [
-                    {
-                        id: "bf_reco", title: "1. RECO Guide & Agency", badge: "Dialogue", color: "bg-indigo-100 text-indigo-800", icon: "book-open",
-                        sections: [{ title: "Conversation", steps: ["<span class='tag-script'>[SCRIPT]</span> 'TRESA requires me to explain representation...'", "<span class='tag-mandatory'>[MANDATORY]</span> Buyer signs Page 13."] }]
-                    },
-                    {
-                        id: "bf_form371", title: "2. Form 371 - Buyer Rep", badge: "Contract", color: "bg-amber-100 text-amber-800", icon: "file-signature",
-                        sections: [{ title: "Scope", steps: ["<span class='tag-mandatory'>[MANDATORY]</span> Property Type: 'Single Family Residential / Freehold'."] }]
-                    }
-                ]
-            },
-            {
-                phase: "Phase 2: Drafting the Freehold Offer",
-                description: "Writing the APS.",
-                items: [
-                    {
-                        id: "bf_form100", title: "3. Form 100 - APS (Residential)", badge: "Core Contract", color: "bg-blue-100 text-blue-800", icon: "file-text",
-                        sections: [{ title: "Key Fields", steps: ["<span class='tag-mandatory'>[MANDATORY]</span> Deposit payable to Listing Brokerage Trust Account.", "<span class='tag-mandatory'>[MANDATORY]</span> List chattels explicitly."] }]
-                    },
-                    {
-                        id: "bf_form127", title: "4. Form 127 - Buyer Ack", badge: "CYA Form", color: "bg-red-100 text-red-800", icon: "shield-alert",
-                        sections: [{ title: "Protection", steps: ["<span class='tag-mandatory'>[MANDATORY]</span> Must sign if writing a Firm offer (waiving inspection)."] }]
-                    }
-                ]
-            },
-            {
-                phase: "Phase 3: Deal Completion",
-                description: "Handling commissions.",
-                items: [
-                    {
-                        id: "bf_form320", title: "5. Form 320 - Co-op", badge: "Contract", color: "bg-emerald-100 text-emerald-800", icon: "handshake",
-                        sections: [{ title: "Commission", steps: ["<span class='tag-mandatory'>[MANDATORY]</span> Check 'Represents Interests of Buyer'."] }]
-                    },
-                    {
-                        id: "bf_dealsummary", title: "6. CASORA Deal Summary", badge: "Admin", color: "bg-purple-100 text-purple-800", icon: "briefcase",
-                        sections: [{ title: "Submission", steps: ["<span class='tag-mandatory'>[MANDATORY]</span> Submit to Casora with Firm APS, Form 320, FINTRAC, Form 124."] }]
-                    }
-                ]
-            }
-        ];
+        // ============================================================
+        // TRACK 6: REP TENANT (TENANT REPRESENTATION)
+        // ============================================================
+        const repTenantData = [{
+            phase: "Phase 1: Tenant Agency & Verification",
+            description: "Establishing representation for a renter.",
+            items: [{
+                id: "t_reco",
+                title: "1. RECO Guide & Agency",
+                badge: "Dialogue",
+                color: "bg-indigo-100 text-indigo-800",
+                icon: "book-open",
+                description: "TRESA applies to leases too.",
+                sections: [{
+                    title: "The Conversation",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Provide the RECO Information Guide and have them sign Page 13.",
+                        "<span class='tag-script'>[SCRIPT]</span> <em>\"As your Designated Representative, I will help you find the right rental, negotiate terms, and ensure the Ontario Standard Lease is properly executed.\"</em>"
+                    ]
+                }]
+            }, {
+                id: "t_form372",
+                title: "2. Form 372 — Tenant Representation",
+                badge: "Core Contract",
+                color: "bg-amber-100 text-amber-800",
+                icon: "file-signature",
+                description: "The legal contract locking them in as your tenant client.",
+                sections: [{
+                    title: "Header & Commission",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Designated Representative:</strong> Your exact name.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Commission:</strong> In leasing, this is usually stated as 'One half of one month's rent' or similar, paid by the Landlord's brokerage.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Tenant signs, you sign."
+                    ]
+                }]
+            }, {
+                id: "t_fintrac",
+                title: "3. FINTRAC ID Verification",
+                badge: "Compliance",
+                color: "bg-amber-100 text-amber-800",
+                icon: "fingerprint",
+                description: "Anti-money laundering check.",
+                sections: [{
+                    title: "Verification",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Verify physical ID. Check 'Residential Property' but change Purpose to 'Lease/Rent'."
+                    ]
+                }]
+            }]
+        }, {
+            phase: "Phase 2: Drafting the Lease Offer",
+            description: "Submitting the offer to the Landlord.",
+            items: [{
+                id: "t_due_diligence",
+                title: "4. Tenant Due Diligence",
+                badge: "Preparation",
+                color: "bg-orange-100 text-orange-800",
+                icon: "file-search",
+                description: "Preparing a strong lease package.",
+                sections: [{
+                    title: "The Rental Package",
+                    steps: [
+                        "<span class='tag-dd'>[DUE DILIGENCE]</span> Ensure you have the Tenant's Credit Report (Equifax/TransUnion), Employment Letter, Pay Stubs, and References ready to submit alongside the offer.",
+                        "<span class='tag-ask'>[ASK TENANT]</span> <em>\"Do you have a current credit report? Landlords will expect one.\"</em>",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> A strong package includes: Credit Report + Employment Letter + 2 Recent Pay Stubs + References from previous landlords."
+                    ]
+                }]
+            }, {
+                id: "t_form400",
+                title: "5. Form 400 — Agreement to Lease",
+                badge: "Lease Offer",
+                color: "bg-blue-100 text-blue-800",
+                icon: "file-text",
+                description: "The initial offer to rent the property.",
+                sections: [{
+                    title: "Page 1: Terms",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Term of Lease:</strong> State duration (e.g., 1 Year) and exact Commencing Date.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Rent:</strong> State the monthly rent amount.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Deposit:</strong> Usually 'First and last months' rent'. State exact deposit amount. Make deposit payable to the <em>Listing Brokerage Trust Account</em>."
+                    ]
+                }, {
+                    title: "Pages 2 & 3: Clauses",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Post-Dated Cheques:</strong> Indicate how rent will be paid (e.g., 10 post-dated cheques, e-transfer).",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Services & Costs:</strong> Clearly define who pays Gas, Oil, Electricity, Water, etc."
+                    ]
+                }]
+            }, {
+                id: "t_form160",
+                title: "6. OREA Form 160 (Disclosure)",
+                badge: "Conditional Form",
+                color: "bg-red-100 text-red-800",
+                icon: "alert-triangle",
+                description: "ONLY if you/family are the Tenant.",
+                sections: [{
+                    title: "Usage",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Must declare if you are leasing the property."
+                    ]
+                }]
+            }]
+        }, {
+            phase: "Phase 3: Firm Lease & Standard Agreement",
+            description: "Signing the mandatory provincial lease and getting paid.",
+            items: [{
+                id: "t_form320",
+                title: "7. Form 320 — Confirmation of Co-operation",
+                badge: "Mandatory Paperwork",
+                color: "bg-emerald-100 text-emerald-800",
+                icon: "handshake",
+                description: "Commission details.",
+                sections: [{
+                    title: "Representation & Commission",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Section 2: Check 'Represents the Interests of the Buyer/Tenant'. Section 3: Fill Co-op Commission (usually 1/2 month's rent)."
+                    ]
+                }]
+            }, {
+                id: "t_ontario_lease",
+                title: "8. Ontario Residential Tenancy Agreement",
+                badge: "Provincial Law",
+                color: "bg-emerald-100 text-emerald-800",
+                icon: "gavel",
+                description: "The 'Standard Lease'. Mandatory in Ontario.",
+                sections: [{
+                    title: "Execution",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Once Form 400 is accepted, the Landlord MUST provide this Standard Lease to the Tenant. All sections are mandatory and cannot be changed.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Ensure Landlord Name, Tenant Name, Unit Address, and Rent match Form 400 perfectly.",
+                        "<span class='tag-optional'>[OPTIONAL]</span> Attach Schedule A from your Form 400 to the 'Additional Terms' section of this Standard Lease."
+                    ]
+                }]
+            }, {
+                id: "t_dealsummary",
+                title: "9. CASORA Deal Summary",
+                badge: "Internal Admin",
+                color: "bg-purple-100 text-purple-800",
+                icon: "briefcase",
+                description: "Getting paid for the lease.",
+                sections: [{
+                    title: "Office Submission",
+                    steps: [
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Type of Transaction: Check <strong>LEASE</strong>.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Casora Role: Check <strong>SELLING</strong>.",
+                        "<span class='tag-mandatory'>[MANDATORY]</span> Submit with Firm Form 400, Form 320, FINTRAC, Form 372, RECO Ack, and the signed Ontario Standard Lease."
+                    ]
+                }]
+            }]
+        }];
 
-        const buyCondoData = [
-            {
-                phase: "Phase 1: Condo Buyer Agency",
-                description: "Condo specific representation.",
-                items: [
-                    {
-                        id: "bc_form371", title: "1. Form 371 - Buyer Rep", badge: "Contract", color: "bg-amber-100 text-amber-800", icon: "file-signature",
-                        sections: [{ title: "Scope", steps: ["<span class='tag-mandatory'>[MANDATORY]</span> Property Type: 'Residential Condominium'."] }]
-                    }
-                ]
-            },
-            {
-                phase: "Phase 2: Drafting the Condo Offer",
-                description: "Using Form 101.",
-                items: [
-                    {
-                        id: "bc_form101", title: "2. Form 101 - APS (Condo)", badge: "Condo APS", color: "bg-blue-100 text-blue-800", icon: "building",
-                        sections: [{ title: "Condo Specifics", steps: ["<span class='tag-mandatory'>[MANDATORY]</span> Must list Condo Corp Name.", "<span class='tag-mandatory'>[MANDATORY]</span> Specify if Parking is Owned or Exclusive Use.", "<span class='tag-mandatory'>[MANDATORY]</span> MUST include Status Certificate condition."] }]
-                    }
-                ]
-            },
-            {
-                phase: "Phase 3: Deal Completion",
-                description: "Firming up the condo.",
-                items: [
-                    {
-                        id: "bc_dealsummary", title: "3. CASORA Deal Summary", badge: "Admin", color: "bg-purple-100 text-purple-800", icon: "briefcase",
-                        sections: [{ title: "Submission", steps: ["<span class='tag-mandatory'>[MANDATORY]</span> Submit to Casora after Status Cert is waived (Form 124)."] }]
-                    }
-                ]
-            }
-        ];
-
-        const buyLeaseData = [
-            {
-                phase: "Phase 1: Tenant Agency",
-                description: "Representing a Renter.",
-                items: [
-                    {
-                        id: "bl_form372", title: "1. Form 372 - Tenant Rep", badge: "Contract", color: "bg-amber-100 text-amber-800", icon: "file-signature",
-                        sections: [{ title: "Scope", steps: ["<span class='tag-mandatory'>[MANDATORY]</span> Commission usually paid by Landlord."] }]
-                    }
-                ]
-            },
-            {
-                phase: "Phase 2: Drafting Lease Offer",
-                description: "Using Form 400.",
-                items: [
-                    {
-                        id: "bl_form400", title: "2. Form 400 - Agreement to Lease", badge: "Offer", color: "bg-blue-100 text-blue-800", icon: "file-text",
-                        sections: [{ title: "Terms", steps: ["<span class='tag-mandatory'>[MANDATORY]</span> Deposit is usually First and Last month's rent."] }]
-                    }
-                ]
-            },
-            {
-                phase: "Phase 3: Standard Lease",
-                description: "Provincial compliance.",
-                items: [
-                    {
-                        id: "bl_osl", title: "3. Ontario Standard Lease", badge: "Law", color: "bg-emerald-100 text-emerald-800", icon: "gavel",
-                        sections: [{ title: "Execution", steps: ["<span class='tag-mandatory'>[MANDATORY]</span> Landlord MUST provide this. Ensure details match Form 400."] }]
-                    },
-                    {
-                        id: "bl_dealsummary", title: "4. CASORA Deal Summary", badge: "Admin", color: "bg-purple-100 text-purple-800", icon: "briefcase",
-                        sections: [{ title: "Submission", steps: ["<span class='tag-mandatory'>[MANDATORY]</span> Check 'Lease' and 'Selling'."] }]
-                    }
-                ]
-            }
-        ];
-
+        // ============================================================
+        // MAIN APP COMPONENT
+        // ============================================================
         const App = () => {
-            const [activeTrack, setActiveTrack] = useState('list_freehold'); 
+            const [activeTrack, setActiveTrack] = useState('list_freehold');
             const [openAccordion, setOpenAccordion] = useState(null);
             const [completedItems, setCompletedItems] = useState({});
 
-            // Logic Switcher
-            let currentData, themeConfig, headerTitle;
+            // Determine which data set and theme to use
+            let currentData, themeConfig, headerTitle, trackIcon;
 
-            switch(activeTrack) {
+            switch (activeTrack) {
                 case 'list_freehold':
-                    currentData = listFreeholdData; headerTitle = "Listing Freehold";
-                    themeConfig = { primary: 'emerald', bgDark: 'bg-slate-900', gradient: 'from-emerald-400 to-emerald-600', border: 'border-emerald-400', bgLight: 'bg-emerald-50/20', checkBg: 'bg-emerald-500 border-emerald-500' };
+                    currentData = listFreeholdData;
+                    headerTitle = 'List Freehold (Seller)';
+                    trackIcon = 'home';
+                    themeConfig = { primary: 'emerald', bgDark: 'bg-slate-900',
+                        gradient: 'from-emerald-400 to-emerald-600', border: 'border-emerald-400',
+                        bgLight: 'bg-emerald-50/20', checkBg: 'bg-emerald-500 border-emerald-500',
+                        accent: 'emerald' };
                     break;
                 case 'list_condo':
-                    currentData = listCondoData; headerTitle = "Listing Condo";
-                    themeConfig = { primary: 'emerald', bgDark: 'bg-slate-900', gradient: 'from-emerald-500 to-teal-600', border: 'border-emerald-400', bgLight: 'bg-emerald-50/20', checkBg: 'bg-emerald-500 border-emerald-500' };
+                    currentData = listCondoData;
+                    headerTitle = 'List Condo (Seller)';
+                    trackIcon = 'building';
+                    themeConfig = { primary: 'emerald', bgDark: 'bg-slate-900',
+                        gradient: 'from-emerald-500 to-teal-600', border: 'border-teal-400',
+                        bgLight: 'bg-teal-50/20', checkBg: 'bg-teal-500 border-teal-500', accent: 'teal' };
                     break;
                 case 'list_lease':
-                    currentData = listLeaseData; headerTitle = "Listing Lease (Landlord)";
-                    themeConfig = { primary: 'emerald', bgDark: 'bg-slate-900', gradient: 'from-teal-400 to-emerald-500', border: 'border-teal-400', bgLight: 'bg-teal-50/20', checkBg: 'bg-teal-500 border-teal-500' };
+                    currentData = listLeaseData;
+                    headerTitle = 'List Lease (Landlord)';
+                    trackIcon = 'key';
+                    themeConfig = { primary: 'teal', bgDark: 'bg-slate-900', gradient: 'from-teal-400 to-cyan-500',
+                        border: 'border-teal-400', bgLight: 'bg-teal-50/20',
+                        checkBg: 'bg-teal-500 border-teal-500', accent: 'teal' };
                     break;
                 case 'buy_freehold':
-                    currentData = buyFreeholdData; headerTitle = "Buying Freehold";
-                    themeConfig = { primary: 'blue', bgDark: 'bg-slate-800', gradient: 'from-blue-400 to-indigo-500', border: 'border-blue-400', bgLight: 'bg-blue-50/20', checkBg: 'bg-blue-500 border-blue-500' };
+                    currentData = buyFreeholdData;
+                    headerTitle = 'Buy Freehold';
+                    trackIcon = 'shopping-cart';
+                    themeConfig = { primary: 'blue', bgDark: 'bg-slate-800', gradient: 'from-blue-400 to-indigo-500',
+                        border: 'border-blue-400', bgLight: 'bg-blue-50/20',
+                        checkBg: 'bg-blue-500 border-blue-500', accent: 'blue' };
                     break;
                 case 'buy_condo':
-                    currentData = buyCondoData; headerTitle = "Buying Condo";
-                    themeConfig = { primary: 'sky', bgDark: 'bg-slate-800', gradient: 'from-sky-400 to-blue-500', border: 'border-sky-400', bgLight: 'bg-sky-50/20', checkBg: 'bg-sky-500 border-sky-500' };
+                    currentData = buyCondoData;
+                    headerTitle = 'Buy Condo';
+                    trackIcon = 'building';
+                    themeConfig = { primary: 'sky', bgDark: 'bg-slate-800', gradient: 'from-sky-400 to-blue-500',
+                        border: 'border-sky-400', bgLight: 'bg-sky-50/20',
+                        checkBg: 'bg-sky-500 border-sky-500', accent: 'sky' };
                     break;
-                case 'buy_lease':
-                    currentData = buyLeaseData; headerTitle = "Representing Tenant";
-                    themeConfig = { primary: 'violet', bgDark: 'bg-slate-900', gradient: 'from-violet-400 to-purple-600', border: 'border-violet-400', bgLight: 'bg-violet-50/20', checkBg: 'bg-violet-500 border-violet-500' };
+                case 'rep_tenant':
+                    currentData = repTenantData;
+                    headerTitle = 'Rep Tenant (Renter)';
+                    trackIcon = 'user-check';
+                    themeConfig = { primary: 'violet', bgDark: 'bg-slate-900',
+                        gradient: 'from-violet-400 to-purple-600', border: 'border-violet-400',
+                        bgLight: 'bg-violet-50/20', checkBg: 'bg-violet-500 border-violet-500',
+                        accent: 'violet' };
                     break;
+                default:
+                    currentData = listFreeholdData;
+                    headerTitle = 'List Freehold (Seller)';
+                    trackIcon = 'home';
+                    themeConfig = { primary: 'emerald', bgDark: 'bg-slate-900',
+                        gradient: 'from-emerald-400 to-emerald-600', border: 'border-emerald-400',
+                        bgLight: 'bg-emerald-50/20', checkBg: 'bg-emerald-500 border-emerald-500',
+                        accent: 'emerald' };
             }
 
-            const toggleAccordion = (id) => setOpenAccordion(openAccordion === id ? null : id);
-            const toggleCompletion = (id, e) => { e.stopPropagation(); setCompletedItems(prev => ({ ...prev, [id]: !prev[id] })); };
+            const toggleAccordion = (id) => {
+                setOpenAccordion(openAccordion === id ? null : id);
+            };
 
+            const toggleCompletion = (id, e) => {
+                e.stopPropagation();
+                setCompletedItems(prev => ({ ...prev, [id]: !prev[id] }));
+            };
+
+            // Progress Calculations
             const totalItems = currentData.reduce((acc, phase) => acc + phase.items.length, 0);
             const currentTrackIds = currentData.flatMap(phase => phase.items.map(item => item.id));
             const completedCount = currentTrackIds.filter(id => completedItems[id]).length;
             const progressPercentage = totalItems === 0 ? 0 : (completedCount / totalItems) * 100;
 
-            useEffect(() => { lucide.createIcons(); });
+            // Reset accordion when switching tracks
+            useEffect(() => {
+                setOpenAccordion(null);
+            }, [activeTrack]);
+
+            useEffect(() => {
+                lucide.createIcons();
+            });
+
+            // Helper to get track button classes
+            const getTabClass = (trackId) => {
+                const isActive = activeTrack === trackId;
+                const base = 'whitespace-nowrap px-4 py-2.5 rounded-t-xl font-bold text-sm transition-all flex items-center ';
+                if (isActive) {
+                    const borderColor = trackId.startsWith('list_') ?
+                        (trackId === 'list_lease' ? 'border-teal-500' : 'border-emerald-500') :
+                        trackId === 'buy_freehold' ? 'border-blue-500' :
+                        trackId === 'buy_condo' ? 'border-sky-500' : 'border-violet-500';
+                    return base +
+                        `bg-slate-100 text-slate-900 shadow-md border-b-4 ${borderColor}`;
+                }
+                return base + 'bg-white/5 text-white/70 hover:bg-white/10';
+            };
 
             return (
                 <div className="min-h-screen pb-20">
+                    {/* Header */}
                     <header className={`text-white pt-10 pb-6 px-6 shadow-2xl relative overflow-hidden transition-colors duration-500 ${themeConfig.bgDark}`}>
                         <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${themeConfig.gradient}`}></div>
                         <div className="max-w-6xl mx-auto relative z-10">
                             <div className="flex items-center space-x-4 mb-8">
-                                <div className={`bg-${themeConfig.primary}-500 p-2 rounded-lg`}>
+                                <div className={`bg-${themeConfig.primary}-500 p-2 rounded-lg transition-colors duration-500`}>
                                     <i data-lucide="building-2" className="w-8 h-8 text-white"></i>
                                 </div>
                                 <div>
                                     <h1 className="text-3xl font-extrabold tracking-tight">Casora! Realty Inc.</h1>
-                                    <p className={`text-${themeConfig.primary}-400 text-sm font-bold tracking-widest uppercase`}>Agency Command Center</p>
+                                    <p className={`text-${themeConfig.primary}-400 text-sm font-bold tracking-widest uppercase transition-colors duration-500`}>Agency Command Center</p>
                                 </div>
                             </div>
 
-                            {/* 6-Track Selector */}
+                            {/* 6-Track Selector Tabs */}
                             <div className="flex space-x-2 overflow-x-auto pb-2 custom-scrollbar">
-                                <button onClick={() => {setActiveTrack('list_freehold'); setOpenAccordion(null);}} className={`whitespace-nowrap px-4 py-2 rounded-t-xl font-bold text-sm flex items-center ${activeTrack === 'list_freehold' ? 'bg-slate-100 text-slate-900 border-b-4 border-emerald-500' : 'bg-white/5 text-white/70 hover:bg-white/10'}`}><i data-lucide="home" className="w-4 h-4 mr-2"></i> List Freehold</button>
-                                <button onClick={() => {setActiveTrack('list_condo'); setOpenAccordion(null);}} className={`whitespace-nowrap px-4 py-2 rounded-t-xl font-bold text-sm flex items-center ${activeTrack === 'list_condo' ? 'bg-slate-100 text-slate-900 border-b-4 border-emerald-500' : 'bg-white/5 text-white/70 hover:bg-white/10'}`}><i data-lucide="building" className="w-4 h-4 mr-2"></i> List Condo</button>
-                                <button onClick={() => {setActiveTrack('list_lease'); setOpenAccordion(null);}} className={`whitespace-nowrap px-4 py-2 rounded-t-xl font-bold text-sm flex items-center ${activeTrack === 'list_lease' ? 'bg-slate-100 text-slate-900 border-b-4 border-teal-500' : 'bg-white/5 text-white/70 hover:bg-white/10'}`}><i data-lucide="key" className="w-4 h-4 mr-2"></i> List Lease</button>
-                                
-                                <div className="w-4 border-l border-white/20 mx-2"></div>
+                                {/* Listing Tracks */}
+                                <button onClick={() => setActiveTrack('list_freehold')} className={getTabClass('list_freehold')}>
+                                    <i data-lucide="home" className="w-4 h-4 mr-2"></i> List Freehold
+                                </button>
+                                <button onClick={() => setActiveTrack('list_condo')} className={getTabClass('list_condo')}>
+                                    <i data-lucide="building" className="w-4 h-4 mr-2"></i> List Condo
+                                </button>
+                                <button onClick={() => setActiveTrack('list_lease')} className={getTabClass('list_lease')}>
+                                    <i data-lucide="key" className="w-4 h-4 mr-2"></i> List Lease
+                                </button>
 
-                                <button onClick={() => {setActiveTrack('buy_freehold'); setOpenAccordion(null);}} className={`whitespace-nowrap px-4 py-2 rounded-t-xl font-bold text-sm flex items-center ${activeTrack === 'buy_freehold' ? 'bg-slate-100 text-slate-900 border-b-4 border-blue-500' : 'bg-white/5 text-white/70 hover:bg-white/10'}`}><i data-lucide="shopping-cart" className="w-4 h-4 mr-2"></i> Buy Freehold</button>
-                                <button onClick={() => {setActiveTrack('buy_condo'); setOpenAccordion(null);}} className={`whitespace-nowrap px-4 py-2 rounded-t-xl font-bold text-sm flex items-center ${activeTrack === 'buy_condo' ? 'bg-slate-100 text-slate-900 border-b-4 border-sky-500' : 'bg-white/5 text-white/70 hover:bg-white/10'}`}><i data-lucide="building" className="w-4 h-4 mr-2"></i> Buy Condo</button>
-                                <button onClick={() => {setActiveTrack('buy_lease'); setOpenAccordion(null);}} className={`whitespace-nowrap px-4 py-2 rounded-t-xl font-bold text-sm flex items-center ${activeTrack === 'buy_lease' ? 'bg-slate-100 text-slate-900 border-b-4 border-violet-500' : 'bg-white/5 text-white/70 hover:bg-white/10'}`}><i data-lucide="user-check" className="w-4 h-4 mr-2"></i> Rep Tenant</button>
+                                {/* Divider */}
+                                <div className="w-px bg-white/20 mx-2 self-stretch my-1"></div>
+
+                                {/* Buyer Tracks */}
+                                <button onClick={() => setActiveTrack('buy_freehold')} className={getTabClass('buy_freehold')}>
+                                    <i data-lucide="shopping-cart" className="w-4 h-4 mr-2"></i> Buy Freehold
+                                </button>
+                                <button onClick={() => setActiveTrack('buy_condo')} className={getTabClass('buy_condo')}>
+                                    <i data-lucide="building" className="w-4 h-4 mr-2"></i> Buy Condo
+                                </button>
+                                <button onClick={() => setActiveTrack('rep_tenant')} className={getTabClass('rep_tenant')}>
+                                    <i data-lucide="user-check" className="w-4 h-4 mr-2"></i> Rep Tenant
+                                </button>
                             </div>
                         </div>
                     </header>
 
                     <main className="max-w-6xl mx-auto mt-6 px-4 sm:px-6">
-                        <div className="bg-white rounded-xl shadow-md p-6 mb-10 border border-slate-200">
-                            <h2 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">{headerTitle} Progress</h2>
-                            <div className="flex justify-between items-end mb-3">
-                                <p className="text-2xl font-black text-slate-800">{completedCount} <span className="text-base text-slate-400">/ {totalItems}</span></p>
-                                <div className={`font-black text-2xl text-${themeConfig.primary}-600`}>{Math.round(progressPercentage)}%</div>
+                        {/* Progress Tracker Widget */}
+                        <div className="bg-white rounded-xl shadow-md p-6 mb-10 border border-slate-200 relative overflow-hidden">
+                            <div className={`absolute top-0 right-0 p-6 opacity-5 transition-colors duration-500 text-${themeConfig.primary}-900`}>
+                                <i data-lucide={trackIcon} className="w-24 h-24"></i>
                             </div>
-                            <div className="w-full bg-slate-100 rounded-full h-3"><div className={`h-3 rounded-full bg-gradient-to-r ${themeConfig.gradient}`} style={{ width: `${progressPercentage}%` }}></div></div>
+                            <div className="relative z-10">
+                                <h2 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">{headerTitle} — Workflow Completion</h2>
+                                <div className="flex justify-between items-end mb-3">
+                                    <p className="text-2xl font-black text-slate-800 tracking-tight">{completedCount} <span className="text-base font-medium text-slate-400">/ {totalItems} Steps</span></p>
+                                    <div className={`font-black text-2xl transition-colors duration-500 text-${themeConfig.primary}-600`}>
+                                        {Math.round(progressPercentage)}%
+                                    </div>
+                                </div>
+                                <div className="w-full bg-slate-100 rounded-full h-3 overflow-hidden shadow-inner">
+                                    <div className={`h-3 rounded-full transition-all duration-700 ease-out bg-gradient-to-r ${themeConfig.gradient}`} style={{ width: `${progressPercentage}%` }}></div>
+                                </div>
+                            </div>
                         </div>
 
+                        {/* Master Timeline Content */}
                         <div className="space-y-12">
                             {currentData.map((phaseData, phaseIdx) => (
-                                <div key={phaseIdx}>
-                                    <div className="mb-5"><h3 className="text-2xl font-black text-slate-800">{phaseData.phase}</h3><p className="text-slate-500">{phaseData.description}</p></div>
+                                <div key={phaseIdx} className="relative">
+                                    {/* Phase Header */}
+                                    <div className="mb-5">
+                                        <h3 className="text-2xl font-black text-slate-800 tracking-tight">{phaseData.phase}</h3>
+                                        <p className="text-slate-500 font-medium mt-1 text-base">{phaseData.description}</p>
+                                    </div>
+
+                                    {/* Items List */}
                                     <div className="space-y-4">
                                         {phaseData.items.map((item) => {
                                             const isOpen = openAccordion === item.id;
                                             const isCompleted = completedItems[item.id];
+
                                             return (
-                                                <div key={item.id} className={`bg-white rounded-xl border-2 transition-all ${isCompleted ? `${themeConfig.border} ${themeConfig.bgLight}` : 'border-slate-200 hover:border-slate-300'}`}>
+                                                <div key={item.id} className={`bg-white rounded-xl border-2 transition-all duration-300 ${isCompleted ? `${themeConfig.border} ${themeConfig.bgLight} shadow-sm` : 'border-slate-200 hover:border-slate-300 hover:shadow-md'}`}>
+                                                    {/* Item Header Bar */}
                                                     <div className="flex items-center justify-between p-4 cursor-pointer" onClick={() => toggleAccordion(item.id)}>
                                                         <div className="flex items-start space-x-4">
-                                                            <button onClick={(e) => toggleCompletion(item.id, e)} className={`w-7 h-7 rounded-lg border-2 flex items-center justify-center ${isCompleted ? `${themeConfig.checkBg} text-white` : `border-slate-300 text-transparent`}`}><i data-lucide="check" className="w-4 h-4 stroke-[3]"></i></button>
+                                                            {/* Checkbox */}
+                                                            <button
+                                                                onClick={(e) => toggleCompletion(item.id, e)}
+                                                                className={`flex-shrink-0 mt-0.5 w-7 h-7 rounded-lg border-2 flex items-center justify-center transition-all duration-200 ${isCompleted ? `${themeConfig.checkBg} text-white shadow-sm scale-110` : `border-slate-300 bg-slate-50 text-transparent hover:border-${themeConfig.primary}-400`}`}
+                                                            >
+                                                                <i data-lucide="check" className="w-4 h-4 stroke-[3]"></i>
+                                                            </button>
                                                             <div>
-                                                                <div className="flex items-center gap-2 mb-1"><div className={`p-1.5 rounded-md ${isCompleted ? `bg-${themeConfig.primary}-100 text-${themeConfig.primary}-600` : 'bg-slate-100 text-slate-600'}`}><i data-lucide={item.icon} className="w-3.5 h-3.5"></i></div><h4 className={`text-lg font-bold ${isCompleted ? 'text-slate-400 line-through' : 'text-slate-800'}`}>{item.title}</h4><span className={`px-2 py-0.5 rounded-md text-[10px] font-bold uppercase ${item.color}`}>{item.badge}</span></div>
+                                                                <div className="flex flex-wrap items-center gap-2 mb-1">
+                                                                    <div className={`p-1.5 rounded-md transition-colors duration-300 ${isCompleted ? `bg-${themeConfig.primary}-100 text-${themeConfig.primary}-600` : 'bg-slate-100 text-slate-600'}`}>
+                                                                        <i data-lucide={item.icon} className="w-3.5 h-3.5"></i>
+                                                                    </div>
+                                                                    <h4 className={`text-lg font-bold tracking-tight transition-colors ${isCompleted ? 'text-slate-400 line-through' : 'text-slate-800'}`}>
+                                                                        {item.title}
+                                                                    </h4>
+                                                                    <span className={`px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider ${item.color}`}>
+                                                                        {item.badge}
+                                                                    </span>
+                                                                </div>
+                                                                <p className="text-slate-500 text-sm font-medium leading-relaxed">{item.description}</p>
                                                             </div>
                                                         </div>
-                                                        <i data-lucide="chevron-down" className={`w-6 h-6 text-slate-400 transition-transform ${isOpen ? `rotate-180 text-${themeConfig.primary}-500` : ''}`}></i>
+                                                        <div className={`text-slate-400 transition-transform duration-300 flex-shrink-0 ${isOpen ? `rotate-180 text-${themeConfig.primary}-500` : ''}`}>
+                                                            <i data-lucide="chevron-down" className="w-6 h-6"></i>
+                                                        </div>
                                                     </div>
+
+                                                    {/* Expanded Content (Tutorial/Script) */}
                                                     <div className={`accordion-content ${isOpen ? 'open' : 'closed'}`}>
-                                                        <div className="p-5 bg-slate-50/80 border-t-2 border-slate-100 rounded-b-xl">
+                                                        <div className="p-5 sm:p-6 bg-slate-50/80 border-t-2 border-slate-100 rounded-b-xl">
                                                             <div className="space-y-6">
                                                                 {item.sections.map((section, sIdx) => (
-                                                                    <div key={sIdx} className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm"><h5 className="font-bold text-slate-800 mb-4 pb-2 border-b border-slate-100">{section.title}</h5><ul className="space-y-3">{section.steps.map((step, idx) => (<li key={idx} className="flex items-start text-slate-700 text-[14px]"><span className="flex-1" dangerouslySetInnerHTML={{ __html: step }}></span></li>))}</ul></div>
+                                                                    <div key={sIdx} className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                                                                        <h5 className="font-bold text-slate-800 mb-4 pb-2 border-b border-slate-100 flex items-center text-md">
+                                                                            <i data-lucide="chevron-right-square" className={`w-4 h-4 mr-2 text-${themeConfig.primary}-500`}></i>
+                                                                            {section.title}
+                                                                        </h5>
+                                                                        <ul className="space-y-3">
+                                                                            {section.steps.map((step, idx) => (
+                                                                                <li key={idx} className="flex items-start text-slate-700 text-[14px] leading-relaxed">
+                                                                                    {/* Bullet Icons */}
+                                                                                    <div className="mt-1 mr-3 flex-shrink-0">
+                                                                                        {step.includes('tag-script') || step.includes('tag-ask') ? (
+                                                                                            <i data-lucide="message-square" className="w-4 h-4 text-amber-500"></i>
+                                                                                        ) : step.includes('tag-dd') ? (
+                                                                                            <i data-lucide="shield-check" className="w-4 h-4 text-orange-500"></i>
+                                                                                        ) : step.includes('Subject:') ? (
+                                                                                            <i data-lucide="mail" className={`w-4 h-4 text-${themeConfig.primary}-500`}></i>
+                                                                                        ) : step.includes('tag-warning') ? (
+                                                                                            <i data-lucide="alert-triangle" className="w-4 h-4 text-pink-600"></i>
+                                                                                        ) : (
+                                                                                            <div className="w-1.5 h-1.5 rounded-full bg-slate-300 mt-1.5"></div>
+                                                                                        )}
+                                                                                    </div>
+                                                                                    <span className="flex-1" dangerouslySetInnerHTML={{ __html: step }}></span>
+                                                                                </li>
+                                                                            ))}
+                                                                        </ul>
+                                                                    </div>
                                                                 ))}
                                                             </div>
                                                         </div>
@@ -422,6 +1302,11 @@
                             ))}
                         </div>
                     </main>
+
+                    {/* Footer */}
+                    <footer className="text-center text-slate-400 text-xs py-8 mt-10">
+                        <p>Casora! Realty Inc. — Agency Command Center — For internal use only. Always consult your Broker of Record if unsure.</p>
+                    </footer>
                 </div>
             );
         };
