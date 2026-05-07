@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,16 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Casora! Realty Inc. — Forms Guide</title>
 
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- React & ReactDOM -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-    <!-- Babel for JSX -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
@@ -44,110 +40,17 @@
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 12px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
-        .tag-mandatory {
-            background-color: #fee2e2;
-            color: #991b1b;
-            border: 1px solid #fecaca;
-            padding: 2px 10px;
-            border-radius: 9999px;
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            margin-right: 8px;
-            display: inline-block;
-        }
-        .tag-optional {
-            background-color: #f1f5f9;
-            color: #334155;
-            border: 1px solid #e2e8f0;
-            padding: 2px 10px;
-            border-radius: 9999px;
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            margin-right: 8px;
-            display: inline-block;
-        }
-        .tag-ask {
-            background-color: #fef9c3;
-            color: #854d0e;
-            border: 1px solid #fde047;
-            padding: 2px 10px;
-            border-radius: 9999px;
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            margin-right: 8px;
-            display: inline-block;
-        }
-        .tag-script {
-            background-color: #dbeafe;
-            color: #1e3a8a;
-            border: 1px solid #bfdbfe;
-            padding: 2px 10px;
-            border-radius: 9999px;
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            margin-right: 8px;
-            display: inline-block;
-        }
-        .tag-dd {
-            background-color: #ccfbf1;
-            color: #115e59;
-            border: 1px solid #99f6e4;
-            padding: 2px 10px;
-            border-radius: 9999px;
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            margin-right: 8px;
-            display: inline-block;
-        }
-        .tag-warning {
-            background-color: #fce7f3;
-            color: #9d174d;
-            border: 1px solid #fbcfe8;
-            padding: 2px 10px;
-            border-radius: 9999px;
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            margin-right: 8px;
-            display: inline-block;
-        }
-        .timeline-line {
-            position: absolute;
-            left: 1.25rem;
-            top: 3rem;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, #cbd5e1, transparent);
-            z-index: 0;
-        }
-        .form-link {
-            color: #2563eb;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            background: linear-gradient(135deg, #eff6ff, #dbeafe);
-            padding: 1px 8px;
-            border-radius: 8px;
-            transition: all 0.2s;
-        }
-        .form-link:hover {
-            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
-            color: #1d4ed8;
-            box-shadow: 0 2px 8px rgba(37,99,235,0.2);
-        }
+        .tag-mandatory { background-color: #fee2e2; color: #991b1b; border: 1px solid #fecaca; padding: 2px 10px; border-radius: 9999px; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-right: 8px; display: inline-block; }
+        .tag-optional { background-color: #f1f5f9; color: #334155; border: 1px solid #e2e8f0; padding: 2px 10px; border-radius: 9999px; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-right: 8px; display: inline-block; }
+        .tag-ask { background-color: #fef9c3; color: #854d0e; border: 1px solid #fde047; padding: 2px 10px; border-radius: 9999px; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-right: 8px; display: inline-block; }
+        .tag-script { background-color: #dbeafe; color: #1e3a8a; border: 1px solid #bfdbfe; padding: 2px 10px; border-radius: 9999px; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-right: 8px; display: inline-block; }
+        .tag-dd { background-color: #ccfbf1; color: #115e59; border: 1px solid #99f6e4; padding: 2px 10px; border-radius: 9999px; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-right: 8px; display: inline-block; }
+        .tag-warning { background-color: #fce7f3; color: #9d174d; border: 1px solid #fbcfe8; padding: 2px 10px; border-radius: 9999px; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-right: 8px; display: inline-block; }
+        
+        .timeline-line { position: absolute; left: 1.25rem; top: 3rem; bottom: 0; width: 2px; background: linear-gradient(to bottom, #cbd5e1, transparent); z-index: 0; }
+        .form-link { color: #2563eb; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; background: linear-gradient(135deg, #eff6ff, #dbeafe); padding: 1px 8px; border-radius: 8px; transition: all 0.2s; }
+        .form-link:hover { background: linear-gradient(135deg, #dbeafe, #bfdbfe); color: #1d4ed8; box-shadow: 0 2px 8px rgba(37,99,235,0.2); }
+        
         @media print {
             body { overflow: visible !important; background-color: white !important; }
             aside, header, .no-print, .toggle-switch-ui { display: none !important; }
@@ -166,12 +69,12 @@
         const { useState, useEffect } = React;
 
         // ============================================================
-        // 🔗 FORM LINKS – fully updated, including the Casora New Listings Information Sheet
+        // 🔗 FORM LINKS 
         // ============================================================
         const FORM_LINKS = {
+            // Original Forms
             RECO_GUIDE: 'https://drive.google.com/file/d/1kTELQx05lJ1czSdnXcYGwpdFMezUj5im/view?usp=sharing',
             FORM_271: 'https://drive.google.com/file/d/1XRRpTV8kp5KPaOVvusJcdvEf3ciDCIhl/view?usp=sharing',
-            FINTRAC: 'https://drive.google.com/file/d/17wPLKtJpggB1hTzIks4Yoax05S4iPqeB/view?usp=sharing',
             FORM_244: 'https://drive.google.com/file/d/1FBxr7P8ORNCjXUzWxjFM1HuKtZVJ3B_t/view?usp=sharing',
             LOCKBOX_DIRECTIONS: 'https://drive.google.com/file/d/1MgxWqjL5Ai1N3bbMkwW5dVWvNX0iaDQo/view?usp=sharing',
             FORM_161: 'https://drive.google.com/file/d/1wCZYtBQbyAb8ZbD5SsMuf32leFFDNvRE/view?usp=sharing',
@@ -198,7 +101,21 @@
             CASORA_SCH_A_LANDLORD: 'https://drive.google.com/file/d/1z1VGxJWK3IUEX3uwg_uFU8hBfMS3lFKb/view?usp=sharing',
             ITSO_MLS_FORM: 'https://drive.google.com/file/d/1STmLTauUNPTwlwncjN05r67ezLCF5S4j/view?usp=sharing',
             BROKERBAY_INSTRUCTIONS: 'https://drive.google.com/file/d/1pPdK7EE74TIJ9uPN2paPiwjqZ-EIwNEn/view?usp=sharing',
-            CASORA_NEW_LISTINGS_SHEET: 'https://drive.google.com/file/d/1aTNKI-tV87P2ZV7cePJjihFfN2Zb0szC/view?usp=sharing'
+            CASORA_NEW_LISTINGS_SHEET: 'https://drive.google.com/file/d/1aTNKI-tV87P2ZV7cePJjihFfN2Zb0szC/view?usp=sharing',
+            
+            // NEW FORMS (Verify these URLs map to the correct documents)
+            FORM_324: 'https://drive.google.com/file/d/1EktzEVuDiXtqWMiXTwoJAhK-ssbwJCMx/view?usp=sharing', 
+            FORM_404: 'https://drive.google.com/file/d/1JutHDeQqZM9T0Ad5Y7nUPzlxTP_IzFqu/view?usp=drive_link',
+            FORM_403: 'https://drive.google.com/file/d/1Z_uRZ_P7mG9gGb2nL3lOGk4I_U6K5O0m/view?usp=drive_link',
+            FORM_346: 'https://drive.google.com/file/d/1Cuw0OhacvH39tKdIr27g6wRfpfFf2pKf/view?usp=drive_link',
+            FINTRAC_630: 'https://drive.google.com/file/d/1Sb03o9LUSGgzYkarKfOHgkgiUGgAW8uT/view?usp=drive_link',
+            FINTRAC_631: 'https://drive.google.com/file/d/1kWXFFGDQ0DjPd7owVK45t_kPXeZE6Ob7/view?usp=drive_link',
+            FINTRAC_634: 'https://drive.google.com/file/d/13vMlBjM4WlhtQSyM_eEH86pqlVT1K59l/view?usp=sharing',
+            FINTRAC_635: 'https://drive.google.com/file/d/1rpmGE5OBDmtmH1UNb-dioWJY5jfXeCpk/view?usp=drive_link',
+            PROPTX_292: 'https://drive.google.com/file/d/19L3_0G6nNwCYl21KNZNz9bD2nj56Hmch/view?usp=drive_link',
+            FORM_120: 'https://drive.google.com/file/d/1PykGavzJ_4MBaacaBgtqxeVtMv5gF5-D/view?usp=drive_link',
+            FORM_420: 'https://drive.google.com/file/d/1moqER_M6dvhYbzc-qkoTLa9th5XEQroP/view?usp=sharing',
+            TRREB_CC_FORM: 'https://drive.google.com/file/d/1UW4n8Duq7r690XhCGHnlTCChUMEucvC_/view?usp=sharing'
         };
 
         const replaceLinks = (html) => {
@@ -290,7 +207,7 @@
                             "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Designated Rep:</strong> Your exact name. (Crucial TRESA rule).",
                             "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Dates:</strong> Commencing and Expiring times.",
                             "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Commission:</strong> Total %, Co‑op %, and Holdover days. {LINK:FORM_271}",
-                            "<span class='tag-ask'>[ASK SELLER]</span> <strong>HST on Commission:</strong> Confirm that HST is charged on top of the agreed commission. Clarify whether the stated commission includes or excludes HST.",
+                            "<span class='tag-ask'>[ASK SELLER]</span> <strong>HST on Commission:</strong> Confirm that HST is charged on top of the agreed commission.",
                             "<span class='tag-dd'>[DUE DILIGENCE]</span> <span class='tag-ask'>[ASK SELLER]</span> <strong>Spousal Consent:</strong> Is it a matrimonial home and spouse isn't on title? They must sign Page 4.",
                             "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Schedule A:</strong> Ensure Casora's Schedule A is attached and initialled. {LINK:CASORA_SCH_A_LISTING}"
                         ]
@@ -302,14 +219,13 @@
                     "badge": "Paper Form",
                     "color": "bg-amber-50 text-amber-700 border border-amber-200",
                     "icon": "fingerprint",
-                    "description": "Federal anti-money laundering verification. Use the FINTRAC form {LINK:FINTRAC}.",
+                    "description": "Federal anti-money laundering verification.",
                     "sections": [{
                         "title": "Verification",
                         "steps": [
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Check Driver's License or Passport. Copy ID Number and Expiry exactly. {LINK:FINTRAC}",
-                            "<span class='tag-ask'>[ASK SELLER]</span> Ask for their Principal Business/Occupation.",
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Section D (Purpose): Check 'Residential Property' and 'Sale'.",
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Determine if the client is a Politically Exposed Person (PEP), Head of an International Organization (HIO), or appears on any sanctions list (OFAC, OSFI)."
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Complete FINTRAC Form 630 (Individual) {LINK:FINTRAC_630} OR Form 631 (Corporation) {LINK:FINTRAC_631}.",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Complete FINTRAC Form 634 (Politically Exposed Person). {LINK:FINTRAC_634}",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Check Driver's License or Passport. Copy ID Number and Expiry exactly."
                         ]
                     }]
                 },
@@ -338,7 +254,7 @@
                     "sections": [{
                         "title": "When & How to use",
                         "steps": [
-                            "<span class='tag-mandatory'>[MANDATORY]</span> If YOU or the brokerage own the property, you must declare it using this form {LINK:FORM_161}."
+                            "<span class='tag-mandatory'>[MANDATORY]</span> If YOU or the brokerage own the property, you must declare it using this form {LINK:FORM_161} and upload it to the listing."
                         ]
                     }]
                 }
@@ -358,9 +274,9 @@
                         "title": "Setup",
                         "steps": [
                             "<span class='tag-mandatory'>[MANDATORY]</span> Use PropTx 290 (Freehold Sale). {LINK:PROPTX_290}",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> If interboarding to TRREB, include the TRREB Credit Card Payment Form {LINK:TRREB_CC_FORM} and ensure a maximum of 50 photos.",
                             "<span class='tag-mandatory'>[MANDATORY]</span> Complete the ITSO MLS Property Information Form. {LINK:ITSO_MLS_FORM}",
                             "<span class='tag-mandatory'>[MANDATORY]</span> Fill out the Casora New Listings Information Sheet. {LINK:CASORA_NEW_LISTINGS_SHEET}",
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Fill room measurements, taxes, and legal description.",
                             "<span class='tag-mandatory'>[MANDATORY]</span> Set up BrokerBay contacts and offer email. Follow BrokerBay Appointment Instructions. {LINK:BROKERBAY_INSTRUCTIONS}",
                             "<span class='tag-mandatory'>[MANDATORY]</span> Email both to Seller via DocuSign/Authentisign for final approval before going live."
                         ]
@@ -373,17 +289,20 @@
             "items": [
                 {
                     "id": "lf_dealsummary",
-                    "title": "9. CASORA Deal Summary",
-                    "badge": "Internal Form",
+                    "title": "9. Final Deal Submissions & Admin",
+                    "badge": "Internal Admin",
                     "color": "bg-purple-50 text-purple-700 border border-purple-200",
                     "icon": "briefcase",
                     "description": "Submitted when a deal goes FIRM. {LINK:CASORA_DEAL_SUMMARY}",
                     "sections": [{
-                        "title": "Financials",
+                        "title": "Paperwork & Submissions",
                         "steps": [
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Enter the exact Deposit held by Casora. {LINK:CASORA_DEAL_SUMMARY}",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Submit CASORA Deal Summary. {LINK:CASORA_DEAL_SUMMARY}",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Ensure the Trade Input Form is submitted (emailed from admin).",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Include any applicable Amendments (Form 120). {LINK:FORM_120}",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Include final MLS Printout and Deposit Receipt from Listing Brokerage.",
                             "<span class='tag-mandatory'>[MANDATORY]</span> Break down commission due to Casora and the Co‑op Brokerage.",
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Submit with Firm APS, Form 271, FINTRAC, RECO Ack, Form 244, and any waivers."
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Submit with Firm APS, Form 271, FINTRAC Forms (630/631, 634), RECO Ack, Form 244, and any waivers."
                         ]
                     }]
                 }
@@ -474,14 +393,13 @@
                     "badge": "Paper Form",
                     "color": "bg-amber-50 text-amber-700 border border-amber-200",
                     "icon": "fingerprint",
-                    "description": "Federal anti-money laundering verification. {LINK:FINTRAC}",
+                    "description": "Federal anti-money laundering verification.",
                     "sections": [{
                         "title": "Verification",
                         "steps": [
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Check Driver's License or Passport. {LINK:FINTRAC}",
-                            "<span class='tag-ask'>[ASK SELLER]</span> Ask for their Principal Business/Occupation.",
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Section D: 'Residential Property' and 'Sale'.",
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Check PEP/HIO/sanctions list."
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Complete FINTRAC Form 630 (Individual) {LINK:FINTRAC_630} OR Form 631 (Corporation) {LINK:FINTRAC_631}.",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Complete FINTRAC Form 634 (Politically Exposed Person). {LINK:FINTRAC_634}",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Check Driver's License or Passport."
                         ]
                     }]
                 },
@@ -511,7 +429,7 @@
                     "sections": [{
                         "title": "When & How to use",
                         "steps": [
-                            "<span class='tag-mandatory'>[MANDATORY]</span> If YOU or brokerage own the condo, use this form {LINK:FORM_161}."
+                            "<span class='tag-mandatory'>[MANDATORY]</span> If YOU or brokerage own the condo, use this form {LINK:FORM_161} and upload to listing."
                         ]
                     }]
                 }
@@ -531,12 +449,12 @@
                         "title": "Condo MLS Setup",
                         "steps": [
                             "<span class='tag-mandatory'>[MANDATORY]</span> Use PropTx 291 (Condo Sale). {LINK:PROPTX_291}",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> If interboarding to TRREB, include the TRREB Credit Card Payment Form {LINK:TRREB_CC_FORM} and ensure a maximum of 50 photos.",
                             "<span class='tag-mandatory'>[MANDATORY]</span> Complete the ITSO MLS Property Information Form. {LINK:ITSO_MLS_FORM}",
                             "<span class='tag-mandatory'>[MANDATORY]</span> Fill out the Casora New Listings Information Sheet. {LINK:CASORA_NEW_LISTINGS_SHEET}",
                             "<span class='tag-mandatory'>[MANDATORY]</span> Must list: Condo Corp Name, Condo Plan No., Maintenance Fee, etc.",
                             "<span class='tag-mandatory'>[MANDATORY]</span> Specify Parking/Locker type and number.",
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Set up BrokerBay contacts and offer email. {LINK:BROKERBAY_INSTRUCTIONS}",
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Send to Seller via DocuSign for approval."
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Set up BrokerBay contacts and offer email. {LINK:BROKERBAY_INSTRUCTIONS}"
                         ]
                     }]
                 }
@@ -547,7 +465,7 @@
             "items": [
                 {
                     "id": "lc_dealsummary",
-                    "title": "9. CASORA Deal Summary (Condo)",
+                    "title": "9. Final Deal Submissions & Admin",
                     "badge": "Internal Form",
                     "color": "bg-purple-50 text-purple-700 border border-purple-200",
                     "icon": "briefcase",
@@ -555,10 +473,12 @@
                     "sections": [{
                         "title": "Financials & Submission",
                         "steps": [
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Enter the exact Deposit held by Casora. {LINK:CASORA_DEAL_SUMMARY}",
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Break down commission.",
                             "<span class='tag-mandatory'>[MANDATORY]</span> Status Certificate condition: use Form 124 (fulfillment) {LINK:FORM_124} or Form 123 (waiver) {LINK:FORM_123}.",
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Submit with Firm APS, Form 271, FINTRAC, RECO Ack, Form 244."
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Submit CASORA Deal Summary. {LINK:CASORA_DEAL_SUMMARY}",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Ensure the Trade Input Form is submitted (emailed from admin).",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Include any applicable Amendments (Form 120). {LINK:FORM_120}",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Include final MLS Printout and Deposit Receipt from Listing Brokerage.",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Submit with Firm APS, Form 271, FINTRAC Forms (630/631, 634), RECO Ack, Form 244."
                         ]
                     }]
                 }
@@ -581,8 +501,7 @@
                         "steps": [
                             "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>GeoWarehouse:</strong> Verify Landlord's name matches title exactly.",
                             "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>Rental Legality:</strong> Confirm the property is zoned for rental and there are no condo bylaw restrictions on leasing.",
-                            "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>Existing Lease & Termination:</strong> If currently tenanted, know the correct notice: <strong>N11</strong> (mutual agreement to end tenancy), <strong>N12</strong> (landlord's own use – 60 days notice + one month's compensation), <strong>N13</strong> (demolition, repair, or conversion).",
-                            "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>Insurance:</strong> Advise the landlord to obtain landlord-specific insurance; standard homeowner's insurance may be void once the property is tenanted.",
+                            "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>Existing Lease & Termination:</strong> If currently tenanted, know the correct notice: <strong>N11</strong>, <strong>N12</strong>, <strong>N13</strong>.",
                             "<span class='tag-dd'>[DUE DILIGENCE]</span> <strong>Rent Control:</strong> If the property was first occupied for residential purposes after Nov 15, 2018, it is exempt from the Rent Increase Guideline."
                         ]
                     }]
@@ -631,13 +550,13 @@
                     "badge": "Compliance",
                     "color": "bg-amber-50 text-amber-700 border border-amber-200",
                     "icon": "fingerprint",
-                    "description": "Anti-money laundering. {LINK:FINTRAC}",
+                    "description": "Anti-money laundering.",
                     "sections": [{
                         "title": "Verification",
                         "steps": [
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Verify Landlord's physical ID. {LINK:FINTRAC}",
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Section D: Check 'Residential Property' and Purpose: 'Lease/Rent'.",
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Determine if the client is a PEP, HIO, or on sanctions lists."
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Complete FINTRAC Form 630 (Individual) {LINK:FINTRAC_630} OR Form 631 (Corporation) {LINK:FINTRAC_631}.",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Complete FINTRAC Form 634 (Politically Exposed Person). {LINK:FINTRAC_634}",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Verify Landlord's physical ID."
                         ]
                     }]
                 }
@@ -648,7 +567,7 @@
             "items": [
                 {
                     "id": "ll_mls",
-                    "title": "5. PropTx 296, ITSO MLS & BrokerBay (Lease)",
+                    "title": "5. PropTx 296/292, ITSO MLS & BrokerBay",
                     "badge": "Digital Entry",
                     "color": "bg-cyan-50 text-cyan-700 border border-cyan-200",
                     "icon": "monitor",
@@ -656,14 +575,12 @@
                     "sections": [{
                         "title": "Lease MLS Setup",
                         "steps": [
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Use PropTx 296 (Freehold Lease) or appropriate condo lease form. {LINK:PROPTX_296}",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Use PropTx 296 for Freehold Lease {LINK:PROPTX_296} OR PropTx 292 for Condo Lease {LINK:PROPTX_292}.",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> If interboarding to TRREB, include the TRREB Credit Card Payment Form {LINK:TRREB_CC_FORM} and ensure a max of 50 photos.",
                             "<span class='tag-mandatory'>[MANDATORY]</span> Complete the ITSO MLS Property Information Form. {LINK:ITSO_MLS_FORM}",
                             "<span class='tag-mandatory'>[MANDATORY]</span> Fill out the Casora New Listings Information Sheet. {LINK:CASORA_NEW_LISTINGS_SHEET}",
-                            "<span class='tag-mandatory'>[MANDATORY]</span> State monthly rent amount clearly.",
                             "<span class='tag-mandatory'>[MANDATORY]</span> Note required documents (Credit report, Employment letter, Pay stubs, References).",
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Specify who pays utilities.",
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Set up BrokerBay contacts and offer email. {LINK:BROKERBAY_INSTRUCTIONS}",
-                            "<span class='tag-optional'>[OPTIONAL]</span> Rental restrictions (no‑pets clause void under RTA)."
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Specify who pays utilities and set up BrokerBay contacts. {LINK:BROKERBAY_INSTRUCTIONS}"
                         ]
                     }]
                 }
@@ -674,7 +591,7 @@
             "items": [
                 {
                     "id": "ll_dealsummary",
-                    "title": "6. Ontario Standard Lease & Summary",
+                    "title": "6. Final Deal Submissions & Standard Lease",
                     "badge": "Provincial Law",
                     "color": "bg-emerald-50 text-emerald-700 border border-emerald-200",
                     "icon": "gavel",
@@ -682,10 +599,14 @@
                     "sections": [{
                         "title": "Execution & Submission",
                         "steps": [
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Landlord MUST execute the Ontario Standard Lease {LINK:ONTARIO_STANDARD_LEASE}. Additional terms in Schedule A allowed if RTA-compliant.",
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Ensure details match Form 400/Offer perfectly. {LINK:FORM_400}",
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Form 320 is effectively mandatory for MLS co‑operation. {LINK:FORM_320}",
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Submit CASORA Deal Summary {LINK:CASORA_DEAL_SUMMARY} — Type: LEASE, Role: LISTING."
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Landlord MUST execute the Ontario Standard Lease {LINK:ONTARIO_STANDARD_LEASE}.",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Form 324 (Confirmation of Co-operation - Tenant/Landlord) is required. {LINK:FORM_324}",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Submit CASORA Deal Summary. {LINK:CASORA_DEAL_SUMMARY}",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Ensure the Trade Input Form is submitted (emailed from admin).",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Include any applicable Amendments (Form 420). {LINK:FORM_420}",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Submit Form 404 (Notice of Fulfillment) {LINK:FORM_404} OR Form 403 (Waiver) {LINK:FORM_403} if there were conditions.",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Include final MLS Printout and Deposit Receipt from Listing Brokerage.",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Submit with Firm APS 400, Form 272, FINTRAC Forms, and RECO Ack."
                         ]
                     }]
                 }
@@ -735,13 +656,13 @@
                     "badge": "Compliance",
                     "color": "bg-amber-50 text-amber-700 border border-amber-200",
                     "icon": "fingerprint",
-                    "description": "Anti-money laundering check. {LINK:FINTRAC}",
+                    "description": "Anti-money laundering check.",
                     "sections": [{
                         "title": "Verification",
                         "steps": [
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Verify physical ID. {LINK:FINTRAC}",
-                            "<span class='tag-dd'>[DUE DILIGENCE]</span> <span class='tag-ask'>[ASK BUYER]</span> <em>\"Are you buying this home for yourself, or a third party?\"</em>",
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Determine if PEP, HIO, or on sanctions lists."
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Complete FINTRAC Form 630 (Individual) {LINK:FINTRAC_630} OR Form 631 (Corporation) {LINK:FINTRAC_631}.",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Complete FINTRAC Form 634 (Politically Exposed Person). {LINK:FINTRAC_634}",
+                            "<span class='tag-dd'>[DUE DILIGENCE]</span> <span class='tag-ask'>[ASK BUYER]</span> <em>\"Are you buying this home for yourself, or a third party?\"</em>"
                         ]
                     }]
                 }
@@ -779,8 +700,9 @@
                         "steps": [
                             "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Deposit:</strong> Payable to Listing Brokerage Trust Account. {LINK:FORM_100}",
                             "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Property:</strong> Address, Frontage/Depth, Legal Description.",
+			 "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Hot Water Heater:</strong> Confirm own or rented.",
+	
                             "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Fixtures vs. Chattels:</strong> Fixtures included by default; chattels only if listed.",
-                            "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Hot Water Heater:</strong> Confirm owned or rented.",
                             "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Schedule A:</strong> Insert Home Inspection and Financing conditions."
                         ]
                     }]
@@ -851,7 +773,7 @@
                 },
                 {
                     "id": "bf_dealsummary",
-                    "title": "10. CASORA Deal Summary",
+                    "title": "10. Final Deal Submissions & Admin",
                     "badge": "Internal Admin",
                     "color": "bg-purple-50 text-purple-700 border border-purple-200",
                     "icon": "briefcase",
@@ -859,9 +781,12 @@
                     "sections": [{
                         "title": "Office Submission",
                         "steps": [
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Check 'SELLING' under Casora Role. {LINK:CASORA_DEAL_SUMMARY}",
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Deposit held by Other Brokerage.",
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Submit with Firm APS, Form 320, FINTRAC, Form 371, Form 124, RECO Ack."
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Submit CASORA Deal Summary. {LINK:CASORA_DEAL_SUMMARY}",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Ensure the Trade Input Form is submitted (emailed from admin).",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Submit FINTRAC Form 635 (Receipt of Funds Record). {LINK:FINTRAC_635}",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Include any applicable Amendments (Form 120). {LINK:FORM_120}",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Include final MLS Printout and Deposit Receipt from Listing Brokerage.",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Submit with Firm APS, Form 320, Form 371, Form 124, FINTRAC Forms (630/631, 634), RECO Ack."
                         ]
                     }]
                 }
@@ -919,12 +844,12 @@
                     "badge": "Compliance",
                     "color": "bg-amber-50 text-amber-700 border border-amber-200",
                     "icon": "fingerprint",
-                    "description": "Anti-money laundering. {LINK:FINTRAC}",
+                    "description": "Anti-money laundering.",
                     "sections": [{
                         "title": "Verification",
                         "steps": [
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Verify physical ID. Check 'Residential Property' and 'Purchase'. {LINK:FINTRAC}",
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Determine PEP, HIO, or sanctions status."
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Complete FINTRAC Form 630 (Individual) {LINK:FINTRAC_630} OR Form 631 (Corporation) {LINK:FINTRAC_631}.",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Complete FINTRAC Form 634 (Politically Exposed Person). {LINK:FINTRAC_634}"
                         ]
                     }]
                 }
@@ -944,9 +869,9 @@
                         "title": "Status, Rules & Insurance",
                         "steps": [
                             "<span class='tag-dd'>[DUE DILIGENCE]</span> Check MLS for Status Certificate availability.",
+"<span class='tag-dd'>[DUE DILIGENCE]</span> Advise buyer about title insurance arranged by lawyer.",
                             "<span class='tag-dd'>[DUE DILIGENCE]</span> Verify Parking/Locker ownership on GeoWarehouse.",
-                            "<span class='tag-dd'>[DUE DILIGENCE]</span> Check condo rules on pets, rentals, renovations.",
-                            "<span class='tag-dd'>[DUE DILIGENCE]</span> Advise buyer about title insurance arranged by lawyer."
+                            "<span class='tag-dd'>[DUE DILIGENCE]</span> Check condo rules on pets, rentals, renovations."
                         ]
                     }]
                 },
@@ -962,9 +887,9 @@
                         "steps": [
                             "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Deposit:</strong> Payable to Listing Brokerage Trust Account. {LINK:FORM_101}",
                             "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Condo Details:</strong> Condominium Plan No. and Legal Name of Condo Corp.",
-                            "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Unit Details:</strong> Unit Number, Level No., Building No.",
                             "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Parking/Locker:</strong> Ownership vs Exclusive Use with Level and Number.",
-                            "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Common Expenses:</strong> Monthly fee and what it includes."
+                            "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Common Expenses:</strong> Monthly fee and what it includes.",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Unit Details:</strong> Unit Number, Level No., Building No."
                         ]
                     }, {
                         "title": "Schedule A (Status Certificate)",
@@ -1032,14 +957,13 @@
                     "sections": [{
                         "title": "Firming Up",
                         "steps": [
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Lawyer approved? Use Form 124 {LINK:FORM_124}. Buyer waiving? Use Form 123 {LINK:FORM_123}.",
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Never let the Status Certificate condition expire."
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Lawyer approved? Use Form 124 {LINK:FORM_124}. Buyer waiving? Use Form 123 {LINK:FORM_123}."
                         ]
                     }]
                 },
                 {
                     "id": "bc_dealsummary",
-                    "title": "10. CASORA Deal Summary",
+                    "title": "10. Final Deal Submissions & Admin",
                     "badge": "Internal Admin",
                     "color": "bg-purple-50 text-purple-700 border border-purple-200",
                     "icon": "briefcase",
@@ -1047,8 +971,12 @@
                     "sections": [{
                         "title": "Office Submission",
                         "steps": [
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Check 'SELLING' under Casora Role. {LINK:CASORA_DEAL_SUMMARY}",
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Submit with Firm APS, Form 320, FINTRAC, Form 371, Form 124/123, RECO Ack."
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Submit CASORA Deal Summary. {LINK:CASORA_DEAL_SUMMARY}",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Ensure the Trade Input Form is submitted (emailed from admin).",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Submit FINTRAC Form 635 (Receipt of Funds Record). {LINK:FINTRAC_635}",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Include any applicable Amendments (Form 120). {LINK:FORM_120}",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Include final MLS Printout and Deposit Receipt from Listing Brokerage.",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Submit with Firm APS, Form 320, Form 371, Form 124/123, FINTRAC Forms (630/631, 634), RECO Ack."
                         ]
                     }]
                 }
@@ -1075,18 +1003,17 @@
                     }]
                 },
                 {
-                    "id": "t_form372",
-                    "title": "2. Form 372 — Tenant Representation",
+                    "id": "t_form346",
+                    "title": "2. Form 346 — Tenant Designated Representation",
                     "badge": "Core Contract",
                     "color": "bg-amber-50 text-amber-700 border border-amber-200",
                     "icon": "file-signature",
-                    "description": "Legal contract. {LINK:FORM_372}",
+                    "description": "Legal contract. {LINK:FORM_346}",
                     "sections": [{
                         "title": "Header & Commission",
                         "steps": [
-                            "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Designated Representative:</strong> Your exact name. {LINK:FORM_372}",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Designated Representative:</strong> Your exact name. {LINK:FORM_346}",
                             "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Commission:</strong> Usually 'One half of one month's rent', paid by Landlord's brokerage.",
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Tenant signs, you sign.",
                             "<span class='tag-mandatory'>[MANDATORY]</span> Ensure Casora's Schedule A is attached and initialled. {LINK:CASORA_SCH_A_TENANT}"
                         ]
                     }]
@@ -1097,12 +1024,12 @@
                     "badge": "Compliance",
                     "color": "bg-amber-50 text-amber-700 border border-amber-200",
                     "icon": "fingerprint",
-                    "description": "Anti-money laundering. {LINK:FINTRAC}",
+                    "description": "Anti-money laundering.",
                     "sections": [{
                         "title": "Verification",
                         "steps": [
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Verify physical ID. Purpose: 'Lease/Rent'. {LINK:FINTRAC}",
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Determine PEP, HIO, or sanctions status."
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Complete FINTRAC Form 630 (Individual) {LINK:FINTRAC_630} OR Form 631 (Corporation) {LINK:FINTRAC_631}.",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Complete FINTRAC Form 634 (Politically Exposed Person). {LINK:FINTRAC_634}"
                         ]
                     }]
                 }
@@ -1141,12 +1068,6 @@
                             "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Rent:</strong> Monthly amount.",
                             "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Deposit:</strong> Max last month's rent only. First month is rent payment. No security/damage/key deposits. Payable to Listing Brokerage Trust."
                         ]
-                    }, {
-                        "title": "Pages 2 & 3: Clauses",
-                        "steps": [
-                            "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Payment Method:</strong> Post-dated cheques, e-transfer, etc.",
-                            "<span class='tag-mandatory'>[MANDATORY]</span> <strong>Utilities:</strong> Define who pays Gas, Hydro, Water."
-                        ]
                     }]
                 },
                 {
@@ -1169,39 +1090,22 @@
             "description": "Signing the mandatory provincial lease and getting paid.",
             "items": [
                 {
-                    "id": "t_form320",
-                    "title": "7. Form 320 — Confirmation of Co‑operation",
+                    "id": "t_form324",
+                    "title": "7. Form 324 — Confirmation of Co‑operation",
                     "badge": "Mandatory Paperwork",
                     "color": "bg-emerald-50 text-emerald-700 border border-emerald-200",
                     "icon": "handshake",
-                    "description": "Commission details. {LINK:FORM_320}",
+                    "description": "Commission details for Tenant/Landlord. {LINK:FORM_324}",
                     "sections": [{
                         "title": "Representation & Commission",
                         "steps": [
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Section 2: 'Represents Interests of Buyer/Tenant'. Section 3: Co‑op %. {LINK:FORM_320}"
-                        ]
-                    }]
-                },
-                {
-                    "id": "t_ontario_lease",
-                    "title": "8. Ontario Residential Tenancy Agreement",
-                    "badge": "Provincial Law",
-                    "color": "bg-emerald-50 text-emerald-700 border border-emerald-200",
-                    "icon": "gavel",
-                    "description": "Standard Lease. {LINK:ONTARIO_STANDARD_LEASE}",
-                    "sections": [{
-                        "title": "Execution",
-                        "steps": [
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Landlord MUST provide Standard Lease {LINK:ONTARIO_STANDARD_LEASE}. Additional terms in Schedule A allowed if RTA-compliant.",
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Match details to Form 400 {LINK:FORM_400}.",
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Tenant may withhold one month's rent if landlord fails to provide signed lease within 21 days of written request.",
-                            "<span class='tag-optional'>[OPTIONAL]</span> Attach Schedule A from Form 400 to Additional Terms."
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Complete Form 324 (Confirmation of Co-operation - Tenant/Landlord). {LINK:FORM_324}"
                         ]
                     }]
                 },
                 {
                     "id": "t_dealsummary",
-                    "title": "9. CASORA Deal Summary",
+                    "title": "8. Final Deal Submissions & Standard Lease",
                     "badge": "Internal Admin",
                     "color": "bg-purple-50 text-purple-700 border border-purple-200",
                     "icon": "briefcase",
@@ -1209,8 +1113,13 @@
                     "sections": [{
                         "title": "Office Submission",
                         "steps": [
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Type: LEASE. Role: SELLING. {LINK:CASORA_DEAL_SUMMARY}",
-                            "<span class='tag-mandatory'>[MANDATORY]</span> Submit with Form 400, Form 320, FINTRAC, Form 372, RECO Ack, signed Standard Lease."
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Landlord MUST provide the Standard Lease {LINK:ONTARIO_STANDARD_LEASE}.",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Submit CASORA Deal Summary. {LINK:CASORA_DEAL_SUMMARY}",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Ensure the Trade Input Form is submitted (emailed from admin).",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Include any applicable Amendments (Form 420). {LINK:FORM_420}",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Submit Form 404 (Notice of Fulfillment) {LINK:FORM_404} OR Form 403 (Waiver) {LINK:FORM_403} if conditions applied.",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Include final MLS Printout and Deposit Receipt from Listing Brokerage.",
+                            "<span class='tag-mandatory'>[MANDATORY]</span> Submit with Form 400, Form 324, FINTRAC Forms (630/631, 634), Form 346, RECO Ack, signed Standard Lease."
                         ]
                     }]
                 }
