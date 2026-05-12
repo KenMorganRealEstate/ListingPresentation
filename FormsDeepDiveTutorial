@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casora! Forms Masterclass Tutorial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #0f172a; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .form-highlight { background: linear-gradient(120deg, #dbeafe 0%, #eff6ff 100%); border-left: 4px solid #3b82f6; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const formsDatabase = {
+            "reco_agency": {
+                title: "RECO & Agency Representation",
+                icon: "book-open",
+                description: "Mandatory forms under TRESA to establish your legal working relationship with clients.",
+                forms: [
+                    {
+                        name: "RECO Information Guide & Acknowledgement",
+                        purpose: "This is a province-wide consumer protection document. It explains the difference between being a represented client and an unrepresented party. Under TRESA, you CANNOT provide real estate services without first providing this guide and explaining it.",
+                        agentActions: [
+                            "Provide the guide 24-48 hours before your formal meeting.",
+                            "Explain that Casora! operates under Designated Representation (your sole loyalty is to them, not shared with the whole brokerage).",
+                            "Have the client sign and date the Page 13 Acknowledgement block.",
+                            "Keep a copy of the signed acknowledgement for your deal file."
+                        ]
+                    },
+                    {
+                        name: "RECO Self-Represented Party (SRP) Form",
+                        purpose: "If you are representing a client and the party on the other side of the transaction has chosen NOT to use a real estate agent, you must provide them with this form to protect yourself and your client.",
+                        agentActions: [
+                            "Explain to the SRP that you DO NOT work for them and cannot protect their interests.",
+                            "Explain that anything they tell you can and will be shared with your client.",
+                            "Have the SRP acknowledge the document before you negotiate with them."
+                        ]
+                    },
+                    {
+                        name: "OREA Form 271 / 272 (Listing Agreement - Sale/Lease)",
+                        purpose: "The core legal contract between the Seller/Landlord and the Brokerage, giving you the exclusive right to market the property.",
+                        agentActions: [
+                            "Ensure your exact name is written as the 'Designated Representative'.",
+                            "Double-check that the Legal Description matches GeoWarehouse exactly.",
+                            "Set the Commencing and Expiring Dates.",
+                            "Clearly state the Total Commission % and how much is offered to the Co-operating Brokerage.",
+                            "Fill in the Holdover Period (usually 60-90 days) to protect your commission if a buyer you introduced buys the home right after the listing expires.",
+                            "Ensure Casora! Schedule A is attached and initialed."
+                        ]
+                    },
+                    {
+                        name: "OREA Form 300 / 371 / 346 (Buyer/Tenant Representation)",
+                        purpose: "The legal contract locking the Buyer/Tenant into working exclusively with you for a specific property type and geographic area.",
+                        agentActions: [
+                            "Name yourself as the Designated Representative.",
+                            "Define the scope: e.g., 'Single Family Residential' in 'The Greater Toronto Area'.",
+                            "Set the Expiry Date and Holdover Period.",
+                            "Specify the Commission (e.g., 2.5% or half month's rent). Explain that while the Seller usually pays this via the co-op commission, the Buyer is technically liable if the Seller offers less."
+                        ]
+                    }
+                ]
+            },
+            "offers_aps": {
+                title: "Drafting & Managing Offers",
+                icon: "file-signature",
+                description: "The core legal contracts used to buy, sell, or lease real estate.",
+                forms: [
+                    {
+                        name: "OREA Form 100 (Agreement of Purchase & Sale - Freehold)",
+                        purpose: "The main contract to purchase a freehold property (detached, semi, townhome without maintenance fees).",
+                        agentActions: [
+                            "Deposit: Usually 5% of the purchase price. Ensure it is payable to the Listing Brokerage 'In Trust'.",
+                            "Irrevocability: The exact date/time the offer expires. If the seller doesn't accept by this time, the offer is dead.",
+                            "Completion Date: The closing day. Never choose a weekend or statutory holiday.",
+                            "Chattels & Fixtures: Explicitly list appliances (e.g., 'Stainless Steel Fridge') to ensure they stay. List any fixtures the seller is taking (e.g., 'Dining room chandelier').",
+                            "Rental Items: Always note if the Hot Water Heater or HVAC is rented so the buyer knows they must assume the contract."
+                        ]
+                    },
+                    {
+                        name: "OREA Form 101 (Agreement of Purchase & Sale - Condo)",
+                        purpose: "Specifically formatted for condominiums, capturing complex corporate structures and fees.",
+                        agentActions: [
+                            "Condo Details: Fill in the Condominium Plan Number and the Legal Name of the Condo Corp.",
+                            "Parking & Locker: Determine if they are 'Owned' (deeded) or 'Exclusive Use' and record the Level and Unit numbers exactly as they appear on title.",
+                            "Common Expenses: Fill in the monthly maintenance fee and check off what is included (Heat, Water, Hydro, etc.).",
+                            "Schedule A: ALWAYS include a condition for the Buyer's Lawyer to review the Status Certificate. Waiving this is highly dangerous."
+                        ]
+                    },
+                    {
+                        name: "OREA Form 400 (Agreement to Lease)",
+                        purpose: "The initial offer submitted by a prospective Tenant to a Landlord.",
+                        agentActions: [
+                            "Term & Rent: State the duration (usually 1 year) and the monthly rent amount.",
+                            "Deposit: By law, this can only be applied to the LAST month's rent. (The first month's rent is handed over prior to getting keys).",
+                            "Ensure no illegal deposits (like massive security or damage deposits) are written in, as they violate the Residential Tenancies Act."
+                        ]
+                    },
+                    {
+                        name: "OREA Form 244 (Seller's Direction Re: Property/Offers)",
+                        purpose: "Dictates the rules of engagement for showings and how offers will be handled.",
+                        agentActions: [
+                            "If holding a 'Bidding War', check the box to specify the exact Date and Time offers will be reviewed.",
+                            "Ask the Seller: 'Will you consider pre-emptive (bully) offers?' Check Yes or No accordingly. If Yes, you must notify all buyers if a bully offer arrives.",
+                            "Have the Seller sign to authorize the use of a lockbox."
+                        ]
+                    }
+                ]
+            },
+            "offer_mgmt": {
+                title: "Multiple Offers & Co-operation",
+                icon: "layers",
+                description: "Handling the complexities of bidding wars, multiple representation, and commissions.",
+                forms: [
+                    {
+                        name: "OREA Form 320 / 324 (Confirmation of Co-operation)",
+                        purpose: "Clarifies exactly who represents who in the deal, and confirms the commission split between the listing and buying brokerages.",
+                        agentActions: [
+                            "This must be signed BEFORE the offer is presented.",
+                            "Section 1: Details the Listing Brokerage's representation.",
+                            "Section 2: Details the Co-operating (Buyer's) Brokerage's representation.",
+                            "Section 3: Confirms the exact commission % or flat fee the listing brokerage will pay the buyer's brokerage."
+                        ]
+                    },
+                    {
+                        name: "OREA Form 325 / 326 (Multiple Representation Consent)",
+                        purpose: "Under TRESA, if Casora! represents BOTH the Buyer and the Seller in the same transaction, both parties must explicitly consent to this conflict of interest BEFORE the offer is made.",
+                        agentActions: [
+                            "Form 325 goes to the Seller/Landlord; Form 326 goes to the Buyer/Tenant.",
+                            "Explain that as a multiple representative, you cannot disclose what the buyer is willing to pay or what the seller is willing to accept without written permission."
+                        ]
+                    },
+                    {
+                        name: "OREA Form 652 (Summary Document - Competing Offers)",
+                        purpose: "TRESA requires the listing brokerage to keep a formal tally of all offers received during a bidding war and share this with the buyers.",
+                        agentActions: [
+                            "If Listing: You must fill this out to officially log the number of offers received and share it with the unrepresented buyers/co-op agents.",
+                            "If Buying: Review this form provided by the listing agent to confirm you aren't being bluffed about the number of competing offers."
+                        ]
+                    },
+                    {
+                        name: "OREA Form 209 (Seller's Direction to Disclose Substance of Offers)",
+                        purpose: "Normally, offer details are confidential. TRESA allows a Seller to authorize their agent to share the details (substance) of offers with other buyers to drive up the price.",
+                        agentActions: [
+                            "If the Seller wants to reveal the top bid to other buyers, they MUST sign this form.",
+                            "You must follow their direction exactly (e.g., 'Share the price only, not the closing date')."
+                        ]
+                    }
+                ]
+            },
+            "conditions_disclosures": {
+                title: "Conditions, Waivers & Disclosures",
+                icon: "shield-alert",
+                description: "Forms used to firm up a deal or disclose conflicts of interest.",
+                forms: [
+                    {
+                        name: "OREA Form 124 (Notice of Fulfillment) & Form 123 (Waiver)",
+                        purpose: "Used to remove conditions (like Financing or Inspection) from the APS to make the deal 'Firm'.",
+                        agentActions: [
+                            "Use Form 124 (Fulfillment) when the condition was actually met (e.g., Bank approved the mortgage).",
+                            "Use Form 123 (Waiver) when the buyer decides to proceed without fulfilling the condition (e.g., they didn't do an inspection but want to buy it anyway)."
+                        ]
+                    },
+                    {
+                        name: "OREA Form 127 (Acknowledgement of Condition Waiver)",
+                        purpose: "A 'Cover Your Assets' (CYA) form for the agent. If a buyer wants to write a Firm offer or waive a condition, this proves you warned them of the risks.",
+                        agentActions: [
+                            "Check the boxes for the conditions the buyer is skipping (e.g., Home Inspection, Financing).",
+                            "Have the buyer sign to acknowledge that you advised them against doing this, protecting your license if they get sued later."
+                        ]
+                    },
+                    {
+                        name: "OREA Form 161 / 160 (Registrant's Disclosure of Interest)",
+                        purpose: "Mandatory by law if a real estate agent (or their immediate family) is buying or selling a property.",
+                        agentActions: [
+                            "Form 161: Use if YOU own the property you are listing.",
+                            "Form 160: Use if YOU are writing an offer to buy a property.",
+                            "This must be presented to all other parties PRIOR to an offer being made to ensure full transparency."
+                        ]
+                    }
+                ]
+            },
+            "fintrac_admin": {
+                title: "FINTRAC & Office Administration",
+                icon: "briefcase",
+                description: "Federal anti-money laundering compliance and Casora! internal processing.",
+                forms: [
+                    {
+                        name: "FINTRAC 630 / 631 (Individual / Corporate ID)",
+                        purpose: "Federal law requires you to verify the identity of anyone buying or selling real estate to prevent money laundering.",
+                        agentActions: [
+                            "Form 630 (Individual): Must view a valid, unexpired government photo ID. Record the exact ID number, issuing jurisdiction, and expiry date.",
+                            "Form 631 (Corporate): Must pull corporate search records to verify the existence of the company and the names of its directors.",
+                            "Determine their exact occupation (e.g., 'Manager of Retail Store', not just 'Business')."
+                        ]
+                    },
+                    {
+                        name: "FINTRAC 634 (Politically Exposed Person - PEP)",
+                        purpose: "Identifies if your client holds a prominent public function (e.g., Mayor, Judge, Senator) which makes them a higher risk for bribery/corruption funds.",
+                        agentActions: [
+                            "Must be completed for ALL buyers and sellers.",
+                            "Ask the client directly if they or their family members are politically exposed and check the appropriate boxes."
+                        ]
+                    },
+                    {
+                        name: "FINTRAC 635 (Receipt of Funds)",
+                        purpose: "Tracks exactly where the deposit money came from.",
+                        agentActions: [
+                            "Record the account number, institution name, and the amount of the deposit draft or wire transfer.",
+                            "Required by the buying agent when the deposit is handed over."
+                        ]
+                    },
+                    {
+                        name: "Casora! Deal Summary & New Listings Sheet",
+                        purpose: "Internal brokerage documents to ensure your listings get posted properly and you get paid on time.",
+                        agentActions: [
+                            "New Listings Sheet: Fill out lockbox codes, showing instructions, and required documents (for leases) so the admin team can load the listing into BrokerBay and MLS.",
+                            "Deal Summary: Submit this immediately when a deal goes FIRM. It tells the brokerage who the lawyers are, what the commission split is, and triggers the invoicing process."
+                        ]
+                    }
+                ]
+            }
+        };
+
+        const App = () => {
+            const [activeTab, setActiveTab] = useState("reco_agency");
+            
+            useEffect(() => {
+                lucide.createIcons();
+            }, [activeTab]);
+
+            const currentSection = formsDatabase[activeTab];
+
+            return (
+                <div className="flex h-screen w-full bg-slate-50 overflow-hidden font-sans">
+                    {/* Sidebar */}
+                    <aside className="w-80 bg-slate-900 text-slate-300 flex flex-col shadow-xl z-20 shrink-0">
+                        <div className="p-6 bg-slate-950 border-b border-slate-800">
+                            <h1 className="text-xl font-bold text-white mb-1">Casora! Forms</h1>
+                            <p className="text-xs font-medium text-slate-500 uppercase tracking-widest">Masterclass Tutorial</p>
+                        </div>
+                        <nav className="flex-1 overflow-y-auto py-4">
+                            {Object.entries(formsDatabase).map(([key, data]) => (
+                                <button
+                                    key={key}
+                                    onClick={() => setActiveTab(key)}
+                                    className={`w-full flex items-center gap-3 px-6 py-4 text-left transition-colors border-l-4 ${
+                                        activeTab === key 
+                                            ? 'bg-blue-600/10 border-blue-500 text-blue-400 font-semibold' 
+                                            : 'border-transparent hover:bg-slate-800 hover:text-slate-200'
+                                    }`}
+                                >
+                                    <i data-lucide={data.icon} className="w-5 h-5"></i>
+                                    {data.title}
+                                </button>
+                            ))}
+                        </nav>
+                        <div className="p-6 bg-slate-950 text-xs text-slate-500 text-center">
+                            For internal use by Casora! Realty Inc.
+                        </div>
+                    </aside>
+
+                    {/* Main Content */}
+                    <main className="flex-1 flex flex-col overflow-y-auto bg-slate-50">
+                        <header className="bg-white px-10 py-8 border-b border-slate-200 shadow-sm sticky top-0 z-10">
+                            <div className="flex items-center gap-4 text-blue-600 mb-2">
+                                <div className="p-2 bg-blue-50 rounded-lg">
+                                    <i data-lucide={currentSection.icon} className="w-6 h-6"></i>
+                                </div>
+                                <h2 className="text-sm font-bold uppercase tracking-widest text-slate-500">Category</h2>
+                            </div>
+                            <h1 className="text-3xl font-extrabold text-slate-800">{currentSection.title}</h1>
+                            <p className="text-slate-600 mt-2 text-lg">{currentSection.description}</p>
+                        </header>
+
+                        <div className="p-10 space-y-8 max-w-5xl">
+                            {currentSection.forms.map((form, idx) => (
+                                <div key={idx} className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition-shadow">
+                                    <div className="p-6 form-highlight border-b border-slate-100">
+                                        <h3 className="text-xl font-bold text-slate-800 flex items-center gap-2">
+                                            <i data-lucide="file-text" className="w-5 h-5 text-blue-500"></i>
+                                            {form.name}
+                                        </h3>
+                                    </div>
+                                    <div className="p-6 md:p-8 grid md:grid-cols-3 gap-8">
+                                        <div className="md:col-span-1">
+                                            <h4 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3 flex items-center gap-2">
+                                                <i data-lucide="help-circle" className="w-4 h-4"></i> The "Why"
+                                            </h4>
+                                            <p className="text-slate-700 text-sm leading-relaxed">{form.purpose}</p>
+                                        </div>
+                                        <div className="md:col-span-2 bg-slate-50 rounded-xl p-6 border border-slate-100">
+                                            <h4 className="text-xs font-bold uppercase tracking-widest text-indigo-500 mb-4 flex items-center gap-2">
+                                                <i data-lucide="pen-tool" className="w-4 h-4"></i> Agent Action Items
+                                            </h4>
+                                            <ul className="space-y-3">
+                                                {form.agentActions.map((action, aIdx) => (
+                                                    <li key={aIdx} className="flex items-start text-sm text-slate-700">
+                                                        <i data-lucide="check-circle-2" className="w-4 h-4 text-emerald-500 mt-0.5 mr-3 shrink-0"></i>
+                                                        <span dangerouslySetInnerHTML={{__html: action.replace(/(Designated Representative|Status Certificate|Holdover Period|FINTRAC|TRESA|Self-Represented Party)/g, '<strong>$1</strong>')}}></span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </main>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
